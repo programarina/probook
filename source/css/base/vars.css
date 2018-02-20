@@ -1,14 +1,17 @@
-:root {
-  --font-family-serif: Garamond, "Times New Roman", serif;
-  --font-family-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
+/* colors */
 
-  --grey-border: #eee;
-  --grey-text: #aaa;
-  --black: #000;
-  --white: #fff;
+:root {
+    --primary-color: rgb(66, 80, 133);
+    --light-grey-color:#DAD6D6;
+    --accent-color: rgb(248, 105, 100);
+    --accent-color-disabled: rgb(247, 145, 141);
+    --light-color: #FBFBFB;
+    --main-dark-color:rgb(50, 46, 65);
+    --light-brown-color: #A3828F;
+    
 }
 
-@custom-media --sm (max-width: 500px);
-@custom-media --md (min-width: 769px);
-@custom-media --lg (min-width: 1025px);
-@custom-media --xl (min-width: 1800px);
+/* sizes */
+:root{
+    --big-letters: 60px;
+}

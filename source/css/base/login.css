@@ -1,0 +1,76 @@
+.loginPage{
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    justify-content: center;
+    padding-top:30px;
+
+}
+form{
+    width: 100%;
+}
+
+.signInForm input[type='email'],[type='password'],
+.signUpForm input[type='email'],[type='password'],[type='text'] {
+    display: block;
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    border-width: 1px solid;
+}
+.signInForm label,
+.signUpForm label{
+    display: block;
+    margin: 0 auto;
+    padding-top:10px;
+    width: 80%;
+    color: color(var(--primary-color));
+}
+input:focus {
+    outline-color: color(var(--light-grey-color));
+}   
+.signInForm button, .signUpForm button{
+    display: block;
+    margin: 20px auto;
+    margin-right: 10%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: color(var(--accent-color));
+    color: color(var(--light-color));
+}
+    
+.loginPage 
+    div , h1{ 
+    width: 40%;
+    }
+    h1{
+        font-size:calc(var(--big-letters));
+        color: color(var(--primary-color));
+    }
+    
+
+
+.formContainer{
+    border: 1px solid color(var(--light-grey-color));
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.formContainer a{
+    width: 50%;
+    text-align: center;
+    text-decoration: none;
+    color: color(var(--light-color));
+    background-color: color(var(--primary-color));
+    border: 1px solid color(var(--light-color));
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+@media screen and (max-width: 680px){
+    .loginPage
+        div , h1{ 
+        width: 100%;
+        }
+}

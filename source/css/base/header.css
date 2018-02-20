@@ -1,0 +1,11 @@
+header{
+    background-color: color(var(--main-dark-color));
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    padding: 30px;
+    color: color(var(--light-color));
+}
+header h3{
+    padding: 0;
+}
