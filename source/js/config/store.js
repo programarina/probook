@@ -2,10 +2,6 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import logger from 'dev/logger';
 
-import Immutable from 'immutable'; // Remove if you are not using server rendering
-import Serialize from 'remotedev-serialize/immutable'; // Remove if you are not using server rendering
-
-
 import rootSaga from 'sagas';
 import rootReducer from 'reducers';
 
@@ -13,18 +9,8 @@ const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
 let initialState = {};
 
-// Remove if you are not using server rendering
-try {
-  // If state exists we need to parse it to JS object
-  initialState = Serialize(Immutable).parse(__MARVIN_DEHYDRATED_STATE); // eslint-disable-line no-undef
-} catch (e) {
-  // ★★ Marvin: No dehydrated state
-}
-
 // Creating store
-// Remove "serverSagas" and "sagaOptions" params
-// if you are not using server rendering
-export default (serverSagas = null, sagaOptions = {}) => {
+export default () => {
   let store = null;
   let middleware = null;
 
@@ -54,19 +40,6 @@ export default (serverSagas = null, sagaOptions = {}) => {
     initialState,
     middleware
   );
-
-  // Server render
-  // Remove if you are not using server rendering
-  if (serverSagas) {
-    // Start server sagas
-    const tasks = serverSagas.map(saga => sagaMiddleware.run(saga, sagaOptions));
-
-    // Return both store and tasks
-    return {
-      tasks,
-      store,
-    };
-  }
 
   // Run root saga
   sagaMiddleware.run(rootSaga);
