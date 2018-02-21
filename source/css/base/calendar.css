@@ -1,0 +1,16 @@
+aside{
+    float: left;
+    width: 10%;
+    box-sizing: border-box;
+}
+aside ul{
+    padding: 10px;
+
+}
+aside ul li{
+    padding: 20px;
+    list-style: none;
+    font-weight: 100;
+    color: color(var(--accent-color-disabled));
+
+}

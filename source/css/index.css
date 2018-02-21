@@ -1,5 +1,10 @@
 @import 'base/vars';
 
-@import 'base/main';
+@import 'base/common';
 @import 'base/login';
+@import 'base/main';
 @import 'base/header';
+@import 'base/search';
+@import 'base/quickNote';
+@import 'base/calendar';
+@import 'base/notes';

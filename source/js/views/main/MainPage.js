@@ -3,23 +3,13 @@ import { Switch, Route, Link, Redirect } from 'react-router-dom'
 
 class MainPage extends Component {
     render() {
-        return (<div>
+        return (<div className='mainPage'>
 
             <header>
                 <h3>Hi, name</h3>
                 <button>LogOut</button>
             </header>
-
-            <search>
-                <input type='text' placeholder='find...'/>
-            </search>
-
-            <subheader>
-                <textarea>Quick note...</textarea>
-                <button>Add note</button>
-            </subheader>
-
-            <aside>Calendar
+            <aside>
                 <ul>
                     <li>January</li>
                     <li>February</li>
@@ -35,20 +25,33 @@ class MainPage extends Component {
                     <li>December</li>
                 </ul>
             </aside>
-            
             <main>
-                <div>
-                    <h3>Today</h3>
+
+                <section className='searchForm'>
+                    <input type='text' placeholder='Search' />
+                </section>
+
+                <section className='quickNote'>
+                    <textarea placeholder='Quick note...'></textarea>
+                    <button>Add note</button>
+                </section>
+
+                <section className='allNotes'>
                     <div>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                     </div>
-                </div>
-                <div>
-                    <h3>Yesterday</h3>
+                        <h3>Today</h3>
+                        <p>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                     </p>
+                    </div>
+
                     <div>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                     </div>
-                </div>
+                        <h3>Yesterday</h3>
+                        <p>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                     </p>
+                    </div>
+
+                </section>
             </main>
         </div>
         );

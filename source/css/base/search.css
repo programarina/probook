@@ -1,0 +1,6 @@
+.searchForm input[type='text']{
+    display: block;
+    width: 80%;
+    margin: 30px auto;
+    padding-left: 50px;
+}

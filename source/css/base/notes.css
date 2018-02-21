@@ -1,0 +1,10 @@
+.allNotes{
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+.allNotes h3{
+    border-bottom: 1px solid color(var(--light-grey-color));
+    color: color(var(--primary-color));
+    padding: 10px;
+}
