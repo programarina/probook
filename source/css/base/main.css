@@ -19,8 +19,44 @@
     right: 60px;
 }
 
+.addNoteBtn circle{
+    fill: color(var(--accent-color));
+    text-shadow: 2px 2px color(var(--main-dark-color));
+}
+
+.addNoteBtn text{
+    font-size: 4em;
+    fill: color(var(--light-color));
+}
+
+#mobileCircle{
+    visibility: hidden;
+}
+
 @media screen and (max-width: 680px){
     .main> :first-child{
         width: 100%;
     }
+
+    .addNoteBtn{
+        top: 320px;
+        right: 0px;
+    }
+
+    .addNoteBtn circle{
+        width: 10px;
+    }
+
+    .addNoteBtn text{
+        font-size: 2em;
+    }
+
+    #desktopCircle{
+        display: none;
+    }
+
+    #mobileCirle{
+        visibility: visible;
+    }
 }
+

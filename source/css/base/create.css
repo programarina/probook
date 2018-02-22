@@ -36,8 +36,10 @@
 }
 
 .previewCode{
-    min-height: 480px;
+    max-height: 440px;
     border: 1px solid color(var(--light-brown-color));
+    padding: 20px;
+    box-sizing: border-box;
     width: 40%;
 }
 
