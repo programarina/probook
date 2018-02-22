@@ -32,10 +32,15 @@
     color: color(var(--light-color));
     border: none;
     outline: none;
+    border-radius: 5px;
 }
 
 @media screen and (max-width: 680px){
     .quickNote button{
         width: 10%;
+    }
+
+    .quickNote textarea{
+        min-height: 150px;
     }
 }

@@ -21,7 +21,7 @@ class MainPage extends Component {
                     </section>
                     <section className='quickNote'>
                         <textarea placeholder='Quick note...'></textarea>
-                        <button>Add note</button>
+                        <button>Add</button>
                     </section>
                 </div>
                 <section className='allNotes'>
@@ -46,7 +46,25 @@ class MainPage extends Component {
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                      </div>
                     </div>
-                    <button className='addNoteBtn'>Create note</button>
+                    <svg width="100" height="100" className='addNoteBtn'>
+                        <defs>
+                            <defs>
+                                <filter id="dropshadow" x="-40%" y="-40%" width="180%" height="180%" filterUnits="userSpaceOnUse">
+                                    <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+                                    <feOffset dx="5" dy="5" result="offsetblur" />
+                                    <feOffset dx="-5" dy="-5" result="offsetblur" />
+                                    <feMerge>
+                                        <feMergeNode />
+                                        <feMergeNode in="SourceGraphic" />
+                                        <feMergeNode in="SourceGraphic" />
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                        </defs>
+                        <circle cx="50" cy="50" r="40" filter='url(#dropshadow)' id='desktopCircle' />
+                        <circle cx="50" cy="50" r="25" filter='url(#dropshadow)' id='mobileCircle' />
+                        <text x="50%" y="50%" textAnchor="middle" strokeWidth="2px" dy="0.3em">+</text>
+                    </svg>
                 </section>
             </div>
         </div >
