@@ -10,3 +10,9 @@ header{
 header h3{
     padding: 0;
 }
+header button{
+    border: 1px solid color(var(--accent-color));
+    background-color: transparent;
+    padding:10px 20px;
+    color:  color(var(--accent-color));
+}

@@ -1,6 +1,11 @@
 .searchForm input[type='text']{
     display: block;
-    width: 80%;
-    margin: 30px auto;
+    width: 70%;
+    margin: 0 0 20px 10%;
     padding-left: 50px;
+    border-radius: 5px;
+    background-color: color(var(--dark-violet));
+    border: 2px solid color(var(--accent-color));
+    color:color(var(--light-grey-color));
+    outline-color: color(var(--accent-color));
 }

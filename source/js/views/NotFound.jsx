@@ -11,7 +11,6 @@ const RouteStatus = ({ code, children }) => (
         if (staticContext) {
           staticContext.status = code; // eslint-disable-line no-param-reassign
         }
-
         return children;
       }
     }

@@ -6,3 +6,18 @@ main{
     width: 90%;
     box-sizing: border-box;
 }
+main > :first-child{
+    background-color: color(var(--dark-violet));
+    padding: 20px;
+}
+
+.addNoteBtn{
+    position: fixed;
+    bottom: 60px; 
+    right: 60px;
+}
+@media screen and (max-width: 680px){
+main> :first-child{
+    width: 100%;
+}
+}

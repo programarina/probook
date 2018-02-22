@@ -6,23 +6,35 @@
 .quickNote textarea{
     display: block;
     width: 70%;
+    margin: 0;
     margin-left:10%; 
     resize: none;
     padding: 20px;
+    border-radius: 5px;
     border: 1px solid color(var(--light-grey-color));
-    overflow: auto;
+    /* overflow: auto; */
+    background-color: color(var(--dark-violet));
+    color:color(var(--light-grey-color));
 
 }
+
 .quickNote textarea:focus{
     outline-color: color(var(--light-grey-color));
 }
 .quickNote button{
     display: block;
     width: 5%;
+    box-sizing: border-box;
+    padding: 3px;
     height: 30px;
     margin-left: 10px;
     background-color: color(var(--primary-color));
     color: color(var(--light-color));
     border: none;
     outline: none;
+}
+@media screen and (max-width: 680px){
+    .quickNote button{
+        width: 10%;
+    }
 }

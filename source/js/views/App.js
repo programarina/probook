@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom';
+
 import LoginPage from '../views/login/LoginPage';
 import MainPage from '../views/main/mainPage';
 import CreateNotePage from '../views/create/CreateNotePage';

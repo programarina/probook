@@ -3,14 +3,14 @@ aside{
     width: 10%;
     box-sizing: border-box;
 }
-aside ul{
-    padding: 10px;
-
-}
 aside ul li{
     padding: 20px;
     list-style: none;
     font-weight: 100;
     color: color(var(--accent-color-disabled));
-
+    box-shadow: 1px 2px 1px color(var(--light-grey-color));
+    text-align: center;
+}
+@media screen and (max-width: 680px){
+aside{display: none;}
 }
