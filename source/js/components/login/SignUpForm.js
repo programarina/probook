@@ -6,13 +6,13 @@ class SignUpForm extends Component {
         return (
             <form className='signUpForm'>
                 <label>Name*
-                <input type='text' />
+                    <input type='text' />
                 </label>
                 <label>Email*
-                <input type='email' />
+                    <input type='email' />
                 </label>
                 <label>Password*
-                <input type='password' />
+                    <input type='password' />
                 </label>
                 <button type='submit'>Sign up</button>
             </form>

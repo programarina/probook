@@ -3,6 +3,7 @@
     flex-flow: row wrap;
     align-items: flex-end;
 }
+
 .quickNote textarea{
     display: block;
     width: 70%;
@@ -12,15 +13,14 @@
     padding: 20px;
     border-radius: 5px;
     border: 1px solid color(var(--light-grey-color));
-    /* overflow: auto; */
     background-color: color(var(--dark-violet));
     color:color(var(--light-grey-color));
-
 }
 
 .quickNote textarea:focus{
     outline-color: color(var(--light-grey-color));
 }
+
 .quickNote button{
     display: block;
     width: 5%;
@@ -33,6 +33,7 @@
     border: none;
     outline: none;
 }
+
 @media screen and (max-width: 680px){
     .quickNote button{
         width: 10%;

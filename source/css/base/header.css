@@ -1,4 +1,4 @@
-header{
+.header{
     background-color: color(var(--main-dark-color));
     width: 100%;
     display: flex;
@@ -7,10 +7,12 @@ header{
     padding: 30px;
     color: color(var(--accent-color));
 }
-header h3{
+
+.header h3{
     padding: 0;
 }
-header button{
+
+.header button{
     border: 1px solid color(var(--accent-color));
     background-color: transparent;
     padding:10px 20px;

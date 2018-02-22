@@ -8,14 +8,14 @@
     display: flex;
     flex-flow: row wrap;
 }
+
 .oneDay h3{
     width: 100%;
     border-bottom: 1px solid color(var(--light-grey-color));
     color: color(var(--primary-color));
-    padding: 20px 0;
-    
-    
+    padding: 20px 0;    
 }
+
 .singleNote{
     margin: 20px 2%;
     box-sizing: border-box;
@@ -29,8 +29,9 @@
     color: color(var(--main-dark-color));
     box-shadow: 2px 2px 3px color(var(--light-brown-color));
 }
+
 @media screen and (max-width: 680px){
-.singleNote{
-    width: 100%;
-}
+    .singleNote{
+        width: 100%;
+    }
 }

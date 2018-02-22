@@ -4,9 +4,10 @@
     width: 100%;
     justify-content: center;
     padding-top:30px;
-
 }
-form{
+
+.signInForm, 
+.signUpForm{
     width: 100%;
 }
 
@@ -19,6 +20,7 @@ form{
     margin: 0 auto;
     border-width: 1px solid;
 }
+
 .signInForm label,
 .signUpForm label{
     display: block;
@@ -27,9 +29,12 @@ form{
     width: 80%;
     color: color(var(--primary-color));
 }
-input:focus {
+
+.signInForm input:focus,
+.signUpForm input:focus{
     outline-color: color(var(--light-grey-color));
-}   
+}
+
 .signInForm button, .signUpForm button{
     display: block;
     margin: 20px auto;
@@ -39,17 +44,16 @@ input:focus {
     background-color: color(var(--accent-color));
     color: color(var(--light-color));
 }
-    
+
 .loginPage 
     div , h1{ 
     width: 40%;
     }
+
     h1{
         font-size:calc(var(--big-letters));
         color: color(var(--primary-color));
     }
-    
-
 
 .formContainer{
     border: 1px solid color(var(--light-grey-color));
