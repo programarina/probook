@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 
+import AddNote from '../../components/create/AddNote';
+
 class CreateNotePage extends Component {
     render() {
         return (
             <div>
                 <div className='header'>
                     <h3>Hi, name</h3>
-                    <button>LogOut</button>
+                    <button>Log out</button>
                 </div>
                 <div className='createNote'>
-                    <div className='addNote'>
-                        <input type='text' placeholder='title' />
-                        <textarea placeholder='code'></textarea>
-                        <button>Save</button>
-                    </div>
+                    <AddNote />
                     <div className='previewCode'>
                         Preview
                     </div>
