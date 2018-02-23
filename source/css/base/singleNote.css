@@ -1,0 +1,63 @@
+.singleNote{
+  margin: 20px 2%;
+  box-sizing: border-box;
+  width: 25%;
+  border: 1px solid color(var(--light-brown-color));
+  border-radius: 2px;
+  /* padding: 10px; */
+  min-height: 250px;
+  max-height: 250px;
+  overflow: hidden;
+  background-color: color(var(--light-color));
+  color: color(var(--main-dark-color));
+  box-shadow: 2px 2px 3px color(var(--light-brown-color));
+  position: relative;
+}
+
+@media screen and (max-width: 680px){
+  .singleNote{
+      width: 100%;
+  }
+}
+
+.singleNote button{
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  border: none;
+}
+
+.singleNote .deleteNoteBtn{
+  right: 0;
+  font-size: 1.2em;
+  background-color: color(var(--primary-color));
+  color: color(var(--accent-color));
+  border-bottom: 1px solid color(var(--accent-color));
+}
+
+.editBtn{
+  right: 40px;
+  background-color: color(var(--accent-color));
+}
+
+.singleNote h4{
+  color: color(var(--primary-color));
+  border-bottom: 1px solid color(var(--light-grey-color));
+  padding: 10px 5px;
+  margin-left: 10px;
+  width: 60%;
+}
+
+.singleNote p{
+  padding: 20px 10px;
+}
+
+.snippetTags{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: color(var(--light-color));
+  border-top: 1px solid color(var(--light-brown-color));
+}

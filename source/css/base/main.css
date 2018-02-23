@@ -29,22 +29,14 @@
     fill: color(var(--light-color));
 }
 
-#mobileCircle{
-    visibility: hidden;
-}
-
 @media screen and (max-width: 680px){
     .main> :first-child{
         width: 100%;
     }
 
     .addNoteBtn{
-        top: 320px;
+        top: 350px;
         right: 0px;
-    }
-
-    .addNoteBtn circle{
-        width: 10px;
     }
 
     .addNoteBtn text{
@@ -55,8 +47,8 @@
         display: none;
     }
 
-    #mobileCirle{
-        visibility: visible;
+    #mobileCircle{
+        display: block;
     }
 }
 

@@ -7,7 +7,7 @@ class AddNote extends Component {
         <div>
           <input type='text' placeholder='title' />
           <textarea placeholder='write your code here...' />
-          <div className='snippet'>
+          <div className='snippetInputForm'>
             <input type='text' placeholder='add snippets...' />
             <button>Add</button>
           </div>

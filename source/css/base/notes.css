@@ -15,23 +15,3 @@
     color: color(var(--primary-color));
     padding: 20px 0;    
 }
-
-.singleNote{
-    margin: 20px 2%;
-    box-sizing: border-box;
-    width: 25%;
-    border: 1px solid color(var(--light-brown-color));
-    border-radius: 2px;
-    padding: 10px;
-    max-height: 250px;
-    overflow: hidden;
-    background-color: color(var(--light-color));
-    color: color(var(--main-dark-color));
-    box-shadow: 2px 2px 3px color(var(--light-brown-color));
-}
-
-@media screen and (max-width: 680px){
-    .singleNote{
-        width: 100%;
-    }
-}

@@ -44,15 +44,15 @@
     width: 40%;
 }
 
-.snippet button{
+.snippetInputForm button{
     width: 20%;
     height: 26px;
     padding: 0;
 }
-.snippet input[type='text']{
+.snippetInputForm input[type='text']{
     width: 79%;
 }
-.snippet {
+.snippetInputForm {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;

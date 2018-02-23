@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import Search from '../../components/main/Search';
 import Filter from '../../components/main/Filter';
+import SingleNote from '../../components/main/SingleNote';
+
 
 class MainPage extends Component {
   render() {
@@ -23,9 +25,7 @@ class MainPage extends Component {
           <section className='allNotes'>
             <div className='oneDay'>
               <h3>Today</h3>
-              <div className='singleNote'>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-              </div>
+              <SingleNote />
               <div className='singleNote'>
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
               </div>
@@ -58,7 +58,7 @@ class MainPage extends Component {
                 </defs>
               </defs>
               <circle cx='50' cy='50' r='40' filter='url(#dropshadow)' id='desktopCircle' />
-              <circle cx='50' cy='50' r='25' filter='url(#dropshadow)' id='mobileCircle' />
+              {/* <circle cx='50' cy='50' r='25' filter='url(#dropshadow)' id='mobileCircle' /> */}
               <text x='50%' y='50%' textAnchor='middle' strokeWidth='2px' dy='0.3em'>+</text>
             </svg>
           </section>
