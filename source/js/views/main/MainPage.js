@@ -1,25 +1,20 @@
 import React, { Component } from 'react';
-import { LIST_OF_MONTHS } from '../../../constants/months';
+
+import Search from '../../components/main/Search';
+import Filter from '../../components/main/Filter';
 
 class MainPage extends Component {
   render() {
-    const months = LIST_OF_MONTHS;
     return (
       <div className='mainPage'>
         <div className='header'>
           <h3>Hi, name</h3>
           <button>Log out</button>
         </div>
-        <div className='calendarList'>
-          <ul>
-            {months.map(month => <li key={ month }>{month}</li>)}
-          </ul>
-        </div>
+        <Filter />
         <div className='main'>
           <div>
-            <section className='searchForm'>
-              <input type='text' placeholder='Search' />
-            </section>
+            <Search />
             <section className='quickNote'>
               <textarea placeholder='Quick note...' />
               <button>Add</button>
