@@ -32,7 +32,8 @@
     border: none;
     display: block;
     margin: 0 auto;
-    margin-right: 0;    
+    margin-right: 0;   
+    border-radius: 5px; 
 }
 
 .previewCode{
@@ -43,6 +44,24 @@
     width: 40%;
 }
 
+.snippet button{
+    width: 20%;
+    height: 26px;
+    padding: 0;
+}
+.snippet input[type='text']{
+    width: 79%;
+}
+.snippet {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+.addNote > :first-child{
+    background-color:color(var(--light-grey-color)); 
+    padding: 20px;
+    margin-bottom: 10px;
+}
 @media screen and (max-width: 680px){
     .addNote{
         width: 100%;

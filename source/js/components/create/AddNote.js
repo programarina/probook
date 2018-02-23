@@ -4,8 +4,14 @@ class AddNote extends Component {
   render() {
     return (
       <div className='addNote'>
-        <input type='text' placeholder='title' />
-        <textarea placeholder='code' />
+        <div>
+          <input type='text' placeholder='title' />
+          <textarea placeholder='write your code here...' />
+          <div className='snippet'>
+            <input type='text' placeholder='add snippets...' />
+            <button>Add</button>
+          </div>
+        </div>
         <button>Save</button>
       </div>
     );

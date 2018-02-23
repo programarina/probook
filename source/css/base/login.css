@@ -9,6 +9,7 @@
 .signInForm, 
 .signUpForm{
     width: 100%;
+    background-color: color(var(--light-color));
 }
 
 .signInForm input[type='email'],[type='password'],
@@ -38,7 +39,7 @@
 .signInForm button, .signUpForm button{
     display: block;
     margin: 20px auto;
-    margin-right: 10%;
+    width: 80%;
     padding: 10px;
     border-radius: 5px;
     background-color: color(var(--accent-color));
