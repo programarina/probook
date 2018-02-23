@@ -44,3 +44,10 @@ rules:
   react/jsx-filename-extension: 0
   react/prefer-stateless-function: 0
   react/require-default-props: 0
+
+  #ally
+  jsx-a11y/anchor-is-valid: ["error", {
+    "components": ["Link"],
+    "specialLink": ["to"],
+    "aspects": ["noHref", "invalidHref", "preferButton"]
+  }]
