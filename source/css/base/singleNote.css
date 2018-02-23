@@ -4,7 +4,6 @@
   width: 25%;
   border: 1px solid color(var(--light-brown-color));
   border-radius: 2px;
-  /* padding: 10px; */
   min-height: 250px;
   max-height: 250px;
   overflow: hidden;
@@ -60,4 +59,15 @@
   z-index: 100;
   background-color: color(var(--light-color));
   border-top: 1px solid color(var(--light-brown-color));
+  padding: 10px;
+}
+
+.snippetTags li{
+  list-style-type: none;
+  display: inline-block;
+  padding: 10px;
+  background-color: color(var(--light-grey-color));
+  margin: 2px;
+  border-radius: 20px;
+  font-size: calc(var(--small-letters));
 }

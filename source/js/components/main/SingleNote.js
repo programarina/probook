@@ -10,7 +10,11 @@ class SingleNote extends Component {
         </p>
         <button className='editBtn'><img src='../../../assets/img/editBtn.png' alt='edit button' width='20px' /></button>
         <button className='deleteNoteBtn'>x</button>
-        <p className='snippetTags'>Snippets</p>
+        <ul className='snippetTags'>
+          <li>JS</li>
+          <li>CSS</li>
+          <li>HTML</li>
+        </ul>
       </div>
     );
   }

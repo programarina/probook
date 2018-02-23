@@ -7,6 +7,7 @@ import SingleNote from '../../components/main/SingleNote';
 
 class MainPage extends Component {
   render() {
+    const arr = [1, 2, 3, 4];
     return (
       <div className='mainPage'>
         <div className='header'>
@@ -25,22 +26,11 @@ class MainPage extends Component {
           <section className='allNotes'>
             <div className='oneDay'>
               <h3>Today</h3>
-              <SingleNote />
-              <div className='singleNote'>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-              </div>
-              <div className='singleNote'>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has beestandard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-              </div>
-              <div className='singleNote'>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-              </div>
+              {arr.map(note => <SingleNote note={ note } />)}
             </div>
             <div className='oneDay'>
               <h3>Yesterday</h3>
-              <div className='singleNote'>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the  standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-              </div>
+              {arr.map(note => <SingleNote note={ note } />)}
             </div>
             <svg width='100' height='100' className='addNoteBtn'>
               <defs>
