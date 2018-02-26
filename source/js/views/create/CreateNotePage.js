@@ -8,25 +8,34 @@ class CreateNotePage extends Component {
   constructor() {
     super();
     this.state = {
-      noteTitle: '',
-      noteBody: '',
-      noteTags: ''
+      noteTitle: 'Note title',
+      noteBody: 'Note code',
+      noteTags: []
     };
   }
 
-  showTitle = (noteTitle) => {
+  showNoteData = ({ target }) => {
     this.setState({
-      noteTitle
+      [target.name]: target.value
     });
   }
 
+  showTags = (tags) => {
+    let noteTags = tags.split(' ');
+    this.setState({
+      noteTags
+    });    
+  }
+
   render() {
+    const note = this.state;
+    console.log(typeof (note.noteTags));
     return (
       <div>
         <Header />
         <div className='createNote'>
-          < AddNote showTitle={ this.showTitle } title={ this.state.noteTitle } />
-          <PreviewNote title={ this.state.noteTitle } />
+          < AddNote showNoteData={this.showNoteData} showTags={this.showTags} note={note} />
+          <PreviewNote note={note} />
         </div>
       </div>
     );

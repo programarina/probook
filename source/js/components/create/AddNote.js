@@ -1,24 +1,54 @@
 import React, { Component } from 'react';
 
 class AddNote extends Component {
-
-  handleChange = event => {
-    this.props.showTitle(event.target.value);scrollBy
+  constructor(){
+    super();
+    this.state = {
+      noteTags:''
+    };
   }
 
+  handleChange = event => {
+    this.props.showNoteData(event);
+  }
+
+  handleTags = event => {
+    this.setState({
+      noteTags: event.target.value
+    });
+
+    if(event.keyCode === 32){
+      this.props.showTags(this.state.noteTags);
+    }
+  }
+
+
   render() {
+    const { noteBody, noteTitle, noteTags } = this.props.note;
     return (
       <div className='addNoteContainer'>
         <div className='addNote'>
           <input
             type='text'
             placeholder='title'
-            value={this.props.title}
+            name='noteTitle'
+            value={noteTitle}
             onChange={this.handleChange} />
-          <textarea placeholder='write your code here...' />
+          <textarea
+            placeholder='write your code here...'
+            name='noteBody'
+            value={noteBody}
+            onChange={this.handleChange}
+          />
           <div className='snippetInputForm'>
-            <input type='text' placeholder='add snippets...' />
-            <button>Add</button>
+            <input
+              type='text'
+              placeholder='add snippets...'
+              name = 'noteTags'
+              value={this.state.noteTags}
+              onChange = {this.handleTags}
+              onKeyDown = {this.handleTags}
+             />
           </div>
         </div>
         <button onClick={this.handleClick}>Save</button>
