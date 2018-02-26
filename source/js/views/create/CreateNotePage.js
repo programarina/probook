@@ -1,20 +1,32 @@
 import React, { Component } from 'react';
 
 import AddNote from '../../components/create/AddNote';
+import PreviewNote from '../../components/create/PreviewNote';
+import Header from '../../components/common/Header';
 
 class CreateNotePage extends Component {
+  constructor() {
+    super();
+    this.state = {
+      noteTitle: '',
+      noteBody: '',
+      noteTags: ''
+    };
+  }
+
+  showTitle = (noteTitle) => {
+    this.setState({
+      noteTitle
+    });
+  }
+
   render() {
     return (
       <div>
-        <div className='header'>
-          <h3>Hi, name</h3>
-          <button>Log out</button>
-        </div>
+        <Header />
         <div className='createNote'>
-          <AddNote />
-          <div className='previewCode'>
-              Preview
-          </div>
+          < AddNote showTitle={ this.showTitle } title={ this.state.noteTitle } />
+          <PreviewNote title={ this.state.noteTitle } />
         </div>
       </div>
     );

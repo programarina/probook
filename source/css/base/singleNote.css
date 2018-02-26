@@ -1,12 +1,13 @@
 .singleNote{
-  margin: 20px 2%;
   box-sizing: border-box;
-  width: 25%;
+  width: 32%;
+  margin-bottom: 30px;
   border: 1px solid color(var(--light-brown-color));
   border-radius: 2px;
   min-height: 250px;
   max-height: 250px;
   overflow: hidden;
+  text-overflow: ellipsis;
   background-color: color(var(--light-color));
   color: color(var(--main-dark-color));
   box-shadow: 2px 2px 3px color(var(--light-brown-color));
@@ -32,7 +33,6 @@
   font-size: 1.2em;
   background-color: color(var(--primary-color));
   color: color(var(--accent-color));
-  border-bottom: 1px solid color(var(--accent-color));
 }
 
 .editBtn{

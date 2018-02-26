@@ -1,8 +1,14 @@
+.searchContainer{
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
 .searchForm input[type='text']{
     display: block;
-    width: 70%;
-    margin: 0 0 20px 10%;
-    padding-left: 50px;
+    width: 90%;
+    margin-left:0;
+    margin-bottom: 20px;
+    padding-left: 10px;
     border-radius: 5px;
     background-color: color(var(--dark-violet));
     border: 2px solid color(var(--accent-color));

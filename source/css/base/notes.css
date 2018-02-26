@@ -1,17 +1,19 @@
 .allNotes{
     width: 80%;
     margin: 0 auto;
-    padding: 20px;
+    padding-top: 40px;
 }
 
 .oneDay{
     display: flex;
     flex-flow: row wrap;
+    justify-content: space-between;
 }
 
 .oneDay h3{
     width: 100%;
+    margin-bottom: 30px;
     border-bottom: 1px solid color(var(--light-grey-color));
     color: color(var(--primary-color));
-    padding: 20px 0;    
+    padding: 0 0 20px 10px;    
 }

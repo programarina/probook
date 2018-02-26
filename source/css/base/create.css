@@ -1,61 +1,68 @@
 .createNote{
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     padding-top: 20px;
     width: 80%;
     margin: 0 auto;
 }
 
-.addNote{
-    width: 40%;
+.addNoteContainer,
+.previewCodeContainer{
+    width: 45%;
+    max-height: 600px;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: color(var(--light-grey-color)); 
 }
 
 .addNote input[type='text'],textarea{
     display: block;
     margin-bottom: 15px;
-    padding: 5px;
+    padding: 10px;
     width: 100%;
     box-sizing: border-box;
+    background-color: color(var(--light-color));
     border: 1px solid color(var(--light-brown-color));
 }
 
 .addNote textarea{
     min-height: 400px;
+    padding: 10px;
 }
 
 .createNote button{
-    color: color(var(--accent-color));
-    background-color: color(var(--main-dark-color));
+    color: color(var(--light-color));
+    background-color: color(var(--primary-color));
     padding: 10px;
     width: 100px;
     border: none;
     display: block;
     margin: 0 auto;
-    margin-right: 0;   
+    margin-right: 0;
+    margin-top: 10px;   
     border-radius: 5px; 
 }
 
 .previewCode{
-    max-height: 440px;
+    background-color: color(var(--light-color));
+    min-height: 450px;
     border: 1px solid color(var(--light-brown-color));
     padding: 20px;
     box-sizing: border-box;
-    width: 40%;
 }
 
-.snippetInputForm button{
-    width: 20%;
-    height: 26px;
-    padding: 0;
-}
 .snippetInputForm input[type='text']{
-    width: 79%;
+    width: 70%;
+    margin: 0;
 }
 .snippetInputForm {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid var(--light-brown-color);
+    padding-bottom: 10px;
 }
 .addNote > :first-child{
     background-color:color(var(--light-grey-color)); 

@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Search from '../../components/main/Search';
 import Filter from '../../components/main/Filter';
 import SingleNote from '../../components/main/SingleNote';
+import Header from '../../components/common/Header';
+import QucikNote from '../../components/main/QucikNote';
 
 
 class MainPage extends Component {
@@ -10,27 +12,23 @@ class MainPage extends Component {
     const arr = [1, 2, 3, 4];
     return (
       <div className='mainPage'>
-        <div className='header'>
-          <h3>Hi, name</h3>
-          <button>Log out</button>
-        </div>
-        <Filter />
+        <Header />
+        {/* <Filter /> */}
         <div className='main'>
           <div>
-            <Search />
-            <section className='quickNote'>
-              <textarea placeholder='Quick note...' />
-              <button>Add</button>
-            </section>
+            <div className='searchContainer'>
+              <Search />
+              <QucikNote />
+            </div>
           </div>
           <section className='allNotes'>
             <div className='oneDay'>
               <h3>Today</h3>
-              {arr.map(note => <SingleNote note={ note } />)}
+              {arr.map(note => <SingleNote note={note} />)}
             </div>
             <div className='oneDay'>
               <h3>Yesterday</h3>
-              {arr.map(note => <SingleNote note={ note } />)}
+              {arr.map(note => <SingleNote note={note} />)}
             </div>
             <svg width='100' height='100' className='addNoteBtn'>
               <defs>
