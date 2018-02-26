@@ -21,7 +21,7 @@ class CreateNotePage extends Component {
   }
 
   showTags = (tags) => {
-    let noteTags = tags.split(' ');
+    let noteTags = tags.split(' ').filter(tag => tag !== '');
     this.setState({
       noteTags
     });    

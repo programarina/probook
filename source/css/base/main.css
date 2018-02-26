@@ -1,22 +1,21 @@
-.mainPage{
+.mainPageContainer{
     display: flex;
     flex-flow: row wrap;
-}
-
-.main{
     width: 100%;
-    box-sizing: border-box;
+    overflow-x: hidden;
+    position: relative;
 }
 
 .main > :first-child{
     background-color: color(var(--dark-violet));
-    
+    position: relative;
 }
 
 .addNoteBtn{
     position: fixed;
     bottom: 40px; 
     right: 30px;
+    z-index: 10000;
 }
 
 .addNoteBtn circle{
@@ -27,6 +26,12 @@
 .addNoteBtn text{
     font-size: 4em;
     fill: color(var(--light-color));
+}
+
+.mainDataContainer{
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
 }
 
 @media screen and (max-width: 680px){
@@ -51,4 +56,3 @@
         display: block;
     }
 }
-

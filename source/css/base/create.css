@@ -61,6 +61,7 @@
 
 .previewCode p{
     padding:  10px;
+    font-size: 12px;
 }
 
 .snippetInputForm {
@@ -90,10 +91,10 @@
 }
 
 .previewTags li {
+    font-size: 12px;
     padding: 10px;
     background-color: color(var(--light-grey-color));
     border-radius: 30px;
-    color: color(var(--light-color));
 }
 
 @media screen and (max-width: 680px){
