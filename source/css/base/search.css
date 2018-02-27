@@ -1,12 +1,12 @@
 .searchContainer{
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
     padding: 20px;
 }
 
 .searchForm input[type='text']{
     display: block;
-    width: 90%;
+    width: 100%;
     margin-left:0;
     margin-bottom: 20px;
     padding-left: 10px;

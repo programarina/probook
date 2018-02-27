@@ -8,7 +8,6 @@
 
 .main > :first-child{
     background-color: color(var(--dark-violet));
-    position: relative;
 }
 
 .addNoteBtn{
@@ -29,8 +28,6 @@
 }
 
 .mainDataContainer{
-    display: flex;
-    flex-flow: row wrap;
     width: 100%;
 }
 

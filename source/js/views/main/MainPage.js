@@ -14,6 +14,12 @@ class MainPage extends Component {
       showCalendar: false
     }
   };
+
+  toggleClass = () => {
+    const currentState = this.state.showCalendar;
+    this.setState({ showCalendar: !currentState });
+  }
+
   render() {
     const arr = [1, 2, 3, 4];
     return (
@@ -21,15 +27,17 @@ class MainPage extends Component {
         <Header />
         <div className='main'>
           <div>
-            <div className='calendarBtnContainer'>
-              <svg height="40" width="40" className="calendarBtn" onClick={() => this.setState({ showCalendar: true })}>
-                <polyline points="20,0 36,20, 20,40"
-                  fill='transparent' stroke='white' strokeWidth='4' />
-              </svg>
-              <svg height="40" width="40" className="calendarBtn" onClick={() => this.setState({ showCalendar: true })}>
-                <polyline points="2,10,20,38, 40,10" stroke="white" strokeWidth="4" fill="none"/>
-              </svg>
-            </div>
+            <svg
+              height="40"
+              width="40"
+              className={(!this.state.showCalendar) ? `calendarBtnContainer rightArrow` : `calendarBtnContainer leftArrow`}
+              onClick={this.toggleClass}>
+              <polyline
+                points="20,0 36,20, 20,40"
+                fill='transparent'
+                stroke='white'
+                strokeWidth='4' />
+            </svg>
             <div className='searchContainer'>
               <Search />
               <QucikNote />

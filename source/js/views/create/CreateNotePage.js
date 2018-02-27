@@ -29,7 +29,6 @@ class CreateNotePage extends Component {
 
   render() {
     const note = this.state;
-    console.log(typeof (note.noteTags));
     return (
       <div>
         <Header />

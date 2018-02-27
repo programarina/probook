@@ -2,17 +2,15 @@
     display: flex;
     flex-flow: row wrap;
     width: 100%;
-    align-items: flex-end;
-    justify-content: space-between;
 }
 
 .quickNote textarea{
     display: block;
-    width: 90%;
+    width: 100%;
     resize: none;
     min-height: 100px;
     padding: 10px;
-    margin: 0;
+    margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid color(var(--light-grey-color));
     background-color: color(var(--dark-violet));

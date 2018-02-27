@@ -9,7 +9,6 @@ class Header extends Component {
           <button>Log out</button>
         </div>
       </div>
-
     );
   }
 }

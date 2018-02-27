@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 class AddNote extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      noteTags:''
+      noteTags: ''
     };
   }
 
@@ -12,12 +12,12 @@ class AddNote extends Component {
     this.props.showNoteData(event);
   }
 
-  handleTags = event => {
+  handleTags = ({ target }) => {
     this.setState({
-      noteTags: event.target.value
+      noteTags: target.value
     });
 
-    if(event.keyCode === 32){
+    if (event.keyCode === 32) {
       this.props.showTags(this.state.noteTags);
     }
   }
@@ -44,11 +44,11 @@ class AddNote extends Component {
             <input
               type='text'
               placeholder='add snippets...'
-              name = 'noteTags'
+              name='noteTags'
               value={this.state.noteTags}
-              onChange = {this.handleTags}
-              onKeyDown = {this.handleTags}
-             />
+              onChange={this.handleTags}
+              onKeyDown={this.handleTags}
+            />
           </div>
         </div>
         <button onClick={this.handleClick}>Save</button>
