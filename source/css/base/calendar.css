@@ -1,9 +1,14 @@
 .calendarBtnContainer{
-    position: absolute;
-    top: 25px;
-    left: 20px;
-    width: 50px;
-    height: 50px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 10%;
+    height: 95px;
+    background-color: color(var(--accent-color));
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .rightArrow{
@@ -18,7 +23,6 @@
 
 .calendarList{
     width: 10%;
-    box-sizing: border-box;
     background-color: color(var(--light-color));
 }
 
@@ -41,7 +45,8 @@
     list-style: none;
     font-weight: 100;
     color: color(var(--accent-color-disabled));
-    box-shadow: 1px 2px 1px color(var(--light-grey-color));
+    border-bottom: 1px solid  color(var(--light-grey-color));
+    border-right: 1px solid  color(var(--light-grey-color)); 
     text-align: center;
 }
 

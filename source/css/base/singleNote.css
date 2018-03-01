@@ -6,8 +6,6 @@
   border-radius: 2px;
   min-height: 250px;
   max-height: 250px;
-  overflow: hidden;
-  text-overflow: ellipsis;
   background-color: color(var(--light-color));
   color: color(var(--main-dark-color));
   box-shadow: 2px 2px 3px color(var(--light-brown-color));
@@ -50,13 +48,16 @@
 
 .singleNote p{
   padding: 20px 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .snippetTags{
   position: absolute;
   bottom: 0;
   width: 100%;
-  z-index: 100;
+  box-sizing: border-box;
   background-color: color(var(--light-color));
   border-top: 1px solid color(var(--light-brown-color));
   padding: 10px;

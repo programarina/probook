@@ -73,6 +73,9 @@
     padding: 20px;
 }
 
+.nonActive {
+    background-color: color(var(--primary-color-disabled));
+}
 @media screen and (max-width: 680px){
     .loginPage
         div , h1{ 

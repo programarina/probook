@@ -6,6 +6,12 @@ import SignUpForm from '../../components/login/SignUpForm';
 import { routeCodes } from '../../constants/routes';
 
 class LoginPage extends Component {
+  constructor(){
+    super();
+    this.state = {
+      activeTab: true
+    };
+  }
   render() {
     return (
       <div className='loginPage'>
