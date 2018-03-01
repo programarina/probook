@@ -7,7 +7,7 @@ import MainPage from '../views/common/MainPage';
 
 class App extends Component {
   render() {
-    if (false) {
+    if (true) {
       return (
         <Switch>
           <Redirect exact from={routeCodes.HOME} to={routeCodes.SIGN_IN} />
