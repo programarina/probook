@@ -2,5 +2,7 @@ export const publicPath = '/';
 
 export const routeCodes = {
   HOME: publicPath,
-  PEOPLE: `${ publicPath }people`,
+  SIGN_UP: `${ publicPath }signup`,
+  SIGN_IN: `${ publicPath }signin`,
+  CREATE_PAGE: `${ publicPath }create`,
 };

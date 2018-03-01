@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { LIST_OF_MONTHS } from '../../../constants/months';
+import { LIST_OF_MONTHS } from '../../constants/months';
 
 class Filter extends Component {
   render() {

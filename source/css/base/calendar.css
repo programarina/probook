@@ -37,7 +37,7 @@
 }
 
 .calendarList ul li{
-    padding: 20px;
+    padding: 15px;
     list-style: none;
     font-weight: 100;
     color: color(var(--accent-color-disabled));

@@ -12,12 +12,12 @@ class AddNote extends Component {
     this.props.showNoteData(event);
   }
 
-  handleTags = ({ target }) => {
+  handleTags = ({ target, keyCode }) => {
     this.setState({
       noteTags: target.value
     });
 
-    if (event.keyCode === 32) {
+    if (keyCode === 32) { 
       this.props.showTags(this.state.noteTags);
     }
   }

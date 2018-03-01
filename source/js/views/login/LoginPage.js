@@ -3,6 +3,7 @@ import { Switch, Route, Link } from 'react-router-dom';
 
 import SignInForm from '../../components/login/SignInForm';
 import SignUpForm from '../../components/login/SignUpForm';
+import { routeCodes } from '../../constants/routes';
 
 class LoginPage extends Component {
   render() {
@@ -10,15 +11,15 @@ class LoginPage extends Component {
       <div className='loginPage'>
         <h1>Welcome to ProBook</h1>
         <div className='formContainer'>
-          <Link to='/'>
+          <Link to={routeCodes.SIGN_IN}>
             <h3>Sign in</h3>
           </Link>
-          <Link to='/signup'>
+          <Link to={routeCodes.SIGN_UP}>
             <h3>Sign up</h3>
           </Link>
           <Switch>
-            <Route exact path='/' component={ SignInForm } />
-            <Route path='/signup' component={ SignUpForm } />
+            <Route exact path={routeCodes.SIGN_IN} component={SignInForm} />
+            <Route path={routeCodes.SIGN_UP} component={SignUpForm} />
           </Switch>
         </div>
       </div>

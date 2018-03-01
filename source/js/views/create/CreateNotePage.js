@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import AddNote from '../../components/create/AddNote';
 import PreviewNote from '../../components/create/PreviewNote';
-import Header from '../../components/common/Header';
 
 class CreateNotePage extends Component {
   constructor() {
@@ -31,7 +30,6 @@ class CreateNotePage extends Component {
     const note = this.state;
     return (
       <div>
-        <Header />
         <div className='createNote'>
           < AddNote showNoteData={this.showNoteData} showTags={this.showTags} note={note} />
           <PreviewNote note={note} />

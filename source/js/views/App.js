@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
+import { routeCodes } from '../constants/routes';
 import LoginPage from '../views/login/LoginPage';
-import MainPage from '../views/main/mainPage';
-import CreateNotePage from '../views/create/CreateNotePage';
+import MainPage from '../views/common/MainPage';
 
 class App extends Component {
   render() {
-    return (
-      <Switch>
-        <Route exact path='/' component={ LoginPage } />
-        <Route exact path='/signup' component={ LoginPage } />
-        <Route path='/main' component={ MainPage } />
-        <Route path='/create' component={ CreateNotePage } />
-      </Switch>
-    );
+    if (true) {
+      return (
+        <Switch>
+          <Redirect exact from={routeCodes.HOME} to={routeCodes.SIGN_IN} />
+          <Route exact path={routeCodes.SIGN_IN} component={LoginPage} />
+          <Route exact path={routeCodes.SIGN_UP} component={LoginPage} />
+        </Switch>
+      );
+    }
+    return <MainPage />
   }
 }
 
