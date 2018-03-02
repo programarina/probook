@@ -45,12 +45,14 @@
   margin-left: 10px;
   width: 60%;
 }
-
-.singleNote p{
-  padding: 20px 10px;
+.singleNote p,
+.singleNote h4{
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+.singleNote p{
+  padding: 20px 10px;
 }
 
 .snippetTags{

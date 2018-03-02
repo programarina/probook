@@ -5,14 +5,17 @@ import { routeCodes } from '../constants/routes';
 import LoginPage from '../views/login/LoginPage';
 import MainPage from '../views/common/MainPage';
 
-class App extends Component {
+export default class App extends Component {
+
   render() {
-    if (false) {
+    const storage = localStorage.getItem('name');
+
+    if (!storage) {
       return (
         <Switch>
           <Redirect exact from={routeCodes.HOME} to={routeCodes.SIGN_IN} />
-          <Route exact path={routeCodes.SIGN_IN} component={LoginPage} />
-          <Route exact path={routeCodes.SIGN_UP} component={LoginPage} />
+          <Route path={routeCodes.SIGN_IN} component={LoginPage} />
+          <Route path={routeCodes.SIGN_UP} component={LoginPage} />
         </Switch>
       );
     }
@@ -20,4 +23,4 @@ class App extends Component {
   }
 }
 
-export default App;
+

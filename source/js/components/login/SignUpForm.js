@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import { setUserData } from '../../actions/index';
 
 class SignUpForm extends Component {
   constructor() {
@@ -14,6 +18,15 @@ class SignUpForm extends Component {
     this.setState({
       [target.name]: target.value
     });
+  }
+
+  submitSingUpForm = (e) => {
+    e.preventDefault();
+    const user = this.state;
+    this.props.setUserData(user);
+    localStorage.setItem('name', this.state.name);
+    window.location.assign(`/`);
+
   }
 
   render() {
@@ -44,11 +57,16 @@ class SignUpForm extends Component {
             name='password'
             onChange={this.handleChange} />
         </label>
-        <button type='submit'>Sign up</button>
+        <button type='submit' onClick={this.submitSingUpForm}>Sign up</button>
       </form>
 
     );
   }
 }
 
-export default SignUpForm;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ setUserData: setUserData }, dispatch);
+};
+
+
+export default connect(null, mapDispatchToProps)(SignUpForm);

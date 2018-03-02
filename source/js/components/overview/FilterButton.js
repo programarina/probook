@@ -5,12 +5,12 @@ const FilterButton = (props) => {
     <div className='calendarBtnContainer'>
       <div className='svgContainer'>
         <svg
-          height="40"
-          width="40"
+          height="30"
+          width="30"
           className={props.showCalendar ? `leftArrow` : `rightArrow`}
           onClick={props.toggleClass}>
           <polyline
-            points="10,0 36,20, 10,40"
+            points="10,0 26,15, 10,30"
             fill='transparent'
             stroke='rgb(248, 105, 100)'
             strokeWidth='4' />

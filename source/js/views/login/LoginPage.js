@@ -35,13 +35,12 @@ class LoginPage extends Component {
         <div className='formContainer'>
           <Link
             to={routeCodes.SIGN_IN}
-            className={(this.state.signInTab) ? 'active' : 'nonActive'}
-            onClick={this.signInTab}
-          >
+            className={this.state.signInTab ? 'active' : 'nonActive'}
+            onClick={this.signInTab}>
             <h3>Sign in</h3>
           </Link>
           <Link to={routeCodes.SIGN_UP}
-            className={(this.state.signUpTab) ? 'active' : 'nonActive'}
+            className={this.state.signUpTab ? 'active' : 'nonActive'}
             onClick={this.signUpTab}>
             <h3>Sign up</h3>
           </Link>

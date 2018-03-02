@@ -9,10 +9,14 @@ class SignInForm extends Component {
     }
   }
 
-  handleChange = ({target}) => {
+  handleChange = ({ target }) => {
     this.setState({
       [target.name]: target.value
     });
+  }
+
+  submitForm = () => {
+    
   }
 
   render() {
@@ -34,7 +38,7 @@ class SignInForm extends Component {
             value={this.state.password}
             onChange={this.handleChange} />
         </label>
-        <button type='submit'>Sign in</button>
+        <button type='submit' onClick={this.submitForm}>Sign in</button>
       </form>
     );
   }
