@@ -6,41 +6,22 @@ import SignUpForm from '../../components/login/SignUpForm';
 import { routeCodes } from '../../constants/routes';
 
 class LoginPage extends Component {
-  constructor() {
-    super();
-    this.state = {
-      signInTab: true,
-      signUpTab: false
-    };
-  }
-
-  signInTab = () => {
-    this.setState({
-      signInTab: true,
-      signUpTab: false
-    });
-  }
-
-  signUpTab = () => {
-    this.setState({
-      signInTab: false,
-      signUpTab: true
-    });
-  }
 
   render() {
+    console.log(this.props.match.path);
+    const { path } = this.props.match;
     return (
       <div className='loginPage'>
         <h1>Welcome to ProBook</h1>
         <div className='formContainer'>
           <Link
             to={routeCodes.SIGN_IN}
-            className={this.state.signInTab ? 'active' : 'nonActive'}
+            className={path === '/signin' ? 'active' : 'nonActive'}
             onClick={this.signInTab}>
             <h3>Sign in</h3>
           </Link>
           <Link to={routeCodes.SIGN_UP}
-            className={this.state.signUpTab ? 'active' : 'nonActive'}
+            className={path === '/signup' ? 'active' : 'nonActive'}
             onClick={this.signUpTab}>
             <h3>Sign up</h3>
           </Link>

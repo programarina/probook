@@ -27,14 +27,18 @@ class AddNote extends Component {
   }
 
   handleClick = () => {
-    const { noteBody, noteTitle } = this.props.note;
+    const { noteBody, noteTitle, noteTags } = this.props.note;
+    const date = new Date();
+
     const note = {
-      noteBody: noteBody,
       noteTitle: noteTitle,
-      noteTags: this.state.noteTags
+      noteBody: noteBody,
+      noteTags: noteTags,
+      dateCreated: date.toDateString()
     }
     this.props.setNoteData(note);
   }
+
   render() {
     const { noteBody, noteTitle, noteTags } = this.props.note;
     return (

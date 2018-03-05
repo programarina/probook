@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import {routeCodes} from '../../constants/routes';
 
 class SingleNote extends Component {
   constructor() {
@@ -23,7 +24,7 @@ class SingleNote extends Component {
         <h4>{`${this.props.note.title.substring(0,100)}...`}</h4>
         <p>{`${this.props.note.body.substring(0,250)}...`}</p>
         <Link
-          to='create'
+          to={`${routeCodes.CREATE_PAGE}/${this.props.note.id}`}
           className='editBtn'>
           <img
             src='../../../assets/img/editBtn.png'
