@@ -5,7 +5,7 @@ class Filter extends Component {
   render() {
     const months = LIST_OF_MONTHS;
     return (
-      <div className={(this.props.showCalendar)?`calendarList calendarShow`: `calendarList calendarNotShow`}>
+      <div className={(this.props.showCalendar)?`calendarList calendarShow`: `calendarList`}>
         <ul>
           {months.map(month => <li key={ month }>{month}</li>)}
         </ul>

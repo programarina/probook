@@ -10,6 +10,7 @@
   color: color(var(--main-dark-color));
   box-shadow: 2px 2px 3px color(var(--light-brown-color));
   position: relative;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 680px){
@@ -18,7 +19,8 @@
   }
 }
 
-.singleNote button{
+.deleteNoteBtn,
+.editBtn{
   position: absolute;
   top: 0;
   width: 40px;
@@ -36,6 +38,10 @@
 .editBtn{
   right: 40px;
   background-color: color(var(--accent-color));
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .singleNote h4{
@@ -45,12 +51,7 @@
   margin-left: 10px;
   width: 60%;
 }
-.singleNote p,
-.singleNote h4{
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
+
 .singleNote p{
   padding: 20px 10px;
 }

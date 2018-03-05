@@ -11,7 +11,7 @@ class Header extends Component {
     return (
       <div className='headerContainer'>
         <div className='header'>
-          <h3>Hi,{localStorage.getItem('name')}</h3>
+          <h3>Hi, {localStorage.getItem('name')}</h3>
           <button onClick={this.logOutAction}>Log out</button>
         </div>
       </div>

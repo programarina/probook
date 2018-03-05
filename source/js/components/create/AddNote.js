@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import { setNoteData } from '../../actions/index';
 
 class AddNote extends Component {
   constructor() {
@@ -17,12 +21,20 @@ class AddNote extends Component {
       noteTags: target.value
     });
 
-    if (keyCode === 32) { 
+    if (keyCode === 32) {
       this.props.showTags(this.state.noteTags);
     }
   }
 
-
+  handleClick = () => {
+    const { noteBody, noteTitle } = this.props.note;
+    const note = {
+      noteBody: noteBody,
+      noteTitle: noteTitle,
+      noteTags: this.state.noteTags
+    }
+    this.props.setNoteData(note);
+  }
   render() {
     const { noteBody, noteTitle, noteTags } = this.props.note;
     return (
@@ -57,4 +69,10 @@ class AddNote extends Component {
   }
 }
 
-export default AddNote;
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ setNoteData: setNoteData }, dispatch);
+};
+
+
+export default connect(null, mapDispatchToProps)(AddNote);

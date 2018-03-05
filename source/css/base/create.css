@@ -47,6 +47,8 @@
 .previewCode{
     background-color: color(var(--light-color));
     min-height: 450px;
+    max-height: 450px;
+    overflow: scroll;
     border: 1px solid color(var(--light-brown-color));
     padding: 20px;
     box-sizing: border-box;
@@ -57,11 +59,6 @@
     color: color(var(--primary-color));
     font-size: 12px;
     padding: 0 10px 10px 10px;
-}
-
-.previewCode p{
-    padding:  10px;
-    font-size: 12px;
 }
 
 .snippetInputForm {
@@ -95,6 +92,7 @@
     padding: 10px;
     background-color: color(var(--light-grey-color));
     border-radius: 30px;
+    margin-left: 5px;
 }
 
 .backBtnContainer{
@@ -107,6 +105,13 @@
     flex-flow: wrap row;
     justify-content: center;
     align-items: center;
+}
+
+.markDownContainer pre,
+.markDownContainer p{
+    padding:  10px;
+    font-size: 12px;
+
 }
 
 @media screen and (max-width: 680px){

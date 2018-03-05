@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import AddNote from '../../components/create/AddNote';
 import PreviewNote from '../../components/create/PreviewNote';
+import HelpTooltip from '../../components/create/HelpTooltip';
+
 
 class CreateNotePage extends Component {
   constructor() {
@@ -17,7 +19,7 @@ class CreateNotePage extends Component {
   showNoteData = ({ target }) => {
     this.setState({
       [target.name]: target.value
-    });
+    });    
   }
 
   showTags = (tags) => {
@@ -28,7 +30,7 @@ class CreateNotePage extends Component {
   }
 
   render() {
-    const note = this.state;
+    const note = this.state;    
     return (
       <div>
         <div className='backBtnContainer'>
@@ -42,6 +44,7 @@ class CreateNotePage extends Component {
         <div className='createNote'>
           < AddNote showNoteData={this.showNoteData} showTags={this.showTags} note={note} />
           <PreviewNote note={note} />
+          <HelpTooltip />
         </div>
       </div>
     );

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 class PreviewNote extends Component {
   render() {
@@ -7,9 +8,9 @@ class PreviewNote extends Component {
       <div className='previewCodeContainer'>
         <div className='previewCode'>
           <h3>{noteTitle}</h3>
-          <p>{noteBody}</p>
+          <ReactMarkdown source={noteBody} className='markDownContainer' />
         </div>
-        <ul className='previewTags'>{ noteTags.map(tag=><li key={tag}>{tag}</li> ) }</ul>
+        <ul className='previewTags'>{noteTags.map(tag => <li key={tag}>{tag}</li>)}</ul>
       </div>
     );
   }

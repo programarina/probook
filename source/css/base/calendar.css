@@ -34,20 +34,14 @@
 .calendarList{
     width: 10%;
     background-color: color(var(--light-color));
-}
-
-.calendarNotShow{
     position: fixed;
     top: 95px;
+    left: -10%;
     transition: transform 0.5s ease-in-out;
-    transform: translateX(-103%);
 }
 
 .calendarShow{
-    position: fixed;
-    transform: translateX(0px);
-    transition: transform 0.5s ease-in-out;
-    top: 95px;
+    transform: translateX(100%);
 }
 
 .calendarList ul li{

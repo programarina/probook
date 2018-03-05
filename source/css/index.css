@@ -9,3 +9,6 @@
 @import 'base/notes';
 @import 'base/singleNote';
 @import 'base/create';
+@import 'base/modalBox';
+@import 'base/helpTooltip';
+

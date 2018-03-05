@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
 import UserReducer from './reducer_user';
+import NoteReducer from './reducer_notes';
 
 // import app from 'reducers/app';
 // import people from 'reducers/people';
@@ -12,4 +13,5 @@ import UserReducer from './reducer_user';
 
 export default combineReducers({
   user: UserReducer,
+  note: NoteReducer,
 });
