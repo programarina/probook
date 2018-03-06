@@ -6,6 +6,7 @@ import OneDay from '../../components/overview/OneDay';
 import QucikNote from '../../components/overview/QucikNote';
 import AddButton from '../../components/overview/AddButton';
 import FilterButton from '../../components/overview/FilterButton';
+import MobileMenu from '../../components/overview/MobileMenu';
 
 class OverviewPage extends Component {
   constructor() {
@@ -29,6 +30,7 @@ class OverviewPage extends Component {
             <Search />
             <QucikNote />
           </div>
+          <MobileMenu/>
         </div>
         <div className='mainDataContainer'>
           <Filter showCalendar={this.state.showCalendar} />

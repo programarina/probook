@@ -13,12 +13,6 @@
   overflow: hidden;
 }
 
-@media screen and (max-width: 680px){
-  .singleNote{
-      width: 100%;
-  }
-}
-
 .deleteNoteBtn,
 .editBtn{
   position: absolute;
@@ -74,4 +68,10 @@
   margin: 2px;
   border-radius: 20px;
   font-size: calc(var(--small-letters));
+}
+
+@media screen and (max-width: 680px){
+  .singleNote{
+      width: 100%;
+  }
 }

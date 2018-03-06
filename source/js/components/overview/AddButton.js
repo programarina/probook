@@ -21,8 +21,7 @@ const AddButton = () => {
             </filter>
           </defs>
         </defs>
-        <circle cx='50' cy='50' r='40' filter='url(#dropshadow)' id='desktopCircle' />
-        {/* <circle cx='50' cy='50' r='25' filter='url(#dropshadow)' id='mobileCircle' /> */}
+        <circle cx='50' cy='50' r='40' filter='url(#dropshadow)' />
         <text x='50%' y='50%' textAnchor='middle' strokeWidth='2px' dy='0.3em'>+</text>
       </svg>
     </Link>

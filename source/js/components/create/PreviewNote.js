@@ -8,7 +8,7 @@ class PreviewNote extends Component {
       <div className='previewCodeContainer'>
         <div className='previewCode'>
           <h3>{noteTitle}</h3>
-          <ReactMarkdown source={noteBody} className='markDownContainer' />
+          <ReactMarkdown source={noteBody} />
         </div>
         <ul className='previewTags'>{noteTags.map(tag => <li key={tag}>{tag}</li>)}</ul>
       </div>

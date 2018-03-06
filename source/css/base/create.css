@@ -115,12 +115,17 @@
 }
 
 @media screen and (max-width: 680px){
-    .addNote{
+    .createNote{
+        width: 80%;
+    }
+    .addNoteContainer,
+    .previewCodeContainer{
+        margin-bottom: 20px;
         width: 100%;
     }
-    
-    .previewCode{
-        width: 100%;
-        margin-top: 20px;
+
+    .backBtnContainer{
+        top:0;
+        left: -30px;
     }
 }

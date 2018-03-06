@@ -55,7 +55,8 @@
 }
 
 @media screen and (max-width: 680px){
-    .calendarList{
+    .calendarList,
+    .calendarBtnContainer{
         display: none;
     }
 }

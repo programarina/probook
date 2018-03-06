@@ -60,6 +60,7 @@
     border: 1px solid color(var(--light-grey-color));
     display: flex;
     flex-flow: row wrap;
+    background-color: color(var(--primary-color-disabled));
 }
 
 .formContainer a{
@@ -71,11 +72,8 @@
     box-sizing: border-box;
     padding: 20px;
 }
-.nonActive{
-    background-color: color(var(--primary-color-disabled));
-}
 
-.active {
+.activeTab {
     background-color: color(var(--primary-color));
 }
 

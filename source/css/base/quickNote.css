@@ -33,10 +33,6 @@
 }
 
 @media screen and (max-width: 680px){
-    .quickNote button{
-        width: 10%;
-    }
-
     .quickNote textarea{
         min-height: 150px;
     }

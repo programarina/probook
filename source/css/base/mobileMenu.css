@@ -1,0 +1,46 @@
+@media screen and (max-width: 680px){
+  .mobileMenuContainer{
+    background-color: color(var(--accent-color));
+    display: flex;
+    flex-flow: row wrap;
+    text-align: center;
+    margin-top: 5px;
+  }
+
+  .mobileCalendarView,
+  .mobileAddBtnView{
+    color: color(var(--light-color));
+    padding: 15px;
+    box-sizing: border-box;
+    width: 50%;
+    text-decoration: none;
+  }
+
+  .mobileCalendarView{
+    border-right: 1px solid white;
+  }
+
+  .months-list{
+    background-color: color(var(--main-dark-color) );
+  }
+
+  .months-list li{
+    list-style-type: none;
+    padding: 20px 10px 5px;
+    color: color(var(--accent-color));
+    border-bottom: 1px solid color(var(--light-brown-color));
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 60%;
+  }
+
+  .close{
+    padding: 10px;
+  }
+}
+
+@media only screen and (min-width: 680px) {
+  .mobileMenuContainer{
+  display: none;
+  }
+}

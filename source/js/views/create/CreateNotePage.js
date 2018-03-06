@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import AddNote from '../../components/create/AddNote';
 import PreviewNote from '../../components/create/PreviewNote';
 import HelpTooltip from '../../components/create/HelpTooltip';
+import { publicPath } from '../../constants/routes';
 
 
 class CreateNotePage extends Component {
@@ -19,7 +20,7 @@ class CreateNotePage extends Component {
   showNoteData = ({ target }) => {
     this.setState({
       [target.name]: target.value
-    });    
+    });
   }
 
   showTags = (tags) => {
@@ -30,13 +31,13 @@ class CreateNotePage extends Component {
   }
 
   render() {
-    const note = this.state;    
+    const note = this.state;
     return (
       <div>
         <div className='backBtnContainer'>
-          <Link to='/'>
-            <svg height="40" width="40">
-              <polyline points="20,0 4,20 20,40"
+          <Link to={publicPath}>
+            <svg height="30" width="30">
+              <polyline points="15,15 2,15 15,0"
                 fill='transparent' stroke='white' strokeWidth='4' />
             </svg>
           </Link>
