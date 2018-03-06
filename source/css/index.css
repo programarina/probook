@@ -10,5 +10,5 @@
 @import 'base/singleNote';
 @import 'base/create';
 @import 'base/modalBox';
-@import 'base/helpTooltip';
+@import 'base/helpButton';
 @import 'base/mobileMenu';

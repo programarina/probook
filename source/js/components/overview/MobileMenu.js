@@ -29,10 +29,11 @@ export default class MobileMenu extends Component {
           <div className="months-list">
             <span
               onClick={this.closeModal}
-              className="close">&times;</span>
-              <ul>
-                {months.map(month=><li key={month}>{month}</li>)}
-              </ul> 
+              className="close">&times;
+            </span>
+            <ul>
+              {months.map(month => <li key={month}>{month}</li>)}
+            </ul>
           </div>
         </div>
         <Link to='/create' className='mobileAddBtnView'><div>add</div></Link>

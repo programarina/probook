@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import AddNote from '../../components/create/AddNote';
 import PreviewNote from '../../components/create/PreviewNote';
-import HelpTooltip from '../../components/create/HelpTooltip';
+import HelpButton from '../../components/create/HelpButton';
 import { publicPath } from '../../constants/routes';
 
 
@@ -36,8 +36,8 @@ class CreateNotePage extends Component {
       <div>
         <div className='backBtnContainer'>
           <Link to={publicPath}>
-            <svg height="30" width="30">
-              <polyline points="15,15 2,15 15,0"
+            <svg height="40" width="40">
+              <polyline  points="20,0 4,20 20,40"
                 fill='transparent' stroke='white' strokeWidth='4' />
             </svg>
           </Link>
@@ -45,7 +45,7 @@ class CreateNotePage extends Component {
         <div className='createNote'>
           < AddNote showNoteData={this.showNoteData} showTags={this.showTags} note={note} />
           <PreviewNote note={note} />
-          <HelpTooltip />
+          <HelpButton />
         </div>
       </div>
     );
