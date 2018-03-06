@@ -4,10 +4,10 @@ class HelpTooltip extends Component {
   render() {
     return (
       <div className='tooltipContainer'>
-        <div className="tooltip">?
-        <span className="tooltiptext">
-        <p>For code use: ```{`<code>`} ```</p>
-        </span>
+        <div className='tooltipBox'>
+          <p 
+            className="tooltip-bottom" 
+            data-tooltip="I’m the tooltip text.">?</p>
         </div>
       </div>
     );

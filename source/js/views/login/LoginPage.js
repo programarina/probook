@@ -8,7 +8,6 @@ import { routeCodes } from '../../constants/routes';
 class LoginPage extends Component {
 
   render() {
-    console.log(this.props.match.path);
     const { path } = this.props.match;
     return (
       <div className='loginPage'>
