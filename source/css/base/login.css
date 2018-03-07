@@ -3,16 +3,22 @@
     flex-flow: row wrap;
     width: 100%;
     justify-content: center;
-    padding-top:30px;
+    padding-top:70px;
 }
 
 .signInForm, 
-.signUpForm{
+.signUpForm,
+.formGroup{
     width: 100%;
     background-color: color(var(--light-color));
 }
 
-.signInForm input[type='email'],[type='password'],
+.formGroup{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.formGroup input[type='email'],[type='password'],
 .signUpForm input[type='email'],[type='password'],[type='text'] {
     display: block;
     padding: 5px;
@@ -22,15 +28,11 @@
     border-width: 1px solid;
 }
 
-.signInForm label,
-.signUpForm label{
-    display: block;
-    margin: 0 auto;
-    padding-top:10px;
-    width: 80%;
+.formGroup label{
     color: color(var(--primary-color));
+    padding: 20px 0  5px;
+    display: block;
 }
-
 .signInForm input:focus,
 .signUpForm input:focus{
     outline-color: color(var(--light-grey-color));
@@ -46,18 +48,15 @@
     color: color(var(--light-color));
 }
 
-.loginPage 
-    div , h1{ 
+.welcomeTitle{
+    font-size:calc(var(--big-letters));
+    color: color(var(--primary-color));
     width: 40%;
-    }
-
-    h1{
-        font-size:calc(var(--big-letters));
-        color: color(var(--primary-color));
-    }
+}
 
 .formContainer{
     border: 1px solid color(var(--light-grey-color));
+    width: 40%;
     display: flex;
     flex-flow: row wrap;
     background-color: color(var(--primary-color-disabled));
@@ -73,13 +72,26 @@
     padding: 20px;
 }
 
+.errorContainer{
+    color: color(var(--warning-color));
+    padding: 2px;
+    font-size: 0.8em;
+}
+
 .activeTab {
     background-color: color(var(--primary-color));
 }
+.invalidInput{
+    border: 1px solid color(var(--warning-color));
+}
 
 @media screen and (max-width: 680px){
-    .loginPage
-        div , h1{ 
+    .loginPage{
+        padding-top: 0;
+    }
+    .welcomeTitle,
+    .formContainer{
         width: 100%;
-        }
+        margin: 30px 0;
+    }
 }

@@ -11,7 +11,7 @@ class LoginPage extends Component {
     const { path } = this.props.match;
     return (
       <div className='loginPage'>
-        <h1>Welcome to ProBook</h1>
+        <h1 className='welcomeTitle'>Welcome to ProBook</h1>
         <div className='formContainer'>
           <Link
             to={routeCodes.SIGN_IN}

@@ -1,47 +1,57 @@
 import React, { Component } from 'react';
+import { Field, reduxForm } from 'redux-form';
 
 class SignInForm extends Component {
-  constructor() {
-    super();
-    this.state = {
-      email: '',
-      password: ''
-    }
-  }
-
-  handleChange = ({ target }) => {
-    this.setState({
-      [target.name]: target.value
-    });
-  }
-
-  submitForm = () => {
-    
+  renderField(field) {
+    const { meta: { touched, error } } = field;
+    const className = (touched && error) ? 'invalidInput' : '';
+    return (
+      <div className='formGroup'>
+        <label>{field.label}</label>
+        <input
+          className={className}
+          type={field.type}
+          {...field.input}
+        />
+        <div className='errorContainer'>
+          {touched ? error : ''}
+        </div>
+      </div>);
   }
 
   render() {
     return (
       <form className='signInForm'>
-        <label htmlFor='email'>Email*
-          <input
-            type='email'
-            id='email'
-            name='email'
-            value={this.state.email}
-            onChange={this.handleChange} />
-        </label>
-        <label htmlFor='pass'>Password*
-          <input
-            type='password'
-            id='pass'
-            name='password'
-            value={this.state.password}
-            onChange={this.handleChange} />
-        </label>
+        <Field
+          label='Username*'
+          name='username'
+          type='email'
+          component={this.renderField}
+        />
+        <Field
+          label='Password*'
+          name='password'
+          type='password'
+          component={this.renderField}
+        />
         <button type='submit' onClick={this.submitForm}>Sign in</button>
       </form>
     );
   }
 }
 
-export default SignInForm;
+function validate(values) {
+  const errors = {};
+  if (!values.email) {
+    errors.username = 'Please insert valid email.';
+  }
+  if (!values.password) {
+    errors.password = 'Please insert password.';
+  }
+  return errors;
+}
+
+export default reduxForm({
+  validate,
+  form: 'SignInForm'
+})(SignInForm);
