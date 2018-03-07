@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { signIn } from '../../actions/index';
 
 class SignInForm extends Component {
   renderField(field) {
@@ -19,9 +21,17 @@ class SignInForm extends Component {
       </div>);
   }
 
+  submitForm(values) {
+
+    // this.props.signIn(values, ()=>{
+    //   this.props.history.push('/');
+    // });
+  }
+
   render() {
+    const { handleSubmit } = this.props;
     return (
-      <form className='signInForm'>
+      <form className='signInForm' onSubmit={handleSubmit(this.submitForm.bind(this))}>
         <Field
           label='Username*'
           name='username'
@@ -34,7 +44,7 @@ class SignInForm extends Component {
           type='password'
           component={this.renderField}
         />
-        <button type='submit' onClick={this.submitForm}>Sign in</button>
+        <button type='submit'>Sign in</button>
       </form>
     );
   }
@@ -42,7 +52,7 @@ class SignInForm extends Component {
 
 function validate(values) {
   const errors = {};
-  if (!values.email) {
+  if (!values.username) {
     errors.username = 'Please insert valid email.';
   }
   if (!values.password) {
@@ -51,7 +61,12 @@ function validate(values) {
   return errors;
 }
 
+
+// for connecting actions to component you have to put connect function inside second pare of parantheses and write it in regular style
+
 export default reduxForm({
   validate,
   form: 'SignInForm'
-})(SignInForm);
+})(
+  connect(null, { signIn })(SignInForm)
+  );

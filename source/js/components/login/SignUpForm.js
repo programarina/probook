@@ -23,7 +23,7 @@ class SignUpForm extends Component {
   submitSingUpForm = (e) => {
     e.preventDefault();
     const user = this.state;
-    this.props.setUserData(user);
+    this.props.signUp(user);
     localStorage.setItem('name', this.state.name);
     window.location.assign(`/`);
 
