@@ -1,6 +1,5 @@
 // Simple API wrapper
-
-const API_URL = 'https://swapi.co/api';
+const API_URL = 'https://private-19561-probook.apiary-mock.com/users/1';
 
 // Custom API error to throw
 function ApiError(message, data, status) {
@@ -105,10 +104,10 @@ const fetchResource = (path, userOptions = {}) => {
     });
 };
 
-function getPeople() {
-  return fetchResource('people/');
+function getUser() {
+  return fetchResource('users/1');
 }
 
 export default {
-  getPeople,
+  getUser,
 };

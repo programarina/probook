@@ -1,15 +1,30 @@
 import axios from 'axios';
 
-export const GET_USER_DATA = 'GET_USER_DATA';
-export const GET_NOTE_DATA = 'GET_NOTE_DATA';
+// export const GET_NOTE_DATA = 'GET_NOTE_DATA';
+export const SET_USER_DATA = 'SET_USER_DATA';
 export const SIGN_IN = 'SIGN_IN';
+export const SINGLE_NOTE_DATA = 'SINGLE_NOTE_DATA';
 
 
-export function signUp(userData) {
+export function signUp(userData, callback, errorCallback) {
+  const request = axios.post(url, userData)
+    .then(response => callback(response))
+    .catch(error => errorCallback(error));
   return {
-    type: GET_USER_DATA,
-    payload: userData
+    type: SET_USER_DATA,
+    payload: request,
   }
+}
+
+export function signIn(userData, callback, errorCallback) {
+  const request = axios.put(url, userData)
+    .then(response => callback(response))
+    .catch(error => errorCallback(error));
+
+  return {
+    type: SIGN_IN,
+    payload: request,
+  };
 }
 
 export function setNoteData(note) {
@@ -19,12 +34,12 @@ export function setNoteData(note) {
   }
 }
 
-export function signIn(userData, callback) {
-  // const request = axios.put(url, userData)
-  //   .then(()=>callback());
-
+export function fetchSingleNote(noteId, callback, errorCallback) {
+  const request = axios.get(`${url}/${noteId}`)
+    .then(response => callback(response))
+    .catch(error => errorCallback(error));
   return {
-    type: SIGN_IN,
-    // payload: request,
-  };
+    type: SINGLE_NOTE_DATA,
+    payload: request
+  }
 }

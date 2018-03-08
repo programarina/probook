@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { getUser } from 'actions/users';
+
 import { signIn } from '../../actions/index';
+import { publicPath } from '../../constants/routes';
+import {VALIDATE_EMAIL} from '../../constants/regex';
 
 class SignInForm extends Component {
   renderField(field) {
@@ -22,10 +26,8 @@ class SignInForm extends Component {
   }
 
   submitForm(values) {
-
-    // this.props.signIn(values, ()=>{
-    //   this.props.history.push('/');
-    // });
+    const { dispatch } = this.props;
+    getUser();
   }
 
   render() {
@@ -33,8 +35,8 @@ class SignInForm extends Component {
     return (
       <form className='signInForm' onSubmit={handleSubmit(this.submitForm.bind(this))}>
         <Field
-          label='Username*'
-          name='username'
+          label='Email*'
+          name='email'
           type='email'
           component={this.renderField}
         />
@@ -52,8 +54,10 @@ class SignInForm extends Component {
 
 function validate(values) {
   const errors = {};
-  if (!values.username) {
-    errors.username = 'Please insert valid email.';
+  const validateEmail = VALIDATE_EMAIL;
+
+  if (!values.email || !(validateEmail.test(values.email))) {
+    errors.email = 'Please insert valid email.';
   }
   if (!values.password) {
     errors.password = 'Please insert password.';
