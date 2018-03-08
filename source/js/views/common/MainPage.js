@@ -13,9 +13,9 @@ const MainPage = (props) => {
     <div>
       <Header />
       <Switch>
-        <Route path={`${routeCodes.CREATE_PAGE}/:id`} component={PreviewNote} />
-        <Route path={routeCodes.CREATE_PAGE} component={CreateNotePage} />
         <Route exact path={publicPath} component={OverviewPage} />
+        <Route path={routeCodes.CREATE_PAGE} component={CreateNotePage} />
+        <Route path={`${routeCodes.CREATE_PAGE}/:id`} component={PreviewNote} />
       </Switch>
     </div>
   );

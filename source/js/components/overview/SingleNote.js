@@ -10,6 +10,7 @@ class SingleNote extends Component {
       showModal: false
     }
   }
+ 
   showModal = () => {
     this.setState({ showModal: true });
   }
@@ -21,8 +22,8 @@ class SingleNote extends Component {
   render() {
     return (
       <div className='singleNote'>
-        <h4>{`${this.props.note.title.substring(0,100)}...`}</h4>
-        <p>{`${this.props.note.body.substring(0,250)}...`}</p>
+        <h4>{`${this.props.note.title}`}</h4>
+        <p>{`${this.props.note.body.substring(0,150)}...`}</p>
         <Link
           to={`${routeCodes.CREATE_PAGE}/${this.props.note.id}`}
           className='editBtn'>
@@ -46,18 +47,12 @@ class SingleNote extends Component {
             <button className='deleteModalBtn'>Delete</button>
           </div>
         </div>
-        <ul className='snippetTags'>
+        {/* <ul className='snippetTags'>
           {this.props.note.tags.map(tag => <li key={tag}>{tag}</li>)}
-        </ul>
+        </ul> */}
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    note: state.note
-  }
-}
-
-export default connect(mapStateToProps)(SingleNote);
+export default SingleNote;

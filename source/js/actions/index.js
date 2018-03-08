@@ -17,9 +17,12 @@ export function signUp(userData, callback, errorCallback) {
 }
 
 export function signIn(userData, callback, errorCallback) {
-  const request = axios.put(url, userData)
+  const request = axios.get('https://private-19561-probook.apiary-mock.com/users/1')
     .then(response => callback(response))
     .catch(error => errorCallback(error));
+  // const request = axios.put(url, userData)
+  //   .then(response => callback(response))
+  //   .catch(error => errorCallback(error));
 
   return {
     type: SIGN_IN,

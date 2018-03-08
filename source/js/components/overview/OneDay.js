@@ -1,14 +1,12 @@
 import React from 'react';
 import SingleNote from './SingleNote';
 
-
-const OneDay = () => {
-  const arr = [1, 2, 3, 4];
+const OneDay = (props) => {
   const today = new Date();
   return (
     <div className='oneDay'>
       <h3>Today - {today.toDateString()}</h3>
-      {arr.map(note => <SingleNote note={note} key={note} />)}
+      {props.notes.map(note => <SingleNote note={note} key={note.body} />)}
     </div>
   );
 }

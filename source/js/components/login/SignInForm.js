@@ -5,7 +5,7 @@ import { getUser } from 'actions/users';
 
 import { signIn } from '../../actions/index';
 import { publicPath } from '../../constants/routes';
-import {VALIDATE_EMAIL} from '../../constants/regex';
+import { VALIDATE_EMAIL } from '../../constants/regex';
 
 class SignInForm extends Component {
   renderField(field) {
@@ -26,8 +26,16 @@ class SignInForm extends Component {
   }
 
   submitForm(values) {
-    const { dispatch } = this.props;
-    getUser();
+    this.props.signIn(
+      values,
+      response => {
+        const data = response.data;
+        localStorage.setItem('name', data.name);
+        this.props.history.push('/');
+      },
+      error => {
+        console.log(error);
+      });
   }
 
   render() {
@@ -64,7 +72,6 @@ function validate(values) {
   }
   return errors;
 }
-
 
 // for connecting actions to component you have to put connect function inside second pare of parantheses and write it in regular style
 
