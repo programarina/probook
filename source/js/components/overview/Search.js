@@ -4,14 +4,24 @@ class Search extends Component {
   constructor() {
     super();
     this.state = {
-      searchString: ''
+      searchString: '',
     };
+    this.bounceTimeout;
   };
-  
+
   handleSearch = ({ target }) => {
-    this.setState({ searchString: target.value }, () => {
+    this.setState({ searchString: target.value });
+  }
+
+  bounce = () => {
+    clearTimeout(this.bounceTimeout);
+    this.bounceTimeout = setTimeout(() => {
       this.props.searchTerm(this.state.searchString);
-    });
+    }, 500);
+  }
+  
+  clearTimer = () =>{
+    clearTimeout(this.bounceTimeout);
   }
 
   render() {
@@ -21,7 +31,9 @@ class Search extends Component {
           type='text'
           placeholder='Search'
           value={this.state.searchString}
-          onChange={this.handleSearch} />
+          onChange={this.handleSearch}
+          onKeyUp={this.bounce}
+          onKeyDown={this.clearTimer} />
       </section>
     );
   }

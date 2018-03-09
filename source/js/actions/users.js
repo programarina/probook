@@ -24,10 +24,10 @@ function getUserError(error) {
   }
 }
 
-export function getUser() {
+export function getUser(userId) {
   return function(dispatch) {
     dispatch(getUserStart());
-    api.getUser()
+    api.getUser(userId)
       .then(data => dispatch(getUserSuccess(data)))
       .catch(error => dispatch(getUserError(error)))
   }

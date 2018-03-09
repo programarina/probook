@@ -27,7 +27,7 @@ class HelpButton extends Component {
             <span
               onClick={this.closeModal}
               className="close">&times;</span>
-            <p>modal text</p>
+            <div>manual</div>
           </div>
         </div>
       </div>

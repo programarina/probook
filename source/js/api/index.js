@@ -1,5 +1,5 @@
 // Simple API wrapper
-const API_URL = 'https://private-19561-probook.apiary-mock.com/users/1';
+const API_URL = 'https://private-19561-probook.apiary-mock.com';
 
 // Custom API error to throw
 function ApiError(message, data, status) {
@@ -19,7 +19,7 @@ function ApiError(message, data, status) {
     message,
     status,
     toString: () => {
-      return `${ this.message }\nResponse:\n${ isObject ? JSON.stringify(this.response, null, 2) : this.response }`;
+      return `${this.message}\nResponse:\n${isObject ? JSON.stringify(this.response, null, 2) : this.response}`;
     },
   };
 }
@@ -47,9 +47,9 @@ const fetchResource = (path, userOptions = {}) => {
   };
 
   // Build Url
-  const url = `${ API_URL }/${ path }`;
+  const url = `${API_URL}/${path}`;
 
-  // Detect is we are uploading a file
+  // Detect if we are uploading a file
   const isFile = typeof window !== 'undefined' && options.body instanceof File;
 
   // Stringify JSON data
@@ -97,15 +97,15 @@ const fetchResource = (path, userOptions = {}) => {
       // Throw custom API error
       // If response exists it means HTTP error occured
       if (response) {
-        throw ApiError(`Request failed with status ${ response.status }.`, error, response.status);
+        throw ApiError(`Request failed with status ${response.status}.`, error, response.status);
       } else {
         throw ApiError(error.toString(), null, 'REQUEST_FAILED');
       }
     });
 };
 
-function getUser() {
-  return fetchResource('users/1');
+function getUser(userId) {
+  return fetchResource(`users/${userId}`, { method: 'GET' });
 }
 
 export default {

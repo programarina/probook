@@ -37,7 +37,8 @@ class OverviewPage extends Component {
     let filterNotes = this.state.notes;
 
     if (searchString === '') {
-      return this.showAllNotes();
+      this.showAllNotes();
+      return null;
     }
 
     filterNotes = filterNotes.filter(note => {
@@ -45,7 +46,7 @@ class OverviewPage extends Component {
         return note;
       }
     });
-
+    console.log(filterNotes);
     this.setState({
       notes: filterNotes
     });

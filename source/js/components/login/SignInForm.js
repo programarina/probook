@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { getUser } from 'actions/users';
-
-import { signIn } from '../../actions/index';
 import { publicPath } from '../../constants/routes';
 import { VALIDATE_EMAIL } from '../../constants/regex';
 
@@ -26,16 +24,8 @@ class SignInForm extends Component {
   }
 
   submitForm(values) {
-    this.props.signIn(
-      values,
-      response => {
-        const data = response.data;
-        localStorage.setItem('name', data.name);
-        this.props.history.push('/');
-      },
-      error => {
-        console.log(error);
-      });
+    localStorage.setItem('name',values.email);
+    // this.props.getUser('1');
   }
 
   render() {
@@ -79,5 +69,5 @@ export default reduxForm({
   validate,
   form: 'SignInForm'
 })(
-  connect(null, { signIn })(SignInForm)
+  connect(null, { getUser })(SignInForm)
   );

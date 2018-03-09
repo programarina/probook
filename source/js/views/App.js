@@ -10,7 +10,7 @@ export default class App extends Component {
   render() {
     const storage = localStorage.getItem('name');
 
-    if (!storage) {
+    if (false) {
       return (
         <Switch>
           <Redirect exact from={routeCodes.HOME} to={routeCodes.SIGN_IN} />
