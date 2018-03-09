@@ -14,6 +14,7 @@ class OverviewPage extends Component {
     super();
     this.state = {
       notes: [],
+      filterNotes:[],
       showCalendar: false
     }
   };
@@ -30,31 +31,35 @@ class OverviewPage extends Component {
     // fetch list of notes from api
     this.setState({
       notes: data.items,
+      filterNotes: data.items
     });
   }
 
   findNote = (searchString) => {
-    let filterNotes = this.state.notes;
+    let allNotes = this.state.notes;
+    let filterNotes = [];
 
     if (searchString === '') {
       this.showAllNotes();
       return null;
     }
 
-    filterNotes = filterNotes.filter(note => {
+    filterNotes = allNotes.filter(note => {
       if (note.title.toLowerCase().includes(searchString.toLowerCase())) {
         return note;
       }
     });
     console.log(filterNotes);
+    console.log(allNotes);
     this.setState({
-      notes: filterNotes
+      filterNotes
     });
   }
 
   render() {
-    const { notes, showCalendar } = this.state;
-    if (!notes) {
+    const { filterNotes, showCalendar } = this.state;
+
+    if (!filterNotes) {
       return <p>loading</p>;
     }
     return (
@@ -70,7 +75,7 @@ class OverviewPage extends Component {
         <div className='mainDataContainer'>
           <Filter showCalendar={showCalendar} />
           <section className='allNotes'>
-            <OneDay notes={notes} />
+            <OneDay notes={filterNotes} />
             <AddButton />
           </section>
         </div>
