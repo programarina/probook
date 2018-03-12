@@ -40,28 +40,26 @@ class OverviewPage extends Component {
     let allNotes = this.state.notes;
     let filterNotes = [];
 
-    if (searchString === '') {
-      this.showAllNotes();
-      return null;
-    }
-
     filterNotes = allNotes.filter(note => {
       if (note.title.toLowerCase().includes(searchString.toLowerCase())) {
         return note;
       }
     });
-    console.log(filterNotes);
-    console.log(allNotes);
     this.setState({
       filterNotes
     });
   }
 
-
   filterByDate = (selectedMonth) => {
-    console.log(selectedMonth);
     let allNotes = this.state.notes;
     let filterNotes = allNotes.filter(note => {
+      let month = new Date(note.dateCreated);
+      if (selectedMonth === month.getMonth()) {
+        return note;
+      }
+    });
+    this.setState({
+      filterNotes
     });
   }
 

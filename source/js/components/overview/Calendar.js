@@ -14,11 +14,11 @@ class Calendar extends Component {
     return (
       <div className={(this.props.showCalendar) ? `calendarList calendarShow` : `calendarList`}>
         <ul>
-          {months.map(month =>
+          {months.map((month, indexOfMonth) =>
             <button
               key={month}
               onClick={() => {
-                this.props.filterByDate(month);
+                this.props.filterByDate(indexOfMonth);
                 this.setState({ checkedMonth: month });
               }}>
               <li
