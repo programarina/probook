@@ -41,6 +41,17 @@
     transition: transform 0.5s ease-in-out;
 }
 
+.calendarList button{
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    outline: none;
+}
+
+.selectedMonth{
+    background-color: color(var(--main-dark-color));
+}
+
 .calendarShow{
     transform: translateX(100%);
 }

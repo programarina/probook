@@ -104,10 +104,40 @@ const fetchResource = (path, userOptions = {}) => {
     });
 };
 
+function signUp(userData) {
+  return fetchResource(`users`, { body: userData, method: 'POST' });
+}
+
 function getUser(userId) {
   return fetchResource(`users/${userId}`, { method: 'GET' });
 }
 
+function getAllNotes() {
+  return fetchResource(`notes`, { method: 'GET' });
+}
+
+function getSingleNote(noteId) {
+  return fetchResource(`notes/${noteId}`, 'GET');
+}
+
+function createNote(note) {
+  return fetchResource(`notes`, { body: note, method: 'POST' });
+}
+
+function updateNote(noteData, noteId) {
+  return fetchResource(`notes/${noteId}`, { body: noteData, method: 'PUT' });
+}
+
+function deleteNote(noteId) {
+  return fetchResource(`notes/${noteId}`, { method: 'DELETE' });
+}
+
 export default {
+  signUp,
   getUser,
+  getAllNotes,
+  getSingleNote,
+  createNote,
+  updateNote,
+  deleteNote
 };

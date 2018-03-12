@@ -13,7 +13,7 @@ class Search extends Component {
     this.setState({ searchString: target.value });
   }
 
-  bounce = () => {
+  debounce = () => {
     clearTimeout(this.bounceTimeout);
     this.bounceTimeout = setTimeout(() => {
       this.props.searchTerm(this.state.searchString);
@@ -32,7 +32,7 @@ class Search extends Component {
           placeholder='Search'
           value={this.state.searchString}
           onChange={this.handleSearch}
-          onKeyUp={this.bounce}
+          onKeyUp={this.debounce}
           onKeyDown={this.clearTimer} />
       </section>
     );

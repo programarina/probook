@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
 import Search from '../../components/overview/Search';
-import Filter from '../../components/overview/Filter';
+import Calendar from '../../components/overview/Calendar';
 import OneDay from '../../components/overview/OneDay';
 import QucikNote from '../../components/overview/QucikNote';
 import AddButton from '../../components/overview/AddButton';
-import FilterButton from '../../components/overview/FilterButton';
+import CalendarButton from '../../components/overview/CalendarButton';
 import MobileMenu from '../../components/overview/MobileMenu';
 import data from '../../constants/data';
 
@@ -14,10 +14,11 @@ class OverviewPage extends Component {
     super();
     this.state = {
       notes: [],
-      filterNotes:[],
+      filterNotes: [],
       showCalendar: false
     }
   };
+
   componentDidMount() {
     this.showAllNotes();
   }
@@ -56,6 +57,14 @@ class OverviewPage extends Component {
     });
   }
 
+
+  filterByDate = (selectedMonth) => {
+    console.log(selectedMonth);
+    let allNotes = this.state.notes;
+    let filterNotes = allNotes.filter(note => {
+    });
+  }
+
   render() {
     const { filterNotes, showCalendar } = this.state;
 
@@ -65,7 +74,7 @@ class OverviewPage extends Component {
     return (
       <div className='main'>
         <div>
-          <FilterButton toggleClass={this.toggleClass} showCalendar={showCalendar} />
+          <CalendarButton toggleClass={this.toggleClass} showCalendar={showCalendar} />
           <div className='searchContainer'>
             <Search searchTerm={this.findNote} />
             <QucikNote />
@@ -73,7 +82,7 @@ class OverviewPage extends Component {
           <MobileMenu />
         </div>
         <div className='mainDataContainer'>
-          <Filter showCalendar={showCalendar} />
+          <Calendar showCalendar={showCalendar} filterByDate={this.filterByDate} />
           <section className='allNotes'>
             <OneDay notes={filterNotes} />
             <AddButton />

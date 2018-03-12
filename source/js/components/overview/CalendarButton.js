@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FilterButton = (props) => {
+const CalendarButton = (props) => {
   return (
     <div className='calendarBtnContainer'>
       <div className='svgContainer'>
@@ -21,4 +21,4 @@ const FilterButton = (props) => {
   );
 }
 
-export default FilterButton;
+export default CalendarButton;
