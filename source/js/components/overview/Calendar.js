@@ -18,7 +18,7 @@ class Calendar extends Component {
             <button
               key={month}
               onClick={() => {
-                this.props.filterByDate(indexOfMonth);
+                this.props.filterByMonth(indexOfMonth);
                 this.setState({ checkedMonth: month });
               }}>
               <li

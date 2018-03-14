@@ -3,15 +3,16 @@ import { connect } from 'react-redux';
 
 class Header extends Component {
   logOutAction = () => {
-    localStorage.removeItem('name');
-    window.location.assign(`/signin`);
+    // localStorage.removeItem('sessionId');
+    // console.log(this.props.user);
+    // window.location.assign(`/signin`);
   }
 
   render() {
     return (
       <div className='headerContainer'>
         <div className='header'>
-          <h3>Hi, {localStorage.getItem('name')}</h3>
+          <h3>Hi,{this.props.user.username}</h3>
           <button onClick={this.logOutAction}>Log out</button>
         </div>
       </div>
@@ -21,7 +22,7 @@ class Header extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.userSignIn
   }
 }
 

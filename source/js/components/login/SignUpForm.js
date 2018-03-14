@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-
+import { signUp } from '../../actions/signup';
 import { routeCodes } from '../../constants/routes';
-import { signUp } from '../../actions/index';
-import {VALIDATE_EMAIL} from '../../constants/regex';
+import { VALIDATE_EMAIL } from '../../constants/regex';
+
 
 class SignUpForm extends Component {
   renderField(field) {
@@ -27,16 +27,11 @@ class SignUpForm extends Component {
   }
 
   submitForm(values) {
-    localStorage.setItem('name', values.name);
-    // this.props.signUp(values, () => {
-    //   this.props.history.push(routeCodes.SIGN_IN);
-    // }, () => {
-    //   // handle and show server errors
-    //   console.log('error');
-    // });
+    this.props.signUp(values);
   }
-
+  
   render() {
+    console.log(this.props.user);
     const { handleSubmit } = this.props;
     return (
       <form
@@ -85,17 +80,22 @@ function validate(values) {
   if (!values.password || values.password.length < 6) {
     errors.password = 'Password should be at least 6 characters long.';
   }
-  if(!values.repeat_password || (values.password !== values.repeat_password)){
+  if (!values.repeat_password || (values.password !== values.repeat_password)) {
     errors.repeat_password = 'Repeat password doesn\'t match with password.';
   }
   return errors;
 }
 
+function mapStateToProps(state) {
+  return {
+    user: state.userSignUp
+  }
+}
 
 export default reduxForm({
   validate,
   form: 'SignUpForm'
 })(connect(
-  null,
+  mapStateToProps,
   { signUp }
 )(SignUpForm));

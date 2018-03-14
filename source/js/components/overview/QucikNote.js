@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { setNoteData } from '../../actions/index';
 
 class QuickNote extends Component {
   constructor(){
@@ -13,7 +12,7 @@ class QuickNote extends Component {
   }
   
   handleClick = ()=>{
-    this.props.setNoteData(this.state.quickNote);
+    // this.props.setNoteData(this.state.quickNote);
   }
 
   render() {
@@ -29,9 +28,11 @@ class QuickNote extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ setNoteData: setNoteData }, dispatch);
-};
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators({ setNoteData: setNoteData }, dispatch);
+// };
 
 
-export default connect(null, mapDispatchToProps)(QuickNote);
+// export default connect(null, mapDispatchToProps)(QuickNote);
+
+export default QuickNote;

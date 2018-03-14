@@ -8,7 +8,7 @@ import MainPage from '../views/common/MainPage';
 export default class App extends Component {
 
   render() {
-    const storage = localStorage.getItem('name');
+    const storage = localStorage.getItem('sessionId');
 
     if (false) {
       return (

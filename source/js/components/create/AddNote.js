@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { setNoteData } from '../../actions/index';
 
 class AddNote extends Component {
   constructor() {
@@ -36,7 +35,7 @@ class AddNote extends Component {
       noteTags: noteTags,
       dateCreated: date.toDateString()
     }
-    this.props.setNoteData(note);
+    
   }
 
   render() {

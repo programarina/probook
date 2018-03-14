@@ -71,6 +71,7 @@
     "redux": "^3.7.2",
     "redux-form": "^7.3.0",
     "redux-saga": "^0.16.0",
+    "redux-thunk": "^2.2.0",
     "whatwg-fetch": "^2.0.3"
   },
   "description": "Starter boilerplate for React and Redux, using Webpack 3",

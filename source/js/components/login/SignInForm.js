@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { getUser } from 'actions/users';
+import { signIn } from '../../actions/signin';
 import { publicPath } from '../../constants/routes';
 import { VALIDATE_EMAIL } from '../../constants/regex';
 
@@ -24,11 +24,12 @@ class SignInForm extends Component {
   }
 
   submitForm(values) {
-    localStorage.setItem('name',values.email);
-    // this.props.getUser('1');
+    this.props.signIn(values);
+    // localStorage.setItem('sessionId', this.props.user.id);
   }
-
+  
   render() {
+    console.log('PROPSSSSSS',this.props);
     const { handleSubmit } = this.props;
     return (
       <form className='signInForm' onSubmit={handleSubmit(this.submitForm.bind(this))}>
@@ -64,10 +65,15 @@ function validate(values) {
 }
 
 // for connecting actions to component you have to put connect function inside second pare of parantheses and write it in regular style
+function mapStateToProps(state) {
+  return {
+    user: state.userSignIn
+  }
+}
 
 export default reduxForm({
   validate,
   form: 'SignInForm'
 })(
-  connect(null, { getUser })(SignInForm)
+  connect(mapStateToProps, { signIn })(SignInForm)
   );

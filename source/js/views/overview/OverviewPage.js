@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Search from '../../components/overview/Search';
 import Calendar from '../../components/overview/Calendar';
@@ -8,6 +9,7 @@ import AddButton from '../../components/overview/AddButton';
 import CalendarButton from '../../components/overview/CalendarButton';
 import MobileMenu from '../../components/overview/MobileMenu';
 import data from '../../constants/data';
+import { getAllNotes } from '../../actions/note';
 
 class OverviewPage extends Component {
   constructor() {
@@ -29,7 +31,8 @@ class OverviewPage extends Component {
   }
 
   showAllNotes = () => {
-    // fetch list of notes from api
+    // fetch list of notes from api'
+    this.props.getAllNotes();
     this.setState({
       notes: data.items,
       filterNotes: data.items
@@ -50,7 +53,7 @@ class OverviewPage extends Component {
     });
   }
 
-  filterByDate = (selectedMonth) => {
+  filterByMonth = (selectedMonth) => {
     let allNotes = this.state.notes;
     let filterNotes = allNotes.filter(note => {
       let month = new Date(note.dateCreated);
@@ -80,7 +83,7 @@ class OverviewPage extends Component {
           <MobileMenu />
         </div>
         <div className='mainDataContainer'>
-          <Calendar showCalendar={showCalendar} filterByDate={this.filterByDate} />
+          <Calendar showCalendar={showCalendar} filterByMonth={this.filterByMonth} />
           <section className='allNotes'>
             <OneDay notes={filterNotes} />
             <AddButton />
@@ -91,4 +94,14 @@ class OverviewPage extends Component {
   }
 }
 
-export default OverviewPage;
+function mapDispatchToProps(dispatch) {
+  return { getAllNotes: () => dispatch(getAllNotes()) };
+};
+
+function mapStateToProps(state) {
+  return {
+    notes: state.notes
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(OverviewPage);
