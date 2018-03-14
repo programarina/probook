@@ -132,9 +132,9 @@ function getSingleNote(noteId) {
 //   return fetchResource(`notes/${noteId}`, { body: noteData, method: 'PUT' });
 // }
 
-// function deleteNote(noteId) {
-//   return fetchResource(`notes/${noteId}`, { method: 'DELETE' });
-// }
+function deleteNote(noteId) {
+  return fetchResource(`notes/${noteId}`, { method: 'DELETE' });
+}
 
 export default {
   signUp,
@@ -143,4 +143,5 @@ export default {
   getAllNotes,
   createNote,
   getSingleNote,
+  deleteNote,
 };
