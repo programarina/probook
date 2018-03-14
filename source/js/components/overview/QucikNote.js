@@ -1,38 +1,43 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
+import { createNote } from 'actions/createNote';
 
 class QuickNote extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      quickNote:''
+      quickNote: ''
     };
   }
-  
-  handleClick = ()=>{
-    // this.props.setNoteData(this.state.quickNote);
+
+  handleClick = () => {
+    const date = new Date();
+    const note = {
+      title: '',
+      body: this.state.quickNote,
+      tags: [],
+      dateCreate: date.toLocaleDateString()
+    };
+    this.props.createNote(note);
   }
 
   render() {
     return (
       <section className='quickNote'>
-        <textarea 
-          placeholder='Quick note...' 
+        <textarea
+          placeholder='Quick note...'
           value={this.state.quickNote}
-          onChange={({target})=>this.setState({quickNote:target.value})}/>
+          onChange={({ target }) => this.setState({ quickNote: target.value })} />
         <button onClick={this.handleClick}>Add</button>
       </section>
     );
   }
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ setNoteData: setNoteData }, dispatch);
-// };
+function mapDispatchToProps(dispatch) {
+  return { createNote: note => dispatch(createNote(note)) };
+};
 
 
-// export default connect(null, mapDispatchToProps)(QuickNote);
-
-export default QuickNote;
+export default connect(null, mapDispatchToProps)(QuickNote);

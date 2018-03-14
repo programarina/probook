@@ -30,6 +30,7 @@ class CreateNotePage extends Component {
     });
   }
 
+  
   render() {
     const note = this.state;
     return (

@@ -120,13 +120,13 @@ function getAllNotes() {
   return fetchResource(`notes`, { method: 'GET' });
 }
 
-// function getSingleNote(noteId) {
-//   return fetchResource(`notes/${noteId}`, 'GET');
-// }
+function createNote(note) {
+  return fetchResource(`notes`, { body: note, method: 'POST' });
+}
 
-// function createNote(note) {
-//   return fetchResource(`notes`, { body: note, method: 'POST' });
-// }
+function getSingleNote(noteId) {
+  return fetchResource(`notes/${noteId}`, 'GET');
+}
 
 // function updateNote(noteData, noteId) {
 //   return fetchResource(`notes/${noteId}`, { body: noteData, method: 'PUT' });
@@ -141,4 +141,6 @@ export default {
   signIn,
   getUser,
   getAllNotes,
+  createNote,
+  getSingleNote,
 };

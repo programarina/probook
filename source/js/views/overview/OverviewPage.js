@@ -33,6 +33,7 @@ class OverviewPage extends Component {
   showAllNotes = () => {
     // fetch list of notes from api'
     this.props.getAllNotes();
+
     this.setState({
       notes: data.items,
       filterNotes: data.items

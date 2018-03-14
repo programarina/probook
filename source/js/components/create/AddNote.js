@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
+import {createNote} from 'actions/createNote';
 
 class AddNote extends Component {
   constructor() {
@@ -35,7 +34,7 @@ class AddNote extends Component {
       noteTags: noteTags,
       dateCreated: date.toDateString()
     }
-    
+    this.props.createNote(note);
   }
 
   render() {
@@ -74,7 +73,9 @@ class AddNote extends Component {
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ setNoteData: setNoteData }, dispatch);
+  return {
+    createNote: (note) => { dispatch(createNote(note)) }
+  }
 };
 
 
