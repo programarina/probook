@@ -1,4 +1,4 @@
-import api from 'api';
+import api from '../api/note';
 
 export const DELETE_NOTE_START = 'DELETE_NOTE_START';
 export const DELETE_NOTE_SUCCESS = 'DELETE_NOTE_SUCCESS';

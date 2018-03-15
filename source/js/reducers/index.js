@@ -1,14 +1,10 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import SignInReducer from './signin';
-import SignUpReducer from './signup';
+import  UserReducer  from './user';
 import NoteReducer from './note';
-import CreateNoteReducer from './createNote';
 
 export default combineReducers({
-  userSignIn: SignInReducer,
-  userSignUp: SignUpReducer,
-  form: formReducer,
+  user: UserReducer,
   notes: NoteReducer,
-  singleNote: CreateNoteReducer,
+  form: formReducer,
 });

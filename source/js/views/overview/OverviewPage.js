@@ -9,7 +9,7 @@ import AddButton from '../../components/overview/AddButton';
 import CalendarButton from '../../components/overview/CalendarButton';
 import MobileMenu from '../../components/overview/MobileMenu';
 import data from '../../constants/data';
-import { getAllNotes } from '../../actions/note';
+import { getAllNotes } from '../../actions/getNotes';
 
 class OverviewPage extends Component {
   constructor() {
@@ -25,19 +25,19 @@ class OverviewPage extends Component {
     this.showAllNotes();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.notes !== this.props.notes) {
+      this.setState({ notes: nextProps.notes, filterNotes: nextProps.notes });
+    }
+  }
+
   toggleClass = () => {
     const currentState = this.state.showCalendar;
     this.setState({ showCalendar: !currentState });
   }
 
   showAllNotes = () => {
-    // fetch list of notes from api'
     this.props.getAllNotes();
-
-    this.setState({
-      notes: data.items,
-      filterNotes: data.items
-    });
   }
 
   findNote = (searchString) => {
@@ -70,6 +70,8 @@ class OverviewPage extends Component {
   render() {
     const { filterNotes, showCalendar } = this.state;
 
+    console.log('--RENDER', this.props.notes);
+
     if (!filterNotes) {
       return <p>loading</p>;
     }
@@ -101,7 +103,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    notes: state.notes
+    notes: state.notes.get('notes'),
   };
 }
 

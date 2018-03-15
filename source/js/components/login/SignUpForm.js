@@ -88,7 +88,7 @@ function validate(values) {
 
 function mapStateToProps(state) {
   return {
-    user: state.userSignUp
+    user: state.user
   }
 }
 

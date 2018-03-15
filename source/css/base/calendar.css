@@ -49,7 +49,7 @@
 }
 
 .selectedMonth{
-    background-color: color(var(--main-dark-color));
+    background-color: color(var(--dark-violet));
 }
 
 .calendarShow{

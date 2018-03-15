@@ -1,4 +1,4 @@
-import api from 'api'
+import api from '../api/user';
 
 export const GET_USER_START = 'GET_USER_START';
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
@@ -11,6 +11,7 @@ function getUserStart() {
 }
 
 function getUserSuccess(data) {
+
   return {
     type: GET_USER_SUCCESS,
     data,

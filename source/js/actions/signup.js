@@ -1,4 +1,4 @@
-import api from 'api'
+import api from '../api/user';
 
 export const SIGN_UP_START = 'SIGN_UP_START';
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';

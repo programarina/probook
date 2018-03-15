@@ -1,6 +1,6 @@
 // Simple API wrapper
-// const API_URL = 'http://polls.apiblueprint.org';
 const API_URL = 'https://private-19561-probook.apiary-mock.com';
+
 // Custom API error to throw
 function ApiError(message, data, status) {
   let response = null;
@@ -104,44 +104,5 @@ const fetchResource = (path, userOptions = {}) => {
     });
 };
 
-function signUp(userData) {
-  return fetchResource(`signup`, { body: userData, method: 'POST' });
-}
 
-function signIn(userData) {
-  return fetchResource(`login`, { body: userData, method: 'POST' });
-}
-
-function getUser(userId) {
-  return fetchResource(`users/${userId}`, { method: 'GET' });
-}
-
-function getAllNotes() {
-  return fetchResource(`notes`, { method: 'GET' });
-}
-
-function createNote(note) {
-  return fetchResource(`notes`, { body: note, method: 'POST' });
-}
-
-function getSingleNote(noteId) {
-  return fetchResource(`notes/${noteId}`, 'GET');
-}
-
-// function updateNote(noteData, noteId) {
-//   return fetchResource(`notes/${noteId}`, { body: noteData, method: 'PUT' });
-// }
-
-function deleteNote(noteId) {
-  return fetchResource(`notes/${noteId}`, { method: 'DELETE' });
-}
-
-export default {
-  signUp,
-  signIn,
-  getUser,
-  getAllNotes,
-  createNote,
-  getSingleNote,
-  deleteNote,
-};
+export default fetchResource;

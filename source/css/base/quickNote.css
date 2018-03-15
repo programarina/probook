@@ -28,7 +28,7 @@
     background-color: color(var(--primary-color));
     color: color(var(--light-color));
     border: none;
-    outline: none;
+    outline-color: color(var(--primary-color));
     border-radius: 5px;
 }
 

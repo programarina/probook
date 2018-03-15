@@ -1,4 +1,4 @@
-import api from 'api'
+import api from '../api/note';
 
 export const CREATE_NOTE_START = 'CREATE_NOTE_START';
 export const CREATE_NOTE_SUCCESS = 'CREATE_NOTE_SUCCESS';

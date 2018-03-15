@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {createNote} from 'actions/createNote';
+import { createNote } from '../../actions/createNote';
 
 class AddNote extends Component {
   constructor() {

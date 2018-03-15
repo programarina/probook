@@ -3,6 +3,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { createNote } from 'actions/createNote';
 
+function mapDispatchToProps(dispatch) {
+  return { createNote: note => dispatch(createNote(note)) };
+};
+
+// @connect(null, mapDispatchToProps);
+
 class QuickNote extends Component {
   constructor() {
     super();
@@ -35,9 +41,8 @@ class QuickNote extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return { createNote: note => dispatch(createNote(note)) };
-};
 
 
-export default connect(null, mapDispatchToProps)(QuickNote);
+
+export default QuickNote;
+// connect(null, mapDispatchToProps)(QuickNote);
