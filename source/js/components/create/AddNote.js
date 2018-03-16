@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createNote } from '../../actions/createNote';
+import { routeCodes } from '../../constants/routes';
+import { redirectionService } from '../../services/redirectionService';
 
 class AddNote extends Component {
   constructor() {
@@ -35,6 +37,13 @@ class AddNote extends Component {
       dateCreated: date.toDateString()
     }
     this.props.createNote(note);
+  }
+
+  componentWillReceiveProps(nextProps){
+    console.log(nextProps.notes);
+    if(this.props.notes !== nextProps.notes){
+      redirectionService.redirect(routeCodes.HOME);
+    }
   }
 
   render() {
@@ -74,9 +83,14 @@ class AddNote extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    createNote: (note) => { dispatch(createNote(note)) }
+    createNote: note => { dispatch(createNote(note)) }
   }
 };
 
+function mapStateToProps(state) {
+  return {
+    notes: state.notes.get('notes')
+  }
+}
 
-export default connect(null, mapDispatchToProps)(AddNote);
+export default connect(mapStateToProps, mapDispatchToProps)(AddNote);

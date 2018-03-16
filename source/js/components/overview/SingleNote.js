@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { routeCodes } from '../../constants/routes';
-import { deleteNote } from 'actions/deleteNote';
+import { deleteNote } from '../../actions/deleteNote';
 
 class SingleNote extends Component {
   constructor() {
@@ -22,7 +22,7 @@ class SingleNote extends Component {
 
   deleteNote = () => {
     let id = this.props.note.id;
-    this.props.deleteNote(id);
+    // this.props.deleteNote(id);
   }
 
   render() {
@@ -54,9 +54,9 @@ class SingleNote extends Component {
             <button className='deleteModalBtn' onClick={this.deleteNote}>Delete</button>
           </div>
         </div>
-        {/* <ul className='snippetTags'>
+        <ul className='snippetTags'>
           {tags.map(tag => <li key={tag}>{tag}</li>)}
-        </ul> */}
+        </ul>
       </div>
     );
   }
@@ -67,5 +67,6 @@ function mapDispatchToProps(dispatch) {
     deleteNote: (id) => dispatch(deleteNote(id))
   }
 }
+
 
 export default connect(null, mapDispatchToProps)(SingleNote);

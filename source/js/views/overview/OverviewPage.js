@@ -37,6 +37,11 @@ class OverviewPage extends Component {
   toggleClass = () => {
     const currentState = this.state.showCalendar;
     this.setState({ showCalendar: !currentState });
+    if(currentState === true){
+      this.setState({
+        filterNotes: this.state.notes
+      });
+    }
   }
 
   showAllNotes = () => {
@@ -73,11 +78,11 @@ class OverviewPage extends Component {
   render() {
     const { filterNotes, showCalendar } = this.state;
     if (!filterNotes) {
-      return <img 
-        src='../../../../assets/img/loader.gif' 
-        alt='loader' 
-        className='loader' 
-        />;
+      return <img
+        src='../../../../assets/img/loader.gif'
+        alt='loader'
+        className='loader'
+      />;
     }
     return (
       <div className='main'>

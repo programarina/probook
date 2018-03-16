@@ -24,10 +24,10 @@ function createNoteError(error) {
   }
 }
 
-export function createNote() {
+export function createNote(noteData) {
   return function (dispatch) {
     dispatch(createNoteStart());
-    api.createNote()
+    api.createNote(noteData)
       .then(data => dispatch(createNoteSuccess(data)))
       .catch(error => dispatch(createNoteError(error)))
   }

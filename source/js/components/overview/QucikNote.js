@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { createNote } from 'actions/createNote';
 
 function mapDispatchToProps(dispatch) {
   return { createNote: note => dispatch(createNote(note)) };
 };
-
-// @connect(null, mapDispatchToProps);
 
 class QuickNote extends Component {
   constructor() {
@@ -18,12 +15,12 @@ class QuickNote extends Component {
   }
 
   handleClick = () => {
-    const date = new Date();
     const note = {
       title: '',
       body: this.state.quickNote,
       tags: [],
-      dateCreate: date.toLocaleDateString()
+      dateCreate: '',
+
     };
     this.props.createNote(note);
   }
@@ -41,8 +38,11 @@ class QuickNote extends Component {
   }
 }
 
+function mapDispatchToProps(dispatch){
+  return{
+    createNote: note => dispatch(createNote(note))
+  };
+}
 
 
-
-export default QuickNote;
-// connect(null, mapDispatchToProps)(QuickNote);
+export default connect(null, mapDispatchToProps)(QuickNote);
