@@ -24,14 +24,7 @@ class SignInForm extends Component {
   }
 
   submitForm(values) {
-    this.props.signIn(values);
-    
-    const user = this.props.user.get('user');
-    const loader = this.props.user.get('loading');
-    const error = this.props.user.get('error');
-
-    console.log(user, loader, error);
-    // localStorage.setItem('sessionId', this.props.user.id);
+    this.props.signIn(values);    
   }
   
   render() {
@@ -72,7 +65,7 @@ function validate(values) {
 // for connecting actions to component you have to put connect function inside second pare of parantheses and write it in regular style
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.user.get('user')
   }
 }
 

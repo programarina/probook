@@ -17,7 +17,8 @@ class OverviewPage extends Component {
     this.state = {
       notes: [],
       filterNotes: [],
-      showCalendar: false
+      showCalendar: false,
+      loader: false,
     }
   };
 
@@ -27,7 +28,15 @@ class OverviewPage extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.notes !== this.props.notes) {
-      this.setState({ notes: nextProps.notes, filterNotes: nextProps.notes });
+      this.setState({
+        notes: nextProps.notes,
+        filterNotes: nextProps.notes,
+      });
+    }
+    if (nextProps.loader !== this.state.loader) {
+      this.setState({
+        loader: nextProps.loader
+      });
     }
   }
 
@@ -68,10 +77,9 @@ class OverviewPage extends Component {
   }
 
   render() {
-    const { filterNotes, showCalendar } = this.state;
-
-    console.log('--RENDER', this.props.notes);
-
+    const { filterNotes, showCalendar, loader } = this.state;
+    const notesArr = filterNotes.length;
+    console.log(loader);
     if (!filterNotes) {
       return <p>loading</p>;
     }
@@ -87,12 +95,13 @@ class OverviewPage extends Component {
         </div>
         <div className='mainDataContainer'>
           <Calendar showCalendar={showCalendar} filterByMonth={this.filterByMonth} />
-          <section className='allNotes'>
+          <img src='../../../../assets/img/loader.gif' alt='loader' className={loader ? 'loader' : 'loaderHiden'} />
+          <section className={(notesArr === 0) ? 'hideNotes' : 'allNotes'}>
             <OneDay notes={filterNotes} />
             <AddButton />
           </section>
         </div>
-      </div>
+      </div >
     );
   }
 }
@@ -104,6 +113,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     notes: state.notes.get('notes'),
+    loader: state.notes.get('loading'),
   };
 }
 

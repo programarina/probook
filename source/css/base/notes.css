@@ -2,12 +2,17 @@
     width: 70%;
     margin: 0 auto;
     padding-top: 40px;
+    display: block;
 }
 
 .oneDay{
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
+}
+
+.hideNotes{
+    display: none;
 }
 
 .oneDay h3{

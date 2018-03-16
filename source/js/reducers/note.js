@@ -49,42 +49,42 @@ const actionsMap = {
   },
   [CREATE_NOTE_START]: (state) => {
     return state.merge(Map({
-      loader: true,
+      loading: true,
       notes: null,
       error: null
     }));
   },
   [CREATE_NOTE_SUCCESS]: (state, action) => {
     return state.merge(Map({
-      loader: false,
+      loading: false,
       notes: action.data,
       error: null
     }));
   },
   [CREATE_NOTE_ERROR]: (state, action) => {
     return state.merge(Map({
-      loader: false,
+      loading: false,
       notes: null,
       error: action.error
     }));
   },
   [DELETE_NOTE_START]: (state) => {
     return state.merge(Map({
-      loader: true,
+      loading: true,
       notes: null,
       error: null
     }));
   },
   [DELETE_NOTE_SUCCESS]: (state, action) => {
     return state.merge(Map({
-      loader: false,
+      loading: false,
       notes: action.data,
       error: null
     }));
   },
   [DELETE_NOTE_ERROR]: (state, action) => {
     return state.merge(Map({
-      loader: false,
+      loading: false,
       notes: null,
       error: action.error
     }));
