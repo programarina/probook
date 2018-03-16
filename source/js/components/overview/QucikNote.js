@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createNote } from 'actions/createNote';
-
-function mapDispatchToProps(dispatch) {
-  return { createNote: note => dispatch(createNote(note)) };
-};
+import { createNote } from '../../actions/createNote';
 
 class QuickNote extends Component {
   constructor() {
@@ -22,6 +18,9 @@ class QuickNote extends Component {
       dateCreate: '',
 
     };
+    if(!note.body){
+      return;
+    }
     this.props.createNote(note);
   }
 
@@ -43,6 +42,5 @@ function mapDispatchToProps(dispatch){
     createNote: note => dispatch(createNote(note))
   };
 }
-
 
 export default connect(null, mapDispatchToProps)(QuickNote);

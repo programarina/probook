@@ -50,14 +50,14 @@ const actionsMap = {
   [CREATE_NOTE_START]: (state) => {
     return state.merge(Map({
       loading: true,
-      notes: null,
+      notes: state.get('notes'),
       error: null
     }));
   },
   [CREATE_NOTE_SUCCESS]: (state, action) => {
     return state.merge(Map({
       loading: false,
-      notes: action.data,
+      notes: [action.data, ...state.get('notes')],
       error: null
     }));
   },
@@ -71,7 +71,7 @@ const actionsMap = {
   [DELETE_NOTE_START]: (state) => {
     return state.merge(Map({
       loading: true,
-      notes: null,
+      notes: state.get('notes'),
       error: null
     }));
   },
