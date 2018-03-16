@@ -19,9 +19,9 @@ import {
 } from 'actions/signin';
 
 const initialState = Map({
+  loading: false,
   user: null,
   error: null,
-  loading: false,
 });
 
 const actionsMap = {
@@ -35,15 +35,15 @@ const actionsMap = {
   [GET_USER_SUCCESS]: (state, action) => {
     return state.merge(Map({
       loading: false,
-      error: null,
       user: action.data,
+      error: null,
     }));
   },
   [GET_USER_ERROR]: (state, action) => {
     return state.merge(Map({
       loading: false,
-      error: action.error,
       user: null,
+      error: action.error,
     }));
   },
   [SIGN_UP_START]: (state) => {

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { getUser } from '../../actions/users';
+import { redirectionService } from '../../services/redirectionService';
+import { routeCodes } from '../../constants/routes';
 
 class Header extends Component {
-  componentDidMount(){
-    this.props.getUser('1');
-  }
   logOutAction = () => {
-    console.log(this.props.user.get('user'));
+    localStorage.removeItem('sessionId');
+    redirectionService.redirect(routeCodes.SIGN_IN);
+
   }
 
   render() {
@@ -22,14 +21,4 @@ class Header extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    user: state.user
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return { getUser: (id) => dispatch(getUser(id)) };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;

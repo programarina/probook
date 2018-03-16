@@ -4,8 +4,17 @@ import { connect } from 'react-redux';
 import { signIn } from '../../actions/signin';
 import { publicPath } from '../../constants/routes';
 import { VALIDATE_EMAIL } from '../../constants/regex';
+import { redirectionService } from '../../services/redirectionService';
+import { routeCodes } from '../../constants/routes';
 
 class SignInForm extends Component {
+  constructor() {
+    super();
+    this.state = {
+      loader: false,
+      serverError: null,
+    };
+  }
   renderField(field) {
     const { meta: { touched, error } } = field;
     const className = (touched && error) ? 'invalidInput' : '';
@@ -24,10 +33,28 @@ class SignInForm extends Component {
   }
 
   submitForm(values) {
-    this.props.signIn(values);    
+    this.props.signIn(values);
   }
-  
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.user !== nextProps.user) {
+      redirectionService.redirect(routeCodes.HOME);
+      localStorage.setItem('sessionId', nextProps.user.id);
+    }
+    if (this.props.loader !== nextProps.loader) {
+      this.setState({
+        loader: nextProps.loader
+      });
+    }
+    if (this.props.error !== nextProps.error) {
+      this.setState({
+        serverError: nextProps.error
+      });
+    }
+  }
+
   render() {
+    const { loader, serverError } = this.state;
     const { handleSubmit } = this.props;
     return (
       <form className='signInForm' onSubmit={handleSubmit(this.submitForm.bind(this))}>
@@ -43,7 +70,15 @@ class SignInForm extends Component {
           type='password'
           component={this.renderField}
         />
-        <button type='submit'>Sign in</button>
+        <img
+          className={loader ? 'loader' : 'loaderHiden'}
+          src='../../../assets/img/loader.gif'
+          alt='loader' />
+        <button
+          className = {loader ? 'loaderHiden' : 'signInForm-button'}
+          type='submit'>
+          Sign in</button>
+        <p>{serverError ? serverError.message : ''}</p>
       </form>
     );
   }
@@ -62,10 +97,11 @@ function validate(values) {
   return errors;
 }
 
-// for connecting actions to component you have to put connect function inside second pare of parantheses and write it in regular style
 function mapStateToProps(state) {
   return {
-    user: state.user.get('user')
+    user: state.user.get('user'),
+    loader: state.user.get('loading'),
+    error: state.user.get('error')
   }
 }
 

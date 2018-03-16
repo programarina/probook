@@ -38,7 +38,7 @@
     outline-color: color(var(--light-grey-color));
 }
 
-.signInForm button, .signUpForm button{
+.signInForm-button, .signUpForm-button{
     display: block;
     margin: 20px auto;
     width: 80%;

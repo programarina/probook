@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+
 import { signUp } from '../../actions/signup';
 import { routeCodes } from '../../constants/routes';
 import { VALIDATE_EMAIL } from '../../constants/regex';
 
-
 class SignUpForm extends Component {
+  constructor() {
+    super();
+    this.state = {
+      loader: false,
+      serverError: null
+    };
+  }
+
   renderField(field) {
     const { meta: { touched, error } } = field;
     const className = (error && touched) ? 'invalidInput' : '';
@@ -29,9 +37,25 @@ class SignUpForm extends Component {
   submitForm(values) {
     this.props.signUp(values);
   }
-  
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user !== this.props.user) {
+      localStorage.setItem('sessionId', nextProps.user.id);
+    }
+    if (nextProps.loader !== this.props.loader) {
+      this.setState({
+        loader: nextProps.loader
+      });
+    }
+    if(nextProps.error !== this.props.error){
+      this.setState({
+        serverError: nextProps.error
+      });
+    }
+  }
+
   render() {
-    console.log(this.props.user);
+    const { loader , serverError } = this.state;
     const { handleSubmit } = this.props;
     return (
       <form
@@ -61,7 +85,14 @@ class SignUpForm extends Component {
           type='password'
           component={this.renderField}
         />
-        <button type='submit'>Sign up</button>
+         <img
+          className={loader ? 'loader' : 'loaderHiden'}
+          src='../../../assets/img/loader.gif'
+          alt='loader' />
+        <button
+          className={loader ? 'loaderHiden' : 'signUpForm-button'}
+          type='submit'>Sign up</button>
+        <p>{serverError ? serverError.message : ''}</p>
       </form>
     );
   }
@@ -88,7 +119,9 @@ function validate(values) {
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.user.get('user'),
+    loader: state.user.get('loading'),
+    error: state.user.get('error')
   }
 }
 

@@ -18,7 +18,6 @@ class OverviewPage extends Component {
       notes: [],
       filterNotes: [],
       showCalendar: false,
-      loader: false,
     }
   };
 
@@ -31,11 +30,6 @@ class OverviewPage extends Component {
       this.setState({
         notes: nextProps.notes,
         filterNotes: nextProps.notes,
-      });
-    }
-    if (nextProps.loader !== this.state.loader) {
-      this.setState({
-        loader: nextProps.loader
       });
     }
   }
@@ -77,11 +71,13 @@ class OverviewPage extends Component {
   }
 
   render() {
-    const { filterNotes, showCalendar, loader } = this.state;
-    const notesArr = filterNotes.length;
-    console.log(loader);
+    const { filterNotes, showCalendar } = this.state;
     if (!filterNotes) {
-      return <p>loading</p>;
+      return <img 
+        src='../../../../assets/img/loader.gif' 
+        alt='loader' 
+        className='loader' 
+        />;
     }
     return (
       <div className='main'>
@@ -95,8 +91,7 @@ class OverviewPage extends Component {
         </div>
         <div className='mainDataContainer'>
           <Calendar showCalendar={showCalendar} filterByMonth={this.filterByMonth} />
-          <img src='../../../../assets/img/loader.gif' alt='loader' className={loader ? 'loader' : 'loaderHiden'} />
-          <section className={(notesArr === 0) ? 'hideNotes' : 'allNotes'}>
+          <section className='allNotes'>
             <OneDay notes={filterNotes} />
             <AddButton />
           </section>
@@ -113,7 +108,6 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     notes: state.notes.get('notes'),
-    loader: state.notes.get('loading'),
   };
 }
 

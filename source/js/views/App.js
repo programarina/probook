@@ -8,9 +8,9 @@ import MainPage from '../views/common/MainPage';
 export default class App extends Component {
 
   render() {
-    const storage = localStorage.getItem('sessionId');
+    const loggedIn = localStorage.getItem('sessionId');
 
-    if (false) {
+    if (!loggedIn) {
       return (
         <Switch>
           <Redirect exact from={routeCodes.HOME} to={routeCodes.SIGN_IN} />
