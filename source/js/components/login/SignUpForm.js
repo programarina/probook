@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { signUp } from '../../actions/signup';
 import { routeCodes } from '../../constants/routes';
 import { VALIDATE_EMAIL } from '../../constants/regex';
+import { redirectionService } from '../../services/redirectionService';
 
 class SignUpForm extends Component {
   constructor() {
@@ -35,19 +36,21 @@ class SignUpForm extends Component {
   }
 
   submitForm(values) {
+    console.log(values)
     this.props.signUp(values);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.user !== this.props.user) {
       localStorage.setItem('sessionId', nextProps.user.id);
+      redirectionService.redirect(routeCodes.HOME);
     }
     if (nextProps.loader !== this.props.loader) {
       this.setState({
         loader: nextProps.loader
       });
     }
-    if(nextProps.error !== this.props.error){
+    if (nextProps.error !== this.props.error) {
       this.setState({
         serverError: nextProps.error
       });
@@ -55,7 +58,7 @@ class SignUpForm extends Component {
   }
 
   render() {
-    const { loader , serverError } = this.state;
+    const { loader, serverError } = this.state;
     const { handleSubmit } = this.props;
     return (
       <form
@@ -85,7 +88,7 @@ class SignUpForm extends Component {
           type='password'
           component={this.renderField}
         />
-         <img
+        <img
           className={loader ? 'loader' : 'loaderHiden'}
           src='../../../assets/img/loader.gif'
           alt='loader' />

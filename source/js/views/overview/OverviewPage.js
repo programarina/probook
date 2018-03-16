@@ -18,6 +18,7 @@ class OverviewPage extends Component {
       notes: [],
       filterNotes: [],
       showCalendar: false,
+      serverError: null
     }
   };
 
@@ -32,12 +33,17 @@ class OverviewPage extends Component {
         filterNotes: nextProps.notes,
       });
     }
+    if (nextProps.error !== this.props.error) {
+      this.setState({
+        serverError: nextProps.error
+      });
+    }
   }
 
   toggleClass = () => {
     const currentState = this.state.showCalendar;
     this.setState({ showCalendar: !currentState });
-    if(currentState === true){
+    if (currentState) {
       this.setState({
         filterNotes: this.state.notes
       });
@@ -50,9 +56,8 @@ class OverviewPage extends Component {
 
   findNote = (searchString) => {
     let allNotes = this.state.notes;
-    let filterNotes = [];
 
-    filterNotes = allNotes.filter(note => {
+    let filterNotes = allNotes.filter(note => {
       if (note.title.toLowerCase().includes(searchString.toLowerCase())) {
         return note;
       }
@@ -76,13 +81,16 @@ class OverviewPage extends Component {
   }
 
   render() {
-    const { filterNotes, showCalendar } = this.state;
+    const { filterNotes, showCalendar, serverError } = this.state;
     if (!filterNotes) {
       return <img
         src='../../../../assets/img/loader.gif'
         alt='loader'
         className='loader'
       />;
+    }
+    if(serverError){
+      return <p>{serverError.error}</p>;
     }
     return (
       <div className='main'>
@@ -113,6 +121,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     notes: state.notes.get('notes'),
+    error: state.notes.get('error')
   };
 }
 
