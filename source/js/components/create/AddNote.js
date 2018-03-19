@@ -23,6 +23,7 @@ class AddNote extends Component {
 
     if (keyCode === 32) {
       this.props.showTags(this.state.tags);
+      this.setState({tags: ''});
     }
   }
 
@@ -31,17 +32,14 @@ class AddNote extends Component {
     const date = new Date();
 
     const note = {
-      title: title,
-      body: body,
-      tags: tags,
+      title,
+      body,
+      tags,
       dateCreated: date.toDateString()
     }
-    console.log('NOTE-----', note.body);
     this.props.createNote(note);
     redirectionService.redirect(routeCodes.HOME);
   }
-
-  
 
   render() {
     const { body, title, tags } = this.props.note;

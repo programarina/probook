@@ -43,11 +43,11 @@ class CreateNotePage extends Component {
     })
   }
 
-  componentDidMount(){
+  componentDidMount() {
     var noteId = this.props.match.params.id;
-    if(noteId && this.props.notes){
-      var arr = this.props.notes.filter(note=>{
-        if(note.id === parseInt(noteId)){
+    if (noteId && this.props.notes) {
+      var arr = this.props.notes.filter(note => {
+        if (note.id === parseInt(noteId)) {
           return note;
         }
       });
@@ -68,17 +68,11 @@ class CreateNotePage extends Component {
 
   showTags = (tags) => {
     let noteTagsArr = tags.split(' ').filter(tag => tag !== '');
-    
-    if (this.state.noteTags.length > 0) {
-      this.setState({
-        tags: this.state.noteTags.concat(noteTagsArr)
-      });
-    }
+
     this.setState({
-      tags: noteTagsArr
+      tags: [...this.state.tags, ...noteTagsArr]
     });
   }
-
 
   render() {
     const note = this.state;
