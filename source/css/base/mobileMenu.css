@@ -26,12 +26,19 @@
 
   .months-list li{
     list-style-type: none;
-    padding: 20px 10px 5px;
-    color: color(var(--accent-color));
     border-bottom: 1px solid color(var(--light-brown-color));
-    box-sizing: border-box;
-    margin: 0 auto;
     width: 60%;
+    margin: 0 auto;
+
+  }
+
+  .months-list > ul > li > button {
+    background-color: transparent;
+    border: none;
+    color: color(var(--accent-color));
+    padding: 20px 10px 5px;
+    box-sizing: border-box;
+    font-size: 1em;
   }
 
   .close{

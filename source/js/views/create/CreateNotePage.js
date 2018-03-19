@@ -1,20 +1,63 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import AddNote from '../../components/create/AddNote';
 import PreviewNote from '../../components/create/PreviewNote';
 import HelpButton from '../../components/create/HelpButton';
 import { publicPath } from '../../constants/routes';
-
+import { getAllNotes } from '../../actions/getNotes';
 
 class CreateNotePage extends Component {
   constructor() {
     super();
     this.state = {
-      noteTitle: 'Note title',
-      noteBody: 'Note code',
-      noteTags: []
+      title: '',
+      body: '',
+      tags: []
     };
+  }
+  componentWillMount() {
+    const noteId = this.props.match.params.id;
+    if (!this.props.notes && noteId) {
+      this.props.getAllNotes();
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    var noteId = this.props.match.params.id;
+    if (this.props.notes !== nextProps.notes) {
+      if (noteId) {
+        var arr = nextProps.notes.filter(note => {
+          if (parseInt(noteId) === note.id) {
+            return note;
+          }
+        });
+        var singleNote = arr[0];
+      }
+    }
+    this.setState({
+      title: singleNote.title,
+      body: singleNote.body,
+      tags: singleNote.tags
+    })
+  }
+
+  componentDidMount(){
+    var noteId = this.props.match.params.id;
+    if(noteId && this.props.notes){
+      var arr = this.props.notes.filter(note=>{
+        if(note.id === parseInt(noteId)){
+          return note;
+        }
+      });
+      var singleNote = arr[0];
+      this.setState({
+        title: singleNote.title,
+        body: singleNote.body,
+        tags: singleNote.tags
+      });
+    }
   }
 
   showNoteData = ({ target }) => {
@@ -24,13 +67,19 @@ class CreateNotePage extends Component {
   }
 
   showTags = (tags) => {
-    let noteTags = tags.split(' ').filter(tag => tag !== '');
+    let noteTagsArr = tags.split(' ').filter(tag => tag !== '');
+    
+    if (this.state.noteTags.length > 0) {
+      this.setState({
+        tags: this.state.noteTags.concat(noteTagsArr)
+      });
+    }
     this.setState({
-      noteTags
+      tags: noteTagsArr
     });
   }
 
-  
+
   render() {
     const note = this.state;
     return (
@@ -38,7 +87,7 @@ class CreateNotePage extends Component {
         <div className='backBtnContainer'>
           <Link to={publicPath}>
             <svg height="40" width="40">
-              <polyline  points="20,0 4,20 20,40"
+              <polyline points="20,0 4,20 20,40"
                 fill='transparent' stroke='white' strokeWidth='4' />
             </svg>
           </Link>
@@ -53,4 +102,16 @@ class CreateNotePage extends Component {
   }
 }
 
-export default CreateNotePage;
+function mapDispatchToProps(dispatch) {
+  return {
+    getAllNotes: () => dispatch(getAllNotes())
+  }
+}
+
+function mapStateToProps(state) {
+  return {
+    notes: state.notes.get('notes')
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateNotePage);

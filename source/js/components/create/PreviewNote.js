@@ -3,14 +3,14 @@ import ReactMarkdown from 'react-markdown';
 
 class PreviewNote extends Component {
   render() {
-    const { noteBody, noteTitle, noteTags } = this.props.note;
+    const { body, title, tags } = this.props.note;
     return (
       <div className='previewCodeContainer'>
         <div className='previewCode'>
-          <h3>{noteTitle}</h3>
-          <ReactMarkdown source={noteBody} />
+          <h3>{title}</h3>
+          <ReactMarkdown source={body} />
         </div>
-        <ul className='previewTags'>{noteTags.map(tag => <li key={tag}>{tag}</li>)}</ul>
+        <ul className='previewTags'>{tags.map(tag => <li key={tag}>{tag}</li>)}</ul>
       </div>
     );
   }

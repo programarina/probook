@@ -78,7 +78,7 @@ const actionsMap = {
   [DELETE_NOTE_SUCCESS]: (state, action) => {
     return state.merge(Map({
       loading: false,
-      notes: action.data,
+      notes: action.get('notes'),
       error: null
     }));
   },

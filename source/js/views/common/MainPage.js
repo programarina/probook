@@ -13,16 +13,12 @@ const MainPage = (props) => {
     <div>
       <Header />
       <Switch>
-        {/* <Redirect exact from={routeCodes.SIGN_IN} to={routeCodes.HOME} />
-        <Redirect exact from={routeCodes.SIGN_UP} to={routeCodes.HOME} /> */}
         <Route exact path={publicPath} component={OverviewPage} />
-        <Route path={routeCodes.CREATE_PAGE} component={CreateNotePage} />
-        <Route path={`${routeCodes.CREATE_PAGE}/:id`} component={PreviewNote} />
+        <Route exact path={routeCodes.CREATE_PAGE} component={CreateNotePage} />
+        <Route path={`${routeCodes.CREATE_PAGE}/:id`} component={CreateNotePage} />
       </Switch>
     </div>
   );
 }
-
-
 
 export default MainPage;

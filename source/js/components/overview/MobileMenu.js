@@ -6,7 +6,8 @@ export default class MobileMenu extends Component {
   constructor() {
     super();
     this.state = {
-      showModal: false
+      showModal: false,
+      checkedMonth: ''
     };
   }
   openModal = () => {
@@ -32,7 +33,14 @@ export default class MobileMenu extends Component {
               className="close">&times;
             </span>
             <ul>
-              {months.map(month => <li key={month}>{month}</li>)}
+              {months.map((month, indexOfMonth) => <li key={month}>
+                <button
+                  onClick={() => {
+                    this.closeModal()
+                    this.props.filterByMonth(indexOfMonth)
+                  }}>
+                  {month}
+                </button></li>)}
             </ul>
           </div>
         </div>

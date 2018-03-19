@@ -79,7 +79,7 @@ class OverviewPage extends Component {
       filterNotes
     });
   }
-
+  
   render() {
     const { filterNotes, showCalendar, serverError } = this.state;
     if (!filterNotes) {
@@ -89,7 +89,7 @@ class OverviewPage extends Component {
         className='loader'
       />;
     }
-    if(serverError){
+    if (serverError) {
       return <p>{serverError.error}</p>;
     }
     return (
@@ -100,7 +100,7 @@ class OverviewPage extends Component {
             <Search searchTerm={this.findNote} />
             <QucikNote />
           </div>
-          <MobileMenu />
+          <MobileMenu filterByMonth={this.filterByMonth} />
         </div>
         <div className='mainDataContainer'>
           <Calendar showCalendar={showCalendar} filterByMonth={this.filterByMonth} />
