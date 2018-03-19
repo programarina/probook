@@ -23,7 +23,7 @@ class AddNote extends Component {
 
     if (keyCode === 32) {
       this.props.showTags(this.state.tags);
-      this.setState({tags: ''});
+      this.setState({ tags: '' });
     }
   }
 
@@ -37,8 +37,10 @@ class AddNote extends Component {
       tags,
       dateCreated: date.toDateString()
     }
-    this.props.createNote(note);
-    redirectionService.redirect(routeCodes.HOME);
+    if (note.title && note.body && note.tags) {
+      this.props.createNote(note);
+      redirectionService.redirect(routeCodes.HOME);   
+    }
   }
 
   render() {
@@ -82,8 +84,8 @@ function mapDispatchToProps(dispatch) {
   }
 };
 
-function mapStateToProps(state){
-  return{
+function mapStateToProps(state) {
+  return {
     notes: state.notes.get('notes')
   }
 

@@ -1,7 +1,7 @@
 .tooltipContainer{
   position: absolute;
   bottom: 30px;
-  right: 30px;
+  right: 10px;
   font-size: 2em;
   cursor: pointer;
 }
@@ -24,7 +24,16 @@
 
 @media screen and (max-width: 680px){
   .tooltipContainer{
-  top: 90px;
-  left: -20px;
+  top: 650px;
+  left: 40px;
+  }
+  .tooltipBox{
+    height: 35px;
+    width: 100px;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 0.6em;
+    border-radius: 5px;
+    box-shadow: none;
   }
 }

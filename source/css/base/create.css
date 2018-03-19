@@ -10,7 +10,7 @@
 .addNoteContainer,
 .previewCodeContainer{
     width: 45%;
-    max-height: 600px;
+    min-height: 600px;
     padding: 20px;
     box-sizing: border-box;
     background-color: color(var(--light-grey-color)); 

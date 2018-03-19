@@ -16,8 +16,8 @@ class QuickNote extends Component {
       body: this.state.quickNote,
       tags: [],
       dateCreate: '',
-
     };
+    
     if(!note.body){
       return;
     }

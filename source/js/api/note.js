@@ -17,7 +17,7 @@ function updateNote(noteData, noteId) {
 }
 
 function deleteNote(noteId){
-  return fetchResource(`notes/${noteId}`, { body: noteData, method: 'DELETE' });
+  return fetchResource(`notes/${noteId}`, { method: 'DELETE' });
 }
 
 export default {

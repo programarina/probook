@@ -22,7 +22,8 @@ class SingleNote extends Component {
 
   deleteNote = () => {
     let id = this.props.note.id;
-    // this.props.deleteNote(id);
+    this.props.deleteNote(id);
+    this.closeModal();
   }
 
   render() {
@@ -64,7 +65,7 @@ class SingleNote extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    deleteNote: (id) => dispatch(deleteNote(id))
+    deleteNote: id => dispatch(deleteNote(id))
   }
 }
 
