@@ -15,18 +15,20 @@ class OverviewPage extends Component {
   constructor() {
     super();
     this.state = {
-      notes: [],
-      filterNotes: [],
+      loader: false,
+      notes: null,
+      filterNotes: null,
       showCalendar: false,
       serverError: null
     }
   };
 
-  componentDidMount() {
-    this.showAllNotes();
-  }
-
   componentWillReceiveProps(nextProps) {
+    if (nextProps.loader !== this.props.loader) {
+      this.setState({
+        loader: nextProps.loader
+      });
+    }
     if (nextProps.notes !== this.props.notes) {
       this.setState({
         notes: nextProps.notes,
@@ -43,25 +45,32 @@ class OverviewPage extends Component {
   toggleClass = () => {
     const currentState = this.state.showCalendar;
     this.setState({ showCalendar: !currentState });
+    // when closing calendar show all notes
     if (currentState) {
       this.setState({
         filterNotes: this.state.notes
       });
     }
   }
-
-  showAllNotes = () => {
-    this.props.getAllNotes();
+  componentDidMount() {
+    console.log('STATE----', this.state.notes);
+    if (!this.state.notes) {
+      this.props.getAllNotes();
+    }
   }
 
   findNote = (searchString) => {
     let allNotes = this.state.notes;
 
     let filterNotes = allNotes.filter(note => {
-      if (note.title.toLowerCase().includes(searchString.toLowerCase())) {
+      let noteTags = note.tags.some(tag => {
+        return tag.toLowerCase().includes(searchString.toLowerCase());
+      });
+      if(noteTags){
         return note;
       }
     });
+
     this.setState({
       filterNotes
     });
@@ -79,10 +88,10 @@ class OverviewPage extends Component {
       filterNotes
     });
   }
-  
+
   render() {
-    const { filterNotes, showCalendar, serverError } = this.state;
-    if (!filterNotes) {
+    const { filterNotes, showCalendar, serverError, loader } = this.state;
+    if (loader || !filterNotes) {
       return <img
         src='../../../../assets/img/loader.gif'
         alt='loader'
@@ -120,6 +129,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
+    loader: state.notes.get('loading'),
     notes: state.notes.get('notes'),
     error: state.notes.get('error')
   };

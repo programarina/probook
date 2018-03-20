@@ -8,7 +8,8 @@ class Header extends Component {
   constructor() {
     super();
     this.state = {
-      user: {}
+      user: {},
+      loader: false
     };
   }
   componentDidMount() {
@@ -20,17 +21,22 @@ class Header extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (nextProps.loader !== this.props.loader) {
+      this.setState({
+        loader: nextProps.loader
+      });
+    }
     if (nextProps.user !== this.props.user) {
       this.setState({
-        user: nextProps.user
+        user: nextProps.user,
       });
     }
   }
 
   render() {
-    const { user } = this.state;
-    if (!user) {
-      return;
+    const { user, loader } = this.state;
+    if (loader) {
+      return <p></p>;
     }
     return (
       <div className='headerContainer'>
@@ -50,7 +56,8 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    user: state.user.get('user')
+    user: state.user.get('user'),
+    loader: state.user.get('loading')
   };
 }
 
