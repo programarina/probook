@@ -1,4 +1,6 @@
 import { Map } from 'immutable';
+import { routeCodes } from '../constants/routes';
+import { redirectionService } from '../services/redirectionService';
 
 import {
   GET_NOTES_START,
@@ -55,6 +57,8 @@ const actionsMap = {
     }));
   },
   [CREATE_NOTE_SUCCESS]: (state, action) => {
+    
+    redirectionService.redirect(routeCodes.HOME);
     return state.merge(Map({
       loading: false,
       notes: [action.data, ...state.get('notes')],

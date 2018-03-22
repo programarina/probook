@@ -40,7 +40,6 @@ class AddNote extends Component {
     }
     if (note.title && note.body && note.tags) {
       this.props.createNote(note);
-      redirectionService.redirect(routeCodes.HOME);   
     }
   }
 
