@@ -35,6 +35,7 @@ class AddNote extends Component {
       title,
       body,
       tags,
+      userId: this.props.user.id,
       dateCreated: date.toDateString()
     }
     if (note.title && note.body && note.tags) {
@@ -86,7 +87,8 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    notes: state.notes.get('notes')
+    notes: state.notes.get('notes'),
+    user: state.user.get('user')
   }
 
 }

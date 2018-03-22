@@ -17,6 +17,7 @@ class CreateNotePage extends Component {
       tags: []
     };
   }
+
   componentWillMount() {
     const noteId = this.props.match.params.id;
     if (!this.props.notes && noteId) {
@@ -68,7 +69,6 @@ class CreateNotePage extends Component {
 
   showTags = (tags) => {
     let noteTagsArr = tags.split(' ').filter(tag => tag !== '');
-
     this.setState({
       tags: [...this.state.tags, ...noteTagsArr]
     });

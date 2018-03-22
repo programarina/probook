@@ -1,9 +1,7 @@
 import React from 'react';
 import SingleNote from './SingleNote';
 
-const OneDay = (props) => {
-  console.log(props);
-  
+const OneDay = (props) => {  
   return (
     
     <div className='oneDay'>

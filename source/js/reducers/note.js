@@ -36,7 +36,7 @@ const actionsMap = {
   [GET_NOTES_SUCCESS]: (state, action) => {
     return state.merge(Map({
       loading: false,
-      notes: action.data.notes,
+      notes: action.data,
       error: null,
     }));
   },
@@ -78,7 +78,7 @@ const actionsMap = {
   [DELETE_NOTE_SUCCESS]: (state, action) => {
     return state.merge(Map({
       loading: false,
-      notes: action.get('notes'),
+      notes: state.get('notes').filter(note => note.id !== action.noteId),
       error: null
     }));
   },

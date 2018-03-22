@@ -11,11 +11,13 @@ class QuickNote extends Component {
   }
 
   handleClick = () => {
+    const date = new Date();
     const note = {
       title: '',
       body: this.state.quickNote,
       tags: [],
-      dateCreate: '',
+      userId: this.props.user.id,
+      dateCreate: date.toDateString(),
     };
     
     if(!note.body){
@@ -43,4 +45,10 @@ function mapDispatchToProps(dispatch){
   };
 }
 
-export default connect(null, mapDispatchToProps)(QuickNote);
+function mapStateToProps(state){
+  return{
+    user: state.user.get('user')
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuickNote);

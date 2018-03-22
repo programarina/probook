@@ -27,7 +27,21 @@ class HelpButton extends Component {
             <span
               onClick={this.closeModal}
               className="close">&times;</span>
-            <div>manual</div>
+            <div>
+              <h3>Usage:</h3>
+                <h4>You can use GitHub Flavoured Markdown language:</h4>
+                <p>For more info go to: <a href='https://github.github.com/gfm/' target='_blank'>GITHUB</a></p> 
+                <h4>Write some of your own code:</h4>
+                <code>```js <br/>
+                    var React = require('react'); <br/>
+                    var Markdown = require('react-markdown'); <br/>
+
+                    React.render( <br/>
+                      document.getElementById('content') <br/>
+                    ); <br/>
+                    ```</code>
+                    <h4></h4>
+            </div>
           </div>
         </div>
       </div>

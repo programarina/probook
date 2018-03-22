@@ -95,7 +95,7 @@ class SignUpForm extends Component {
         <button
           className={loader ? 'loaderHiden' : 'signUpForm-button'}
           type='submit'>Sign up</button>
-        <p>{serverError ? serverError.message : ''}</p>
+        <p className='serverError'>{serverError ? serverError.message : ''}</p>
       </form>
     );
   }

@@ -12,9 +12,11 @@ class Header extends Component {
       loader: false
     };
   }
-  componentDidMount() {
-    this.props.getUser('1');
+  componentWillMount() {
+    const id = localStorage.getItem('sessionId');
+    this.props.getUser(id);
   }
+
   logOutAction = () => {
     localStorage.removeItem('sessionId');
     redirectionService.redirect(routeCodes.SIGN_IN);
@@ -41,7 +43,7 @@ class Header extends Component {
     return (
       <div className='headerContainer'>
         <div className='header'>
-          <h3>Hi, {user.name}</h3>
+          <h3>Hi, {user.username}</h3>
           <button onClick={this.logOutAction}>Log out</button>
         </div>
       </div>

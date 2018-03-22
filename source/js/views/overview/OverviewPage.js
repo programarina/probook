@@ -53,7 +53,6 @@ class OverviewPage extends Component {
     }
   }
   componentDidMount() {
-    console.log('STATE----', this.state.notes);
     if (!this.state.notes) {
       this.props.getAllNotes();
     }
@@ -66,7 +65,7 @@ class OverviewPage extends Component {
       let noteTags = note.tags.some(tag => {
         return tag.toLowerCase().includes(searchString.toLowerCase());
       });
-      if(noteTags){
+      if (noteTags) {
         return note;
       }
     });

@@ -10,10 +10,10 @@ function deleteNoteStart() {
   }
 }
 
-function deleteNoteSuccess(data) {
+function deleteNoteSuccess(noteId) {
   return {
-    type: DELETE_NOTE_START,
-    data
+    type: DELETE_NOTE_SUCCESS,
+    noteId
   }
 }
 
@@ -28,7 +28,7 @@ export function deleteNote(noteId) {
   return function (dispatch) {
     dispatch(deleteNoteStart());
     api.deleteNote(noteId)
-      .then(data => dispatch(deleteNoteSuccess(data)))
+      .then(() => dispatch(deleteNoteSuccess(noteId)))
       .catch(error => dispatch(deleteNoteError(error)));
   }
 }

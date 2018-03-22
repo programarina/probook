@@ -1,5 +1,6 @@
 // Simple API wrapper
-const API_URL = 'https://private-19561-probook.apiary-mock.com';
+// const API_URL = 'https://private-19561-probook.apiary-mock.com';
+const API_URL = 'http://localhost:3333/api';
 
 // Custom API error to throw
 function ApiError(message, data, status) {

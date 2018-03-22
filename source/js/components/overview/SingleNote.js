@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { routeCodes } from '../../constants/routes';
 import { deleteNote } from '../../actions/deleteNote';
+import { getAllNotes } from '../../actions/getNotes';
 
 class SingleNote extends Component {
   constructor() {
@@ -65,9 +66,16 @@ class SingleNote extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    deleteNote: id => dispatch(deleteNote(id))
+    deleteNote: id => dispatch(deleteNote(id)),
+    getAllNotes: () => dispatch(getAllNotes()),
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    notes: state.notes.get('notes')
+  };
+}
 
-export default connect(null, mapDispatchToProps)(SingleNote);
+
+export default connect(mapStateToProps, mapDispatchToProps)(SingleNote);

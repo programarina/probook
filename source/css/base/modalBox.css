@@ -10,9 +10,11 @@
   overflow: auto; 
   background-color: color(var(--main-dark-color) a(50%));
 }
+
 .showModal{
   display: block; 
 }
+
 .modal-content {
   background-color: color(var(--light-color));
   margin: auto;

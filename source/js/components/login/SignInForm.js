@@ -78,7 +78,7 @@ class SignInForm extends Component {
           className = {loader ? 'loaderHiden' : 'signInForm-button'}
           type='submit'>
           Sign in</button>
-        <p>{serverError ? serverError.message : ''}</p>
+        <p className='serverError'>{serverError ? serverError.message : ''}</p>
       </form>
     );
   }

@@ -95,3 +95,8 @@
         margin: 30px 0;
     }
 }
+
+.serverError{
+    color: brown;
+    padding: 0 0 10px 40px;
+}
