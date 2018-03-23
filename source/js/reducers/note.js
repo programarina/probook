@@ -20,6 +20,11 @@ import {
   DELETE_NOTE_ERROR,
 } from 'actions/deleteNote';
 
+import {
+  UPDATE_NOTE_START,
+  UPDATE_NOTE_SUCCESS,
+  UPDATE_NOTE_ERROR,
+} from 'actions/updateNote';
 
 const initialState = Map({
   loading: false,
@@ -57,7 +62,7 @@ const actionsMap = {
     }));
   },
   [CREATE_NOTE_SUCCESS]: (state, action) => {
-    
+
     redirectionService.redirect(routeCodes.HOME);
     return state.merge(Map({
       loading: false,
@@ -87,6 +92,28 @@ const actionsMap = {
     }));
   },
   [DELETE_NOTE_ERROR]: (state, action) => {
+    return state.merge(Map({
+      loading: false,
+      notes: null,
+      error: action.error
+    }));
+  },
+  [UPDATE_NOTE_START]: (state) => {
+    return state.merge(Map({
+      loading: true,
+      notes: state.get('notes'),
+      error: null
+    }));
+  },
+  [UPDATE_NOTE_SUCCESS]: (state, action) => {
+    redirectionService.redirect(routeCodes.HOME);
+    return state.merge(Map({
+      loading: false,
+      notes: state.get('notes'),
+      error: null
+    }));
+  },
+  [UPDATE_NOTE_ERROR]: (state, action) => {
     return state.merge(Map({
       loading: false,
       notes: null,

@@ -41,15 +41,15 @@ class AddNote extends Component {
     }
     if (note.title && note.body && note.tags) {
       if (this.props.note.id) {
+        console.log('NOTE CReATED AND ID ====', note, this.props.note.id);
         this.props.updateNote(note, this.props.note.id);
       }
-      this.props.createNote(note);
+      // this.props.createNote(note);
     }
   }
 
   render() {
     const { body, title, tags } = this.props.note;
-    console.log(this.props.note.id);
     return (
       <div className='addNoteContainer'>
         <div className='addNote'>

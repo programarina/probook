@@ -28,7 +28,7 @@ export function updateNote(note, noteId) {
   return function (dispatch) {
     updateNoteStart();
     api.updateNote(note, noteId)
-      .then(date => dispatch(updateNoteSuccess(data)))
+      .then(data => dispatch(updateNoteSuccess(data)))
       .catch(error => dispatch(updateNoteError(error)));
   }
 }
