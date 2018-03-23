@@ -41,10 +41,11 @@ class AddNote extends Component {
     }
     if (note.title && note.body && note.tags) {
       if (this.props.note.id) {
-        console.log('NOTE CReATED AND ID ====', note, this.props.note.id);
         this.props.updateNote(note, this.props.note.id);
+      }else{
+        this.props.createNote(note);
+        redirectionService.redirect(routeCodes.HOME);
       }
-      // this.props.createNote(note);
     }
   }
 

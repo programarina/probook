@@ -62,8 +62,6 @@ const actionsMap = {
     }));
   },
   [CREATE_NOTE_SUCCESS]: (state, action) => {
-
-    redirectionService.redirect(routeCodes.HOME);
     return state.merge(Map({
       loading: false,
       notes: [action.data, ...state.get('notes')],

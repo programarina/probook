@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { routeCodes } from '../../constants/routes';
 import { deleteNote } from '../../actions/deleteNote';
 import { getAllNotes } from '../../actions/getNotes';
+import ReactMarkdown from 'react-markdown';
+
 
 class SingleNote extends Component {
   constructor() {
@@ -32,7 +34,7 @@ class SingleNote extends Component {
     return (
       <div className={this.props.gridView ? 'singleNote gridView': 'singleNote'}>
         <h4>{title ? title.length < 20 ? title : `${title.substring(0, 20)}...`: 'Note title'}</h4>
-        <p>{body.length < 150 ? body : `${body.substring(0, 300)}...`}</p>
+        <p><ReactMarkdown source={body.length < 50 ? body: `${body.substring(0,150)}...`} /></p>
         <Link
           to={`${routeCodes.CREATE_PAGE}/${id}`}
           className='editBtn'>

@@ -65,7 +65,7 @@ class OverviewPage extends Component {
       let noteTags = note.tags.some(tag => {
         return tag.toLowerCase().includes(searchString.toLowerCase());
       });
-      
+
       if (noteTags) {
         return note;
       }
@@ -92,15 +92,10 @@ class OverviewPage extends Component {
     });
   }
 
-  showGrid = () => {
+  toggleView = () => {
+    let currentState = this.state.gridView;
     this.setState({
-      gridView: true
-    });
-  }
-
-  showList = () => {
-    this.setState({
-      gridView: false
+      gridView: !currentState
     });
   }
 
@@ -137,13 +132,8 @@ class OverviewPage extends Component {
           <section className='allNotes'>
             <button
               className='noteGrid'
-              onClick={this.showGrid}>
-              <img src='../../../assets/img/gridIco.png' width='30px' height='30px' />
-            </button>
-            <button
-              className='noteList'
-              onClick={this.showList}>
-              <img src='../../../assets/img/listIco.png' width='40px' height='40px' />
+              onClick={this.toggleView}>
+              <img src={`../../../assets/img/${gridView ? 'listIco' : 'gridIco'}.png`} width='30px' height='30px' />
             </button>
             <OneDay notes={filterNotes} gridView={gridView} />
             <AddButton />
