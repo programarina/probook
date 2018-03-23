@@ -9,7 +9,7 @@
 .oneDay {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .hideNotes {
@@ -31,13 +31,21 @@
     border: none;
     outline: none;
     position: absolute;
-    top:5px;
 }
 
 .noteGrid {
     right: 0;
+    top: 10px;
 }
 
 .noteList {
+    top: 5px;
     right: 45px;
+}
+
+@media screen and (max-width: 680px) {
+    .noteList,
+    .noteGrid {
+        display: none;
+    }
 }

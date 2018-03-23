@@ -14,7 +14,8 @@ class CreateNotePage extends Component {
     this.state = {
       title: '',
       body: '',
-      tags: []
+      tags: [],
+      id: ''
     };
   }
 
@@ -40,7 +41,8 @@ class CreateNotePage extends Component {
     this.setState({
       title: singleNote.title,
       body: singleNote.body,
-      tags: singleNote.tags
+      tags: singleNote.tags,
+      id: singleNote.id,
     })
   }
 
@@ -53,10 +55,12 @@ class CreateNotePage extends Component {
         }
       });
       var singleNote = arr[0];
+      console.log('SINGEL ======', singleNote.id)
       this.setState({
         title: singleNote.title,
         body: singleNote.body,
-        tags: singleNote.tags
+        tags: singleNote.tags,
+        id: singleNote.id
       });
     }
   }

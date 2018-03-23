@@ -25,6 +25,7 @@ textarea {
     box-sizing: border-box;
     background-color: color(var(--light-color));
     border: 1px solid color(var(--light-brown-color));
+    resize: none;
 }
 
 .addNote input[type='text'] {
@@ -60,6 +61,10 @@ textarea {
     border: 1px solid color(var(--light-brown-color));
     padding: 10px;
     box-sizing: border-box;
+}
+
+.previewCode div {
+    font-size: 0.8em;
 }
 
 .previewCode h4 {
@@ -124,6 +129,26 @@ textarea {
     font-size: 12px;
 }
 
+.addNote input[type='text']::-webkit-input-placeholder,
+.addNote textarea::-webkit-input-placeholder {
+    font-size: 14px;
+}
+
+.addNote input[type='text']::-moz-placeholder,
+.addNote textarea::-moz-placeholder {
+    font-size: 14px;
+}
+
+.addNote input[type='text']:-ms-input-placeholder,
+.addNote textarea:-ms-input-placeholder {
+    font-size: 14px;
+}
+
+.addNote input[type='text']:-moz-placeholder,
+.addNote textarea:-moz-placeholder {
+    font-size: 14px;
+}
+
 @media screen and (max-width: 680px) {
     .createNote {
         width: 80%;
@@ -137,24 +162,4 @@ textarea {
         top: 0;
         left: -30px;
     }
-}
-
-.addNote input[type='text']::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder {
-    font-size: 14px;
-}
-
-.addNote input[type='text']::-moz-placeholder,
-textarea::-moz-placeholder {
-    font-size: 14px;
-}
-
-.addNote input[type='text']:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
-    font-size: 14px;
-}
-
-.addNote input[type='text']:-moz-placeholder,
-textarea:-moz-placeholder {
-    font-size: 14px;
 }

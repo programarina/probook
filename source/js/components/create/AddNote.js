@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createNote } from '../../actions/createNote';
 import { routeCodes } from '../../constants/routes';
 import { redirectionService } from '../../services/redirectionService';
+import { updateNote } from '../../actions/updateNote';
 
 class AddNote extends Component {
   constructor() {
@@ -39,12 +40,16 @@ class AddNote extends Component {
       dateCreated: date.toDateString()
     }
     if (note.title && note.body && note.tags) {
+      if (this.props.note.id) {
+        this.props.updateNote(note, this.props.note.id);
+      }
       this.props.createNote(note);
     }
   }
 
   render() {
     const { body, title, tags } = this.props.note;
+    console.log(this.props.note.id);
     return (
       <div className='addNoteContainer'>
         <div className='addNote'>
@@ -80,7 +85,8 @@ class AddNote extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    createNote: note => { dispatch(createNote(note)) }
+    createNote: note => { dispatch(createNote(note)) },
+    updateNote: (note, noteId) => { dispatch(updateNote(note, noteId)) }
   }
 };
 

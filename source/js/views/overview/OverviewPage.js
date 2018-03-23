@@ -46,13 +46,12 @@ class OverviewPage extends Component {
   toggleClass = () => {
     const currentState = this.state.showCalendar;
     this.setState({ showCalendar: !currentState });
-    // when closing calendar show all notes
+    // when closing calendar
     if (currentState) {
-      this.setState({
-        filterNotes: this.state.notes
-      });
+      this.showAllNotes();
     }
   }
+
   componentDidMount() {
     if (!this.state.notes) {
       this.props.getAllNotes();
@@ -66,7 +65,11 @@ class OverviewPage extends Component {
       let noteTags = note.tags.some(tag => {
         return tag.toLowerCase().includes(searchString.toLowerCase());
       });
+      
       if (noteTags) {
+        return note;
+      }
+      if (note.title.toLowerCase().includes(searchString.toLowerCase())) {
         return note;
       }
     });
@@ -101,6 +104,12 @@ class OverviewPage extends Component {
     });
   }
 
+  showAllNotes = () => {
+    this.setState({
+      filterNotes: this.state.notes
+    });
+  }
+
   render() {
     const { filterNotes, showCalendar, serverError, loader, gridView } = this.state;
     if (loader || !filterNotes) {
@@ -121,7 +130,7 @@ class OverviewPage extends Component {
             <Search searchTerm={this.findNote} />
             <QucikNote />
           </div>
-          <MobileMenu filterByMonth={this.filterByMonth} />
+          <MobileMenu filterByMonth={this.filterByMonth} showAllNotes={this.showAllNotes} />
         </div>
         <div className='mainDataContainer'>
           <Calendar showCalendar={showCalendar} filterByMonth={this.filterByMonth} />
@@ -129,7 +138,7 @@ class OverviewPage extends Component {
             <button
               className='noteGrid'
               onClick={this.showGrid}>
-              <img src='../../../assets/img/gridIco.png' width='40px' height='40px' />
+              <img src='../../../assets/img/gridIco.png' width='30px' height='30px' />
             </button>
             <button
               className='noteList'

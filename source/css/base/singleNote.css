@@ -15,6 +15,7 @@
 
 .gridView{
   width: 32%;
+  margin-right: 12px;
 }
 
 .deleteNoteBtn,
@@ -48,6 +49,7 @@
   padding: 10px 5px;
   margin-left: 10px;
   width: 60%;
+  overflow-wrap: break-word;
 }
 
 .singleNote p{

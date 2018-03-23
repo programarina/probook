@@ -20,6 +20,12 @@ export default class MobileMenu extends Component {
       showModal: false
     });
   }
+
+  showAllNotes = ()=>{
+    this.props.showAllNotes();
+    this.closeModal();
+  }
+
   render() {
     const months = LIST_OF_MONTHS;
     return (
@@ -41,6 +47,7 @@ export default class MobileMenu extends Component {
                   }}>
                   {month}
                 </button></li>)}
+              <li><button onClick={this.showAllNotes} >All notes</button></li>
             </ul>
           </div>
         </div>
