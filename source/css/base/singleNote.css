@@ -1,6 +1,6 @@
 .singleNote{
   box-sizing: border-box;
-  width: 32%;
+  width: 100%;
   margin-bottom: 30px;
   border: 1px solid color(var(--light-brown-color));
   border-radius: 2px;
@@ -11,6 +11,10 @@
   box-shadow: 2px 2px 3px color(var(--light-brown-color));
   position: relative;
   overflow: hidden;
+}
+
+.gridView{
+  width: 32%;
 }
 
 .deleteNoteBtn,

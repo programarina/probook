@@ -30,8 +30,8 @@ class SingleNote extends Component {
   render() {
     const { title, body, id, tags } = this.props.note;
     return (
-      <div className='singleNote'>
-        <h4>{`${title.substring(0, 20)}...`}</h4>
+      <div className={this.props.gridView ? 'singleNote gridView': 'singleNote'}>
+        <h4>{title ? `${title.substring(0, 20)}...`: 'Note title'}</h4>
         <p>{`${body.substring(0, 150)}...`}</p>
         <Link
           to={`${routeCodes.CREATE_PAGE}/${id}`}
@@ -57,7 +57,7 @@ class SingleNote extends Component {
           </div>
         </div>
         <ul className='snippetTags'>
-          {tags.map(tag => <li key={tag}>{tag}</li>)}
+          { tags.length !==0 ? tags.map(tag =><li key={tag}>{tag}</li>): 'Note tags'}
         </ul>
       </div>
     );
@@ -76,6 +76,5 @@ function mapStateToProps(state) {
     notes: state.notes.get('notes')
   };
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleNote);

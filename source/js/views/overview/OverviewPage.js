@@ -19,7 +19,8 @@ class OverviewPage extends Component {
       notes: null,
       filterNotes: null,
       showCalendar: false,
-      serverError: null
+      serverError: null,
+      gridView: true
     }
   };
 
@@ -88,8 +89,20 @@ class OverviewPage extends Component {
     });
   }
 
+  showGrid = () => {
+    this.setState({
+      gridView: true
+    });
+  }
+
+  showList = () => {
+    this.setState({
+      gridView: false
+    });
+  }
+
   render() {
-    const { filterNotes, showCalendar, serverError, loader } = this.state;
+    const { filterNotes, showCalendar, serverError, loader, gridView } = this.state;
     if (loader || !filterNotes) {
       return <img
         src='../../../../assets/img/loader.gif'
@@ -113,7 +126,17 @@ class OverviewPage extends Component {
         <div className='mainDataContainer'>
           <Calendar showCalendar={showCalendar} filterByMonth={this.filterByMonth} />
           <section className='allNotes'>
-            <OneDay notes={filterNotes} />
+            <button
+              className='noteGrid'
+              onClick={this.showGrid}>
+              <img src='../../../assets/img/gridIco.png' width='40px' height='40px' />
+            </button>
+            <button
+              className='noteList'
+              onClick={this.showList}>
+              <img src='../../../assets/img/listIco.png' width='40px' height='40px' />
+            </button>
+            <OneDay notes={filterNotes} gridView={gridView} />
             <AddButton />
           </section>
         </div>

@@ -22,7 +22,7 @@ class Calendar extends Component {
                 this.setState({ checkedMonth: month });
               }}>
               <li
-                className={(this.state.checkedMonth === month) ? 'selectedMonth' : ''}
+                className={(this.state.checkedMonth === month) ? 'selectedMonth monthItem' : 'monthItem'}
                 key={month}>
                 {month}
               </li>

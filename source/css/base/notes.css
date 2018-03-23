@@ -1,24 +1,43 @@
-.allNotes{
+.allNotes {
     width: 70%;
     margin: 0 auto;
     padding-top: 40px;
+    position: relative;
     display: block;
 }
 
-.oneDay{
+.oneDay {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
 }
 
-.hideNotes{
+.hideNotes {
     display: none;
 }
 
-.oneDay h3{
+.oneDay h3 {
     width: 100%;
     margin-bottom: 30px;
     border-bottom: 1px solid color(var(--light-grey-color));
     color: color(var(--primary-color));
-    padding: 0 0 20px 10px;    
+    padding: 0 0 20px 10px;
+}
+
+.noteGrid,
+.noteList {
+    background-color: transparent;
+    padding: 2px;
+    border: none;
+    outline: none;
+    position: absolute;
+    top:5px;
+}
+
+.noteGrid {
+    right: 0;
+}
+
+.noteList {
+    right: 45px;
 }

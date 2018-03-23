@@ -34,6 +34,7 @@ class SignInForm extends Component {
 
   submitForm(values) {
     this.props.signIn(values);
+    localStorage.setItem('sessionId', this.props.user.id);
   }
 
   componentWillReceiveProps(nextProps) {

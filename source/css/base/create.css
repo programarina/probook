@@ -1,4 +1,4 @@
-.createNote{
+.createNote {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
@@ -8,15 +8,16 @@
 }
 
 .addNoteContainer,
-.previewCodeContainer{
+.previewCodeContainer {
     width: 45%;
     min-height: 600px;
     padding: 20px;
     box-sizing: border-box;
-    background-color: color(var(--light-grey-color)); 
+    background-color: color(var(--light-grey-color));
 }
 
-.addNote input[type='text'],textarea{
+.addNote input[type='text'],
+textarea {
     display: block;
     margin-bottom: 15px;
     padding: 10px;
@@ -26,12 +27,19 @@
     border: 1px solid color(var(--light-brown-color));
 }
 
-.addNote textarea{
-    min-height: 400px;
-    padding: 10px;
+.addNote input[type='text'] {
+    font-size: 14px;
+    font-weight: 700;
+    color: color(var(--primary-color));
 }
 
-.createNote button{
+.addNote textarea {
+    min-height: 400px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.createNote button {
     color: color(var(--light-color));
     background-color: color(var(--primary-color));
     padding: 10px;
@@ -40,24 +48,23 @@
     display: block;
     margin: 0 auto;
     margin-right: 0;
-    margin-top: 10px;   
-    border-radius: 5px; 
+    margin-top: 10px;
+    border-radius: 5px;
 }
 
-.previewCode{
+.previewCode {
     background-color: color(var(--light-color));
     min-height: 450px;
     max-height: 450px;
     overflow: scroll;
     border: 1px solid color(var(--light-brown-color));
-    padding: 20px;
+    padding: 10px;
     box-sizing: border-box;
 }
 
-.previewCode h3{
+.previewCode h4 {
     border-bottom: 1px solid grey;
     color: color(var(--primary-color));
-    font-size: 12px;
     padding: 0 10px 10px 10px;
 }
 
@@ -67,16 +74,16 @@
     padding-bottom: 10px;
 }
 
-.addNote > :first-child{
-    background-color:color(var(--light-grey-color)); 
+.addNote> :first-child {
+    background-color: color(var(--light-grey-color));
     padding: 20px;
     margin-bottom: 10px;
 }
 
-.previewTags{
+.previewTags {
     min-height: 35px;
     width: 100%;
-    background-color:color(var(--light-color)); 
+    background-color: color(var(--light-color));
     border: 1px solid var(--light-brown-color);
     margin-top: 15px;
     padding: 10px;
@@ -87,6 +94,10 @@
     justify-content: flex-start;
 }
 
+.previewCode div {
+    padding: 10px;
+}
+
 .previewTags li {
     font-size: 12px;
     padding: 10px;
@@ -95,9 +106,9 @@
     margin-left: 5px;
 }
 
-.backBtnContainer{
+.backBtnContainer {
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
     width: 150px;
     height: 95px;
@@ -108,24 +119,42 @@
 }
 
 .markDownContainer pre,
-.markDownContainer p{
-    padding:  10px;
+.markDownContainer p {
+    padding: 10px;
     font-size: 12px;
-
 }
 
-@media screen and (max-width: 680px){
-    .createNote{
+@media screen and (max-width: 680px) {
+    .createNote {
         width: 80%;
     }
     .addNoteContainer,
-    .previewCodeContainer{
+    .previewCodeContainer {
         margin-bottom: 20px;
         width: 100%;
     }
-
-    .backBtnContainer{
-        top:0;
+    .backBtnContainer {
+        top: 0;
         left: -30px;
     }
+}
+
+.addNote input[type='text']::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    font-size: 14px;
+}
+
+.addNote input[type='text']::-moz-placeholder,
+textarea::-moz-placeholder {
+    font-size: 14px;
+}
+
+.addNote input[type='text']:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    font-size: 14px;
+}
+
+.addNote input[type='text']:-moz-placeholder,
+textarea:-moz-placeholder {
+    font-size: 14px;
 }

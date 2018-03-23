@@ -1,4 +1,4 @@
-.calendarBtnContainer{
+.calendarBtnContainer {
     position: fixed;
     top: 0px;
     left: 0px;
@@ -10,7 +10,8 @@
     align-items: center;
     cursor: pointer;
 }
-.svgContainer{
+
+.svgContainer {
     padding: 5px;
     width: 40px;
     height: 40px;
@@ -22,17 +23,17 @@
     align-items: center;
 }
 
-.rightArrow{
+.rightArrow {
     transform: rotateY(0deg);
     transition: transform 0.5s ease-in-out;
 }
 
-.leftArrow{
+.leftArrow {
     transform: rotateY(180deg);
     transition: transform 0.5s ease-in-out;
 }
 
-.calendarList{
+.calendarList {
     width: 10%;
     background-color: color(var(--light-color));
     position: fixed;
@@ -41,35 +42,38 @@
     transition: transform 0.5s ease-in-out;
 }
 
-.calendarList button{
+.calendarList button {
     background-color: transparent;
     border: none;
     width: 100%;
     outline: none;
 }
 
-.selectedMonth{
-    background-color: color(var(--dark-violet));
-}
-
-.calendarShow{
+.calendarShow {
     transform: translateX(100%);
 }
 
-.calendarList ul li{
+.monthItem {
     padding: 15px;
     list-style: none;
     font-weight: 100;
     color: color(var(--accent-color-disabled));
-    border-bottom: 1px solid  color(var(--light-grey-color));
-    border-right: 1px solid  color(var(--light-grey-color)); 
+    border-bottom: 1px solid color(var(--light-grey-color));
+    border-right: 1px solid color(var(--light-grey-color));
     text-align: center;
     cursor: pointer;
 }
 
-@media screen and (max-width: 680px){
+.selectedMonth {
+    box-shadow: 0.5px 0.5px 0.5px 0.3px color(var(--light-grey-color));
+    font-weight: 700;
+    color: color(var(--accent-color));
+    font-size: 1.2em;
+}
+
+@media screen and (max-width: 680px) {
     .calendarList,
-    .calendarBtnContainer{
+    .calendarBtnContainer {
         display: none;
     }
 }

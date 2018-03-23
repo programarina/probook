@@ -7,7 +7,7 @@ class PreviewNote extends Component {
     return (
       <div className='previewCodeContainer'>
         <div className='previewCode'>
-          <h3>{title}</h3>
+          <h4>{title}</h4>
           <ReactMarkdown source={body} />
         </div>
         <ul className='previewTags'>{tags.map(tag => <li key={tag}>{tag}</li>)}</ul>

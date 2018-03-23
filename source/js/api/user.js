@@ -1,7 +1,7 @@
 import fetchResource from './index';
 
 function signUp(userData) {
-  return fetchResource(`users`, { body: userData, method: 'POST' });
+  return fetchResource(`users`, { body: userData, method: 'PUT' });
 }
 
 function signIn(userData) {
