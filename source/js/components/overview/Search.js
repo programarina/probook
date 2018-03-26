@@ -5,6 +5,7 @@ class Search extends Component {
     super();
     this.state = {
       searchString: '',
+      placeholder:'Search'
     };
     this.bounceTimeout;
   };
@@ -29,7 +30,9 @@ class Search extends Component {
       <section className='searchForm'>
         <input
           type='text'
-          placeholder='Search'
+          placeholder={this.state.placeholder}
+          onFocus={()=>this.setState({placeholder:''})}
+          onBlur={()=>this.setState({placeholder:'Search'})}
           value={this.state.searchString}
           onChange={this.handleSearch}
           onKeyUp={this.debounce}

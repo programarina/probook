@@ -77,6 +77,13 @@ class CreateNotePage extends Component {
     });
   }
 
+  deleteTag = (selectedTag) => {
+    let tags = this.state.tags.filter(tag => tag !== selectedTag);
+    this.setState({
+      tags
+    });
+  }
+
   render() {
     const note = this.state;
     return (
@@ -91,7 +98,7 @@ class CreateNotePage extends Component {
         </div>
         <div className='createNote'>
           < AddNote showNoteData={this.showNoteData} showTags={this.showTags} note={note} />
-          <PreviewNote note={note} />
+          <PreviewNote note={note} deleteTag={this.deleteTag} />
           <HelpButton />
         </div>
       </div>

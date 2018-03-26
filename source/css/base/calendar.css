@@ -64,7 +64,8 @@
     cursor: pointer;
 }
 
-.selectedMonth {
+.selectedMonth,
+.calendarList > ul > li :hover {
     box-shadow: 0.5px 0.5px 0.5px 0.3px color(var(--light-grey-color));
     font-weight: 700;
     color: color(var(--accent-color));

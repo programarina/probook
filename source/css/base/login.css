@@ -1,9 +1,15 @@
 .loginPage{
     display: flex;
     flex-flow: row wrap;
-    width: 100%;
+    align-items: flex-start;
     justify-content: center;
     padding-top:70px;
+    background: linear-gradient(color(var(--light-color)),color(var(--primary-color-disabled)));
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .signInForm, 

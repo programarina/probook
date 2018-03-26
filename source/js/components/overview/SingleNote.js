@@ -34,7 +34,7 @@ class SingleNote extends Component {
     return (
       <div className={this.props.gridView ? 'singleNote gridView': 'singleNote'}>
         <h4>{title ? title.length < 20 ? title : `${title.substring(0, 20)}...`: 'Note title'}</h4>
-        <p><ReactMarkdown source={body.length < 50 ? body: `${body.substring(0,150)}...`} /></p>
+        <div><ReactMarkdown source={body.length < 50 ? body: `${body.substring(0,150)}...`} /></div>
         <Link
           to={`${routeCodes.CREATE_PAGE}/${id}`}
           className='editBtn'>

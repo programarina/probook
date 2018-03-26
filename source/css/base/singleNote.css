@@ -52,8 +52,8 @@
   overflow-wrap: break-word;
 }
 
-.singleNote p{
-  padding: 20px 10px;
+.singleNote div{
+  padding: 10px;
 }
 
 .snippetTags{

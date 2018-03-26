@@ -36,7 +36,6 @@ class SignUpForm extends Component {
   }
 
   submitForm(values) {
-    console.log(values)
     this.props.signUp(values);
   }
 

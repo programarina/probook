@@ -1,4 +1,5 @@
 .createNote {
+    position: relative;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
@@ -55,11 +56,11 @@ textarea {
 
 .previewCode {
     background-color: color(var(--light-color));
-    min-height: 450px;
-    max-height: 450px;
+    min-height: 400px;
+    max-height: 400px;
     overflow: scroll;
     border: 1px solid color(var(--light-brown-color));
-    padding: 10px;
+    padding: 5px;
     box-sizing: border-box;
 }
 
@@ -67,10 +68,17 @@ textarea {
     font-size: 0.8em;
 }
 
-.previewCode h4 {
-    border-bottom: 1px solid grey;
+.previewCodeTitle{
+    overflow-wrap: break-word;
+    min-height: 35px;
+    margin-bottom: 15px;
+    background-color: color(var(--light-color));
+    border: 1px solid color(var(--light-brown-color));
+}
+
+.previewCodeTitle h4 {
     color: color(var(--primary-color));
-    padding: 0 10px 10px 10px;
+    padding: 10px;
 }
 
 .snippetInputForm {
@@ -89,7 +97,7 @@ textarea {
     min-height: 35px;
     width: 100%;
     background-color: color(var(--light-color));
-    border: 1px solid var(--light-brown-color);
+    border: 1px solid color(var(--light-brown-color));
     margin-top: 15px;
     padding: 10px;
     box-sizing: border-box;
@@ -152,6 +160,7 @@ textarea {
 @media screen and (max-width: 680px) {
     .createNote {
         width: 80%;
+        padding-top: 100px;
     }
     .addNoteContainer,
     .previewCodeContainer {

@@ -6,7 +6,8 @@ class QuickNote extends Component {
   constructor() {
     super();
     this.state = {
-      quickNote: ''
+      quickNote: '',
+      placeholder: 'Quick note...'
     };
   }
 
@@ -30,7 +31,9 @@ class QuickNote extends Component {
     return (
       <section className='quickNote'>
         <textarea
-          placeholder='Quick note...'
+          placeholder={this.state.placeholder}
+          onFocus={()=>this.setState({placeholder:''})}
+          onBlur={()=>this.setState({placeholder:'Quick note...'})}
           value={this.state.quickNote}
           onChange={({ target }) => this.setState({ quickNote: target.value })} />
         <button onClick={this.handleClick}>Add</button>

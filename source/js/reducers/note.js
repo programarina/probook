@@ -64,7 +64,7 @@ const actionsMap = {
   [CREATE_NOTE_SUCCESS]: (state, action) => {
     return state.merge(Map({
       loading: false,
-      notes: [action.data, ...state.get('notes')],
+      notes: [...state.get('notes'), action.data],
       error: null
     }));
   },

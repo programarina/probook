@@ -74,6 +74,7 @@ const actionsMap = {
       error: null,
     }));
   },
+
   [SIGN_IN_SUCCESS]: (state, action) => {
     return state.merge(Map({
       loading: false,
