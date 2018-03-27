@@ -107,6 +107,7 @@ class OverviewPage extends Component {
 
   render() {
     const { filterNotes, showCalendar, serverError, loader, gridView } = this.state;
+    console.log(filterNotes);
     if (loader || !filterNotes) {
       return <img
         src='../../../../assets/img/loader.gif'

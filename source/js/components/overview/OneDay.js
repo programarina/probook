@@ -9,11 +9,11 @@ class OneDay extends Component {
     };
   }
   componentDidMount() {
-    this.transformToObject();
+    this.transformToObject(this.props);
   }
 
-  transformToObject = () => {
-    let allNotes = this.props.notes.reverse().reduce((accumulator, currentValue) => {
+  transformToObject = (props) => {
+    let allNotes = props.notes.reverse().reduce((accumulator, currentValue) => {
       if (!accumulator[currentValue.dateCreated]) {
         accumulator[currentValue.dateCreated] = [];
       }
@@ -23,16 +23,15 @@ class OneDay extends Component {
     this.setState({
       allNotes
     });
-
-    Object.keys(allNotes).map((noteDate) => {
-
-      console.log(allNotes[noteDate]);
-    });
+  }
+  componentWillReceiveProps(nextProps) {
+    if (this.props.notes !== nextProps.notes) {
+      this.transformToObject(nextProps);
+    }
   }
 
   renderSingleDay = () => {
     const { allNotes } = this.state;
-
     return (Object.keys(allNotes).map(noteDate => {
       return (
         <div className='oneDay' key={noteDate}>

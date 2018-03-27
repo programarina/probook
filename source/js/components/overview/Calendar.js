@@ -9,6 +9,7 @@ class Calendar extends Component {
       checkedMonth: ''
     };
   }
+  
   render() {
     const months = LIST_OF_MONTHS;
     return (
