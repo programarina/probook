@@ -9,29 +9,44 @@ class OneDay extends Component {
     };
   }
   componentDidMount() {
-    this.renderSingleDay();
+    this.transformToObject();
   }
 
-  renderSingleDay() {
-    let allNotes = this.props.notes.reduce((accumulator, currentValue) => {
+  transformToObject = () => {
+    let allNotes = this.props.notes.reverse().reduce((accumulator, currentValue) => {
       if (!accumulator[currentValue.dateCreated]) {
         accumulator[currentValue.dateCreated] = [];
       }
       accumulator[currentValue.dateCreated].push(currentValue);
-
       return accumulator;
     }, {});
-
     this.setState({
       allNotes
     });
+
+    Object.keys(allNotes).map((noteDate) => {
+
+      console.log(allNotes[noteDate]);
+    });
+  }
+
+  renderSingleDay = () => {
+    const { allNotes } = this.state;
+
+    return (Object.keys(allNotes).map(noteDate => {
+      return (
+        <div className='oneDay' key={noteDate}>
+          <h3 key={noteDate}>{noteDate}</h3>
+          {allNotes[noteDate].map(note => <SingleNote note={note} key={note.id} gridView={this.props.gridView} />)}
+        </div>
+      )
+    }));
   }
 
   render() {
     return (
-      <div className='oneDay'>
-        <h3></h3>
-        {this.props.notes.map(note => <SingleNote note={note} key={note.id} gridView={this.props.gridView} />)}
+      <div>
+        {this.renderSingleDay()}
       </div>
     );
   }
