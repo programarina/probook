@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { routeCodes } from '../../constants/routes';
 import { deleteNote } from '../../actions/deleteNote';
-import { getAllNotes } from '../../actions/getNotes';
 import ReactMarkdown from 'react-markdown';
-
+import { redirectionService } from '../../services/redirectionService';
 
 class SingleNote extends Component {
   constructor() {
@@ -24,17 +23,19 @@ class SingleNote extends Component {
   }
 
   deleteNote = () => {
-    let id = this.props.note.id;
+    const { id } = this.props.note;
     this.props.deleteNote(id);
     this.closeModal();
+    // redirectionService.redirect(routeCodes.HOME);
+
   }
 
   render() {
     const { title, body, id, tags } = this.props.note;
     return (
-      <div className={this.props.gridView ? 'singleNote gridView': 'singleNote'}>
-        <h4>{title ? title.length < 20 ? title : `${title.substring(0, 20)}...`: 'Note title'}</h4>
-        <div><ReactMarkdown source={body.length < 50 ? body: `${body.substring(0,150)}...`} /></div>
+      <div className={this.props.gridView ? 'singleNote gridView' : 'singleNote'}>
+        <h4>{title ? title.length < 20 ? title : `${title.substring(0, 20)}...` : 'Note title'}</h4>
+        <div><ReactMarkdown source={body.length < 50 ? body : `${body.substring(0, 150)}...`} /></div>
         <Link
           to={`${routeCodes.CREATE_PAGE}/${id}`}
           className='editBtn'>
@@ -59,7 +60,7 @@ class SingleNote extends Component {
           </div>
         </div>
         <ul className='snippetTags'>
-          { tags.length !==0 ? tags.map(tag =><li key={tag}>{tag}</li>): 'Note tags'}
+          {tags.length !== 0 ? tags.map(tag => <li key={tag}>{tag}</li>) : 'Note tags'}
         </ul>
       </div>
     );
@@ -69,14 +70,7 @@ class SingleNote extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     deleteNote: id => dispatch(deleteNote(id)),
-    getAllNotes: () => dispatch(getAllNotes()),
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    notes: state.notes.get('notes')
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SingleNote);
+export default connect(null, mapDispatchToProps)(SingleNote);

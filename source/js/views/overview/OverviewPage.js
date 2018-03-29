@@ -19,7 +19,7 @@ class OverviewPage extends Component {
       notes: [],
       filterNotes: [],
       showCalendar: false,
-      serverError: null,
+      serverError: '',
       gridView: true,
       pageNum: 1,
       lastArray: false
@@ -40,31 +40,26 @@ class OverviewPage extends Component {
   }
 
   handleScroll = e => {
-
     let documentHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight,
       document.documentElement.clientHeight, document.documentElement.scrollHeight,
       document.documentElement.offsetHeight);
     let yOffset = window.pageYOffset;
     let windowHeight = window.innerHeight;
-
     if (yOffset === documentHeight - windowHeight) {
       this.props.getAllNotes(this.state.pageNum, 3);
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { lastArray, pageNum } = this.state;
+    const { lastArray, notes } = this.state;
     if (lastArray) {
-      window.removeEventListener('scroll', this.handleScroll);
-      return;
-    }
-
-    if (prevState.pageNum !== pageNum) {
+      return window.removeEventListener('scroll', this.handleScroll);
+    } else if (prevState.notes.length !== notes.length) {
       window.addEventListener('scroll', this.handleScroll);
     }
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  componentWillReceiveProps(nextProps) {
     const { pageNum, notes, filterNotes } = this.state;
 
     if (nextProps.loader !== this.props.loader) {
@@ -72,23 +67,21 @@ class OverviewPage extends Component {
         loader: nextProps.loader
       });
     }
-
     if (nextProps.notes !== this.props.notes) {
-      this.setState({
-        notes: [...notes, ...nextProps.notes],
-        filterNotes: [...filterNotes, ...nextProps.notes],
-        pageNum: pageNum + 1
-      });
-      if (nextProps.notes.length < 3) {
+      if (nextProps.notes.length === this.state.notes.length) {
         this.setState({
           lastArray: true,
         });
       }
+      this.setState({
+        notes: nextProps.notes,
+        filterNotes: nextProps.notes,
+        pageNum: pageNum + 1
+      });
     }
-
     if (nextProps.error !== this.props.error) {
       this.setState({
-        serverError: nextProps.error
+        serverError: nextProps.error.message
       });
     }
   }
@@ -145,15 +138,8 @@ class OverviewPage extends Component {
   render() {
     const { filterNotes, showCalendar, serverError, loader, gridView } = this.state;
     console.log('ALL NOTES', filterNotes);
-    // if (!filterNotes.length) {
-    //   return <img
-    //     src='../../../../assets/img/loader.gif'
-    //     alt='loader'
-    //     className='loader'
-    //   />;
-    // }
     if (serverError) {
-      return <p>{serverError.error}</p>;
+      return <p>{serverError}</p>;
     }
     return (
       <div className='main'>

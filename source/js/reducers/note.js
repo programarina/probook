@@ -9,6 +9,12 @@ import {
 } from 'actions/getNotes';
 
 import {
+  GET_SINGLE_NOTE_START,
+  GET_SINGLE_NOTE_SUCCESS,
+  GET_SINGLE_NOTE_ERROR,
+} from 'actions/getSingleNote';
+
+import {
   CREATE_NOTE_START,
   CREATE_NOTE_SUCCESS,
   CREATE_NOTE_ERROR,
@@ -41,10 +47,28 @@ const actionsMap = {
   [GET_NOTES_SUCCESS]: (state, action) => {
     return state.merge(Map({
       loading: false,
-      notes: action.data,
+      notes: [...state.get('notes'), ...action.data],
     }));
   },
   [GET_NOTES_ERROR]: (state, action) => {
+    return state.merge(Map({
+      loading: false,
+      notes: [],
+      error: action.error,
+    }));
+  },
+  [GET_SINGLE_NOTE_START]: (state) => {
+    return state.merge(Map({
+      loading: true,
+    }));
+  },
+  [GET_SINGLE_NOTE_SUCCESS]: (state, action) => {
+    return state.merge(Map({
+      loading: false,
+      notes: [...state.get('notes'), action.data],
+    }));
+  },
+  [GET_SINGLE_NOTE_ERROR]: (state, action) => {
     return state.merge(Map({
       loading: false,
       notes: [],
@@ -68,7 +92,7 @@ const actionsMap = {
   [CREATE_NOTE_ERROR]: (state, action) => {
     return state.merge(Map({
       loading: false,
-      notes: null,
+      notes: [],
       error: action.error
     }));
   },
@@ -80,6 +104,8 @@ const actionsMap = {
     }));
   },
   [DELETE_NOTE_SUCCESS]: (state, action) => {
+    console.log('novi state', state.get('notes').filter(note => note.id !== action.noteId));
+    
     return state.merge(Map({
       loading: false,
       notes: state.get('notes').filter(note => note.id !== action.noteId),
@@ -89,7 +115,7 @@ const actionsMap = {
   [DELETE_NOTE_ERROR]: (state, action) => {
     return state.merge(Map({
       loading: false,
-      notes: null,
+      notes: [],
       error: action.error
     }));
   },
@@ -111,7 +137,7 @@ const actionsMap = {
   [UPDATE_NOTE_ERROR]: (state, action) => {
     return state.merge(Map({
       loading: false,
-      notes: null,
+      notes: [],
       error: action.error
     }));
   },
