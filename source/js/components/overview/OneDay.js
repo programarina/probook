@@ -13,7 +13,7 @@ class OneDay extends Component {
   }
 
   transformToObject = (props) => {
-    let allNotes = props.notes.reverse().reduce((accumulator, currentValue) => {
+    let allNotes = props.notes.reduce((accumulator, currentValue) => {
       if (!accumulator[currentValue.dateCreated]) {
         accumulator[currentValue.dateCreated] = [];
       }

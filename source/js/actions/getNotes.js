@@ -24,10 +24,10 @@ function getNotesError(error) {
   }
 }
 
-export function getAllNotes() {
+export function getAllNotes(pageNum, notePerPage) {
   return function (dispatch) {
     dispatch(getNotesStart());
-    api.getAllNotes()
+    api.getAllNotes(pageNum, notePerPage)
       .then(data => dispatch(getNotesSuccess(data)))
       .catch(error => dispatch(getNotesError(error)))
   }

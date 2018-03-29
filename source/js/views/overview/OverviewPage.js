@@ -16,32 +16,15 @@ class OverviewPage extends Component {
     super();
     this.state = {
       loader: false,
-      notes: null,
-      filterNotes: null,
+      notes: [],
+      filterNotes: [],
       showCalendar: false,
       serverError: null,
-      gridView: true
+      gridView: true,
+      pageNum: 1,
+      lastArray: false
     }
   };
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.loader !== this.props.loader) {
-      this.setState({
-        loader: nextProps.loader
-      });
-    }
-    if (nextProps.notes !== this.props.notes) {
-      this.setState({
-        notes: nextProps.notes,
-        filterNotes: nextProps.notes,
-      });
-    }
-    if (nextProps.error !== this.props.error) {
-      this.setState({
-        serverError: nextProps.error
-      });
-    }
-  }
 
   toggleClass = () => {
     const currentState = this.state.showCalendar;
@@ -53,10 +36,63 @@ class OverviewPage extends Component {
   }
 
   componentDidMount() {
-    if (!this.state.notes) {
-      this.props.getAllNotes();
+    this.props.getAllNotes(this.state.pageNum, 3);
+  }
+
+  handleScroll = e => {
+
+    let documentHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight,
+      document.documentElement.clientHeight, document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight);
+    let yOffset = window.pageYOffset;
+    let windowHeight = window.innerHeight;
+
+    if (yOffset === documentHeight - windowHeight) {
+      this.props.getAllNotes(this.state.pageNum, 3);
     }
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { lastArray, pageNum } = this.state;
+    if (lastArray) {
+      window.removeEventListener('scroll', this.handleScroll);
+      return;
+    }
+
+    if (prevState.pageNum !== pageNum) {
+      window.addEventListener('scroll', this.handleScroll);
+    }
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    const { pageNum, notes, filterNotes } = this.state;
+
+    if (nextProps.loader !== this.props.loader) {
+      this.setState({
+        loader: nextProps.loader
+      });
+    }
+
+    if (nextProps.notes !== this.props.notes) {
+      this.setState({
+        notes: [...notes, ...nextProps.notes],
+        filterNotes: [...filterNotes, ...nextProps.notes],
+        pageNum: pageNum + 1
+      });
+      if (nextProps.notes.length < 3) {
+        this.setState({
+          lastArray: true,
+        });
+      }
+    }
+
+    if (nextProps.error !== this.props.error) {
+      this.setState({
+        serverError: nextProps.error
+      });
+    }
+  }
+
 
   findNote = (searchString) => {
     let allNotes = this.state.notes;
@@ -100,21 +136,22 @@ class OverviewPage extends Component {
   }
 
   showAllNotes = () => {
+    const { notes } = this.state;
     this.setState({
-      filterNotes: this.state.notes
+      filterNotes: notes
     });
   }
 
   render() {
     const { filterNotes, showCalendar, serverError, loader, gridView } = this.state;
-    console.log(filterNotes);
-    if (loader || !filterNotes) {
-      return <img
-        src='../../../../assets/img/loader.gif'
-        alt='loader'
-        className='loader'
-      />;
-    }
+    console.log('ALL NOTES', filterNotes);
+    // if (!filterNotes.length) {
+    //   return <img
+    //     src='../../../../assets/img/loader.gif'
+    //     alt='loader'
+    //     className='loader'
+    //   />;
+    // }
     if (serverError) {
       return <p>{serverError.error}</p>;
     }
@@ -137,6 +174,11 @@ class OverviewPage extends Component {
               <img src={`../../../assets/img/${gridView ? 'listIco' : 'gridIco'}.png`} width='30px' height='30px' />
             </button>
             <OneDay notes={filterNotes} gridView={gridView} />
+            {loader ? <img
+              src='../../../../assets/img/loader.gif'
+              alt='loader'
+              className='loader'
+            /> : ''}
             <AddButton />
           </section>
         </div>
@@ -146,7 +188,7 @@ class OverviewPage extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return { getAllNotes: () => dispatch(getAllNotes()) };
+  return { getAllNotes: (pageNum, notesPerPage) => dispatch(getAllNotes(pageNum, notesPerPage)) };
 };
 
 function mapStateToProps(state) {

@@ -1,7 +1,7 @@
 import  fetchResource  from './index';
 
-function getAllNotes() {
-  return fetchResource(`notes`, { method: 'GET' });
+function getAllNotes(pageNum, notePerPage) {
+  return fetchResource(`notes?_page=${pageNum}&_limit=${notePerPage}`, { method: 'GET' });
 }
 
 function createNote(note) {

@@ -18,7 +18,7 @@ class QuickNote extends Component {
       body: this.state.quickNote,
       tags: [],
       userId: this.props.user.id,
-      dateCreate: date.toDateString(),
+      dateCreated: date.toDateString(),
     };
     
     if(!note.body){
