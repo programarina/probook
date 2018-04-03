@@ -8,7 +8,6 @@ import QucikNote from '../../components/overview/QucikNote';
 import AddButton from '../../components/overview/AddButton';
 import CalendarButton from '../../components/overview/CalendarButton';
 import MobileMenu from '../../components/overview/MobileMenu';
-import data from '../../constants/data';
 import { getAllNotes } from '../../actions/getNotes';
 
 class OverviewPage extends Component {
@@ -21,8 +20,8 @@ class OverviewPage extends Component {
       showCalendar: false,
       serverError: '',
       gridView: true,
-      pageNum: 1,
-      lastArray: false
+      pageNum: 2,
+      lastArray: false,
     }
   };
 
@@ -36,7 +35,10 @@ class OverviewPage extends Component {
   }
 
   componentDidMount() {
-    this.props.getAllNotes(this.state.pageNum, 3);
+    if (!this.props.notes.length) {
+      this.props.getAllNotes(1, 6);
+    }
+    window.addEventListener('scroll', this.handleScroll);
   }
 
   handleScroll = e => {
@@ -45,23 +47,21 @@ class OverviewPage extends Component {
       document.documentElement.offsetHeight);
     let yOffset = window.pageYOffset;
     let windowHeight = window.innerHeight;
+
     if (yOffset === documentHeight - windowHeight) {
       this.props.getAllNotes(this.state.pageNum, 3);
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { lastArray, notes } = this.state;
+    const { lastArray } = this.state;
     if (lastArray) {
       return window.removeEventListener('scroll', this.handleScroll);
-    } else if (prevState.notes.length !== notes.length) {
-      window.addEventListener('scroll', this.handleScroll);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const { pageNum, notes, filterNotes } = this.state;
-
+    const { pageNum } = this.state;
     if (nextProps.loader !== this.props.loader) {
       this.setState({
         loader: nextProps.loader
@@ -134,12 +134,11 @@ class OverviewPage extends Component {
       filterNotes: notes
     });
   }
-
+ 
   render() {
-    const { filterNotes, showCalendar, serverError, loader, gridView } = this.state;
-    console.log('ALL NOTES', filterNotes);
+    const { filterNotes, showCalendar, serverError, loader, gridView, lastArray } = this.state;
     if (serverError) {
-      return <p>{serverError}</p>;
+      return <p className='serverErrorMainPage'>{serverError}</p>;
     }
     return (
       <div className='main'>
@@ -159,7 +158,9 @@ class OverviewPage extends Component {
               onClick={this.toggleView}>
               <img src={`../../../assets/img/${gridView ? 'listIco' : 'gridIco'}.png`} width='30px' height='30px' />
             </button>
-            <OneDay notes={filterNotes} gridView={gridView} />
+            <OneDay
+              notes={loader ? filterNotes : (lastArray ? filterNotes : filterNotes.slice(0, filterNotes.length - 3))}
+              gridView={gridView} />
             {loader ? <img
               src='../../../../assets/img/loader.gif'
               alt='loader'

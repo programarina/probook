@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { redirectionService } from '../../services/redirectionService';
 import { routeCodes } from '../../constants/routes';
 import { connect } from 'react-redux';
 import { getUser } from 'actions/users';
@@ -19,7 +18,7 @@ class Header extends Component {
 
   logOutAction = () => {
     localStorage.removeItem('sessionId');
-    redirectionService.redirect(routeCodes.SIGN_IN);
+    this.props.history.push(routeCodes.SIGN_IN, null);
   }
 
   componentWillReceiveProps(nextProps) {

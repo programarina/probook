@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { signUp } from '../../actions/signup';
 import { routeCodes } from '../../constants/routes';
 import { VALIDATE_EMAIL } from '../../constants/regex';
-import { redirectionService } from '../../services/redirectionService';
 
 class SignUpForm extends Component {
   constructor() {
@@ -42,7 +41,7 @@ class SignUpForm extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.user !== this.props.user) {
       localStorage.setItem('sessionId', nextProps.user.id);
-      redirectionService.redirect(routeCodes.HOME);
+      this.props.history.push(routeCodes.HOME, null);
     }
     if (nextProps.loader !== this.props.loader) {
       this.setState({

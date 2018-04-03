@@ -11,7 +11,6 @@ function getUserStart() {
 }
 
 function getUserSuccess(data) {
-
   return {
     type: GET_USER_SUCCESS,
     data,

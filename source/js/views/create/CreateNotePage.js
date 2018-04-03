@@ -6,7 +6,7 @@ import AddNote from '../../components/create/AddNote';
 import PreviewNote from '../../components/create/PreviewNote';
 import HelpButton from '../../components/create/HelpButton';
 import { publicPath } from '../../constants/routes';
-import { getSingleNote } from '../../actions/getSingleNote';
+import { getAllNotes } from '../../actions/getNotes';
 
 class CreateNotePage extends Component {
   constructor() {
@@ -15,30 +15,48 @@ class CreateNotePage extends Component {
       title: '',
       body: '',
       tags: [],
-      id: ''
+      id: '',
+      loader: false
     };
   }
 
-  componentWillMount() {
-    const noteId = this.props.match.params.id;
-    if (noteId) {
-      this.props.getSingleNote(noteId);
-    }
-  }
-
   componentWillReceiveProps(nextProps) {
-    var noteId = this.props.match.params.id;
-
-    if (this.props.notes !== nextProps.notes) {
-      let singleNote = nextProps.notes[0];
+    if (this.props.loader !== nextProps.loader) {
+      this.setState({
+        loader: nextProps.loader
+      });
+    }
+    const noteId = this.props.match.params.id;
+    if (this.props.notes !== nextProps.notes && noteId) {
+      let filterNote = nextProps.notes.filter(note => note.id === parseInt(noteId));
+      let singleNote = filterNote[0];
       this.setState({
         title: singleNote.title,
         body: singleNote.body,
         tags: singleNote.tags,
-        id: singleNote.id,
-      })
+        id: singleNote.id
+      });
     }
   }
+
+  componentDidMount() {
+    if (!this.props.notes.length) {
+      this.props.getAllNotes();
+    }
+    const noteId = this.props.match.params.id;
+    if (noteId && this.props.notes.length) {
+      let filterNote = this.props.notes.filter(note => note.id === parseInt(noteId));
+      let singleNote = filterNote[0];
+      this.setState({
+        title: singleNote.title,
+        body: singleNote.body,
+        tags: singleNote.tags,
+        id: singleNote.id
+      });
+    }
+
+  }
+
 
   showNoteData = ({ target }) => {
     this.setState({
@@ -62,6 +80,17 @@ class CreateNotePage extends Component {
 
   render() {
     const note = this.state;
+    const { loader } = this.state;
+    if (loader && !note.title) {
+      return (
+        <img
+          src='../../../../assets/img/loader.gif'
+          alt='loader'
+          className='loader'
+        />
+      );
+    }
+
     return (
       <div>
         <div className='backBtnContainer'>
@@ -73,7 +102,7 @@ class CreateNotePage extends Component {
           </Link>
         </div>
         <div className='createNote'>
-          < AddNote showNoteData={this.showNoteData} showTags={this.showTags} note={note} />
+          <AddNote history={this.props.history} showNoteData={this.showNoteData} showTags={this.showTags} note={note} />
           <PreviewNote note={note} deleteTag={this.deleteTag} />
           <HelpButton />
         </div>
@@ -84,13 +113,14 @@ class CreateNotePage extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getSingleNote: (noteId) => dispatch(getSingleNote(noteId))
+    getAllNotes: () => dispatch(getAllNotes())
   }
 }
 
 function mapStateToProps(state) {
   return {
-    notes: state.notes.get('notes')
+    notes: state.notes.get('notes'),
+    loader: state.notes.get('loading')
   };
 }
 

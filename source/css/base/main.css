@@ -41,10 +41,23 @@
     display: none;
 }
 
+.serverErrorMainPage{
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
+    padding: 50px;
+    font-size: 2em;
+    color: color(var(--primary-color));
+}
+
 @media screen and (max-width: 680px) {
     .main> :first-child {
         width: 100%;
     }
+}
+
+@media screen and (max-width: 850px) {
     .addNoteBtn {
         display: none;
     }

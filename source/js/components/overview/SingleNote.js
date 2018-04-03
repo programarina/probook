@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { routeCodes } from '../../constants/routes';
 import { deleteNote } from '../../actions/deleteNote';
 import ReactMarkdown from 'react-markdown';
-import { redirectionService } from '../../services/redirectionService';
 
 class SingleNote extends Component {
   constructor() {
@@ -26,8 +25,6 @@ class SingleNote extends Component {
     const { id } = this.props.note;
     this.props.deleteNote(id);
     this.closeModal();
-    // redirectionService.redirect(routeCodes.HOME);
-
   }
 
   render() {

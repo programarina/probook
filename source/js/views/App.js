@@ -4,8 +4,9 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { routeCodes } from '../constants/routes';
 import LoginPage from '../views/login/LoginPage';
 import MainPage from '../views/common/MainPage';
+import { withRouter } from 'react-router'
 
-export default class App extends Component {
+class AppComponent extends Component {
 
   render() {
     const loggedIn = localStorage.getItem('sessionId');
@@ -19,6 +20,8 @@ export default class App extends Component {
         </Switch>
       );
     }
-    return <MainPage />
+    return <MainPage history={this.props.history} />
   }
 }
+
+export  const App = withRouter(AppComponent);

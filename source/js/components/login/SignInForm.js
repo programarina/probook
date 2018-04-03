@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { signIn } from '../../actions/signin';
 import { publicPath } from '../../constants/routes';
 import { VALIDATE_EMAIL } from '../../constants/regex';
-import { redirectionService } from '../../services/redirectionService';
 import { routeCodes } from '../../constants/routes';
 
 class SignInForm extends Component {
@@ -12,7 +11,7 @@ class SignInForm extends Component {
     super();
     this.state = {
       loader: false,
-      serverError: null,
+      serverError: '',
     };
   }
   renderField(field) {
@@ -34,13 +33,19 @@ class SignInForm extends Component {
 
   submitForm(values) {
     this.props.signIn(values);
-    localStorage.setItem('sessionId', this.props.user.id);
+
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.user !== nextProps.user) {
-      redirectionService.redirect(routeCodes.HOME);
-      localStorage.setItem('sessionId', nextProps.user.id);
+      if (nextProps.user.length) {
+        this.props.history.push(routeCodes.HOME, null);
+        localStorage.setItem('sessionId', nextProps.user[0].id);
+      } else {
+        this.setState({
+          serverError: 'User does not exist.'
+        });
+      }
     }
     if (this.props.loader !== nextProps.loader) {
       this.setState({
@@ -49,13 +54,13 @@ class SignInForm extends Component {
     }
     if (this.props.error !== nextProps.error) {
       this.setState({
-        serverError: nextProps.error
+        serverError: nextProps.error.message
       });
     }
   }
 
   render() {
-    const { loader, serverError } = this.state;
+    const { loader, serverError, noUser } = this.state;
     const { handleSubmit } = this.props;
     return (
       <form className='signInForm' onSubmit={handleSubmit(this.submitForm.bind(this))}>
@@ -76,10 +81,10 @@ class SignInForm extends Component {
           src='../../../assets/img/loader.gif'
           alt='loader' />
         <button
-          className = {loader ? 'loaderHiden' : 'signInForm-button'}
+          className={loader ? 'loaderHiden' : 'signInForm-button'}
           type='submit'>
           Sign in</button>
-        <p className='serverError'>{serverError ? serverError.message : ''}</p>
+        <p className='serverError'>{serverError ? serverError : ''}</p>
       </form>
     );
   }

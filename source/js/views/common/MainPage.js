@@ -8,10 +8,9 @@ import CreateNotePage from '../create/CreateNotePage';
 import PreviewNote from '../../components/create/PreviewNote';
 
 const MainPage = (props) => {
-
-  return (
+  return (    
     <div>
-      <Header />
+      <Header history={props.history}/>
       <Switch>
         <Route exact path={publicPath} component={OverviewPage} />
         <Route exact path={routeCodes.CREATE_PAGE} component={CreateNotePage} />

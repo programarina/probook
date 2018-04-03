@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createNote } from '../../actions/createNote';
 import { routeCodes } from '../../constants/routes';
-import { redirectionService } from '../../services/redirectionService';
 import { updateNote } from '../../actions/updateNote';
 
 class AddNote extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       tags: ''
     };
@@ -29,9 +28,9 @@ class AddNote extends Component {
   }
 
   handleClick = () => {
+
     const { body, title, tags } = this.props.note;
     const date = new Date();
-
     const note = {
       title,
       body,
@@ -42,13 +41,18 @@ class AddNote extends Component {
     if (note.title && note.body && note.tags) {
       if (this.props.note.id) {
         this.props.updateNote(note, this.props.note.id);
-      }else{
+        this.props.history.push(routeCodes.HOME, null);
+      } else {
         this.props.createNote(note);
-        redirectionService.redirect(routeCodes.HOME);
+        this.props.history.push(routeCodes.HOME, null);
       }
     }
   }
 
+  componentDidMount() {
+    console.log(this.props.history);
+
+  }
   render() {
     const { body, title, tags } = this.props.note;
     return (
