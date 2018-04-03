@@ -20,7 +20,6 @@ class OverviewPage extends Component {
       showCalendar: false,
       serverError: '',
       gridView: true,
-      pageNum: 2,
       lastArray: false,
     }
   };
@@ -35,9 +34,7 @@ class OverviewPage extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.notes.length) {
-      this.props.getAllNotes(1, 6);
-    }
+    this.props.getAllNotes(1, 6);
     window.addEventListener('scroll', this.handleScroll);
   }
 
@@ -49,7 +46,7 @@ class OverviewPage extends Component {
     let windowHeight = window.innerHeight;
 
     if (yOffset === documentHeight - windowHeight) {
-      this.props.getAllNotes(this.state.pageNum, 3);
+      this.props.getAllNotes(this.props.pageNum, 3);
     }
   }
 
@@ -61,7 +58,6 @@ class OverviewPage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { pageNum } = this.state;
     if (nextProps.loader !== this.props.loader) {
       this.setState({
         loader: nextProps.loader
@@ -76,7 +72,6 @@ class OverviewPage extends Component {
       this.setState({
         notes: nextProps.notes,
         filterNotes: nextProps.notes,
-        pageNum: pageNum + 1
       });
     }
     if (nextProps.error !== this.props.error) {
@@ -134,7 +129,7 @@ class OverviewPage extends Component {
       filterNotes: notes
     });
   }
- 
+
   render() {
     const { filterNotes, showCalendar, serverError, loader, gridView, lastArray } = this.state;
     if (serverError) {
@@ -182,7 +177,8 @@ function mapStateToProps(state) {
   return {
     loader: state.notes.get('loading'),
     notes: state.notes.get('notes'),
-    error: state.notes.get('error')
+    error: state.notes.get('error'),
+    pageNum: state.notes.get('pageNum')
   };
 }
 

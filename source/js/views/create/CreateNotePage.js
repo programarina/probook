@@ -16,7 +16,7 @@ class CreateNotePage extends Component {
       body: '',
       tags: [],
       id: '',
-      loader: false
+      loader: false,
     };
   }
 
@@ -40,6 +40,7 @@ class CreateNotePage extends Component {
   }
 
   componentDidMount() {
+
     if (!this.props.notes.length) {
       this.props.getAllNotes();
     }
@@ -56,7 +57,6 @@ class CreateNotePage extends Component {
     }
 
   }
-
 
   showNoteData = ({ target }) => {
     this.setState({
@@ -90,7 +90,6 @@ class CreateNotePage extends Component {
         />
       );
     }
-
     return (
       <div>
         <div className='backBtnContainer'>
@@ -120,7 +119,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     notes: state.notes.get('notes'),
-    loader: state.notes.get('loading')
+    loader: state.notes.get('loading'),
   };
 }
 

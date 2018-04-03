@@ -9,7 +9,16 @@ class SingleNote extends Component {
   constructor() {
     super();
     this.state = {
-      showModal: false
+      showModal: false,
+      executableCode: false,
+
+    }
+  }
+  componentDidMount() {
+    if (this.props.note.body.substring(0, 3) === '```') {
+      this.setState({
+        executableCode: true
+      });
     }
   }
 
@@ -29,6 +38,9 @@ class SingleNote extends Component {
 
   render() {
     const { title, body, id, tags } = this.props.note;
+    const { executableCode } = this.state;
+    console.log(body);
+
     return (
       <div className={this.props.gridView ? 'singleNote gridView' : 'singleNote'}>
         <h4>{title ? title.length < 20 ? title : `${title.substring(0, 20)}...` : 'Note title'}</h4>
@@ -59,6 +71,9 @@ class SingleNote extends Component {
         <ul className='snippetTags'>
           {tags.length !== 0 ? tags.map(tag => <li key={tag}>{tag}</li>) : 'Note tags'}
         </ul>
+        <div className='executableCode'>
+          {executableCode ? <button>Start</button> : ''}
+        </div>
       </div>
     );
   }

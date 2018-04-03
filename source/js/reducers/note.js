@@ -29,6 +29,7 @@ const initialState = Map({
   loading: false,
   notes: [],
   error: null,
+  pageNum: 2
 });
 
 const actionsMap = {
@@ -41,6 +42,7 @@ const actionsMap = {
     return state.merge(Map({
       loading: false,
       notes: [...state.get('notes'), ...action.data],
+      pageNum: state.get('pageNum') + 1
     }));
   },
   [GET_NOTES_ERROR]: (state, action) => {

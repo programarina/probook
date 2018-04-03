@@ -8,7 +8,7 @@ class AddNote extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tags: ''
+      tags: '',
     };
   }
 
@@ -36,23 +36,34 @@ class AddNote extends Component {
       body,
       tags,
       userId: this.props.user.id,
-      dateCreated: date.toDateString()
+      dateCreated: date.toDateString(),
+      badCode: false
     }
+    this.evaluateCode(note.body);
     if (note.title && note.body && note.tags) {
       if (this.props.note.id) {
         this.props.updateNote(note, this.props.note.id);
-        this.props.history.push(routeCodes.HOME, null);
       } else {
         this.props.createNote(note);
-        this.props.history.push(routeCodes.HOME, null);
       }
     }
   }
 
-  componentDidMount() {
-    console.log(this.props.history);
+  evaluateCode = (code) => {
 
+    if (code.substring(0, 3) === '```') {
+      try {
+        eval(code.substring(3, code.length - 3));
+        this.props.history.push(routeCodes.HOME, null);
+      }
+      catch (error) {
+        alert('Bad code.');
+      }
+    } else {
+      this.props.history.push(routeCodes.HOME, null);
+    }
   }
+
   render() {
     const { body, title, tags } = this.props.note;
     return (
@@ -86,7 +97,6 @@ class AddNote extends Component {
     );
   }
 }
-
 
 function mapDispatchToProps(dispatch) {
   return {
