@@ -56,14 +56,33 @@
   padding: 10px;
 }
 
-.snippetTags{
+.snippetTags,
+.executableCode{
   position: absolute;
-  bottom: 0;
   width: 100%;
   box-sizing: border-box;
   background-color: color(var(--light-color));
   border-top: 1px solid color(var(--light-brown-color));
-  padding: 10px;
+  padding: 10px; 
+}
+
+.executableCode{
+  min-height: 60px; 
+  bottom: 50px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.executableCode button{
+  background-color: color(var(--primary-color));
+  color: color(var(--light-color));
+  padding: 5px 10px 5px 5px;
+  border: none;
+  border-radius: 5px;
+}
+
+.snippetTags{
+  bottom: 0;
 }
 
 .snippetTags li{

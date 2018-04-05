@@ -30,37 +30,37 @@ class AddNote extends Component {
   handleClick = () => {
 
     const { body, title, tags } = this.props.note;
+    const { id } = this.props.user;
     const date = new Date();
     const note = {
       title,
       body,
       tags,
-      userId: this.props.user.id,
+      userId: id,
       dateCreated: date.toDateString(),
-      badCode: false
     }
-    this.evaluateCode(note.body);
     if (note.title && note.body && note.tags) {
-      if (this.props.note.id) {
-        this.props.updateNote(note, this.props.note.id);
+      if (note.body.substring(0, 3) === '```' || note.body.substring(0, 4) === '```\n') {
+        try {
+          eval(note.body.substring(3, code.length - 3));
+          if (this.props.notes.id) {
+            this.props.updateNote(note, this.props.note.id);
+          } else {
+            this.props.createNote(note);
+          }
+          this.props.history.push(routeCodes.HOME, null);
+        }
+        catch (error) {
+          alert('Bad code.');
+        }
       } else {
-        this.props.createNote(note);
-      }
-    }
-  }
-
-  evaluateCode = (code) => {
-
-    if (code.substring(0, 3) === '```') {
-      try {
-        eval(code.substring(3, code.length - 3));
+        if (this.props.notes.id) {
+          this.props.updateNote(note, this.props.note.id);
+        } else {
+          this.props.createNote(note);
+        }
         this.props.history.push(routeCodes.HOME, null);
       }
-      catch (error) {
-        alert('Bad code.');
-      }
-    } else {
-      this.props.history.push(routeCodes.HOME, null);
     }
   }
 

@@ -11,7 +11,7 @@ class SingleNote extends Component {
     this.state = {
       showModal: false,
       executableCode: false,
-
+      codeResult: ''
     }
   }
   componentDidMount() {
@@ -36,11 +36,21 @@ class SingleNote extends Component {
     this.closeModal();
   }
 
+  showCodeResult = (code) => {
+    try {
+      let codeResult = eval(code.substring(3, code.length - 3));
+      this.setState({
+        codeResult
+      });
+    } catch(e){
+      alert('Only JS code.');
+    }
+
+  }
+
   render() {
     const { title, body, id, tags } = this.props.note;
-    const { executableCode } = this.state;
-    console.log(body);
-
+    const { executableCode, codeResult } = this.state;
     return (
       <div className={this.props.gridView ? 'singleNote gridView' : 'singleNote'}>
         <h4>{title ? title.length < 20 ? title : `${title.substring(0, 20)}...` : 'Note title'}</h4>
@@ -68,12 +78,24 @@ class SingleNote extends Component {
             <button className='deleteModalBtn' onClick={this.deleteNote}>Delete</button>
           </div>
         </div>
+        {executableCode ? <div className='executableCode'>
+          <button onClick={() => this.showCodeResult(body)}>
+            <svg
+              height="20"
+              width="20">
+              <polyline
+                points="10,0 17,10 10,20"
+                fill='transparent'
+                stroke='#fff'
+                strokeWidth='4' />
+            </svg>
+          </button>
+          <div>Result: {codeResult}</div>
+        </div>
+          : ''}
         <ul className='snippetTags'>
           {tags.length !== 0 ? tags.map(tag => <li key={tag}>{tag}</li>) : 'Note tags'}
         </ul>
-        <div className='executableCode'>
-          {executableCode ? <button>Start</button> : ''}
-        </div>
       </div>
     );
   }

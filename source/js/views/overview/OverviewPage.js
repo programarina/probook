@@ -11,12 +11,11 @@ import MobileMenu from '../../components/overview/MobileMenu';
 import { getAllNotes } from '../../actions/getNotes';
 
 class OverviewPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       loader: false,
-      notes: [],
-      filterNotes: [],
+      filterNotes: null,
       showCalendar: false,
       serverError: '',
       gridView: true,
@@ -34,7 +33,9 @@ class OverviewPage extends Component {
   }
 
   componentDidMount() {
-    this.props.getAllNotes(1, 6);
+    if (!this.props.notes.length) {
+      this.props.getAllNotes(1, 6);
+    }
     window.addEventListener('scroll', this.handleScroll);
   }
 
@@ -46,6 +47,8 @@ class OverviewPage extends Component {
     let windowHeight = window.innerHeight;
 
     if (yOffset === documentHeight - windowHeight) {
+      console.log('PAGE NUM -----', this.props.pageNum);
+      // ???? 
       this.props.getAllNotes(this.props.pageNum, 3);
     }
   }
@@ -64,15 +67,11 @@ class OverviewPage extends Component {
       });
     }
     if (nextProps.notes !== this.props.notes) {
-      if (nextProps.notes.length === this.state.notes.length) {
+      if (nextProps.notes.length === this.props.notes.length) {
         this.setState({
           lastArray: true,
         });
       }
-      this.setState({
-        notes: nextProps.notes,
-        filterNotes: nextProps.notes,
-      });
     }
     if (nextProps.error !== this.props.error) {
       this.setState({
@@ -130,8 +129,16 @@ class OverviewPage extends Component {
     });
   }
 
+  componentWillUnmount(){
+    window.removeEventListener('scroll', this.handleScroll);
+  }
   render() {
     const { filterNotes, showCalendar, serverError, loader, gridView, lastArray } = this.state;
+    const showNotes = filterNotes || this.props.notes;
+    console.log('LAST ARR=====', lastArray);
+    console.log('RENDER PAGE NUM ----', this.props.pageNum);
+
+
     if (serverError) {
       return <p className='serverErrorMainPage'>{serverError}</p>;
     }
@@ -154,7 +161,7 @@ class OverviewPage extends Component {
               <img src={`../../../assets/img/${gridView ? 'listIco' : 'gridIco'}.png`} width='30px' height='30px' />
             </button>
             <OneDay
-              notes={loader ? filterNotes : (lastArray ? filterNotes : filterNotes.slice(0, filterNotes.length - 3))}
+              notes={loader ? showNotes : (lastArray ? showNotes : showNotes.slice(0, showNotes.length - 3))}
               gridView={gridView} />
             {loader ? <img
               src='../../../../assets/img/loader.gif'
@@ -178,7 +185,7 @@ function mapStateToProps(state) {
     loader: state.notes.get('loading'),
     notes: state.notes.get('notes'),
     error: state.notes.get('error'),
-    pageNum: state.notes.get('pageNum')
+    pageNum: state.notes.get('pageNum'),
   };
 }
 

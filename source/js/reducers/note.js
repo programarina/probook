@@ -29,7 +29,7 @@ const initialState = Map({
   loading: false,
   notes: [],
   error: null,
-  pageNum: 2
+  pageNum: 2,
 });
 
 const actionsMap = {
@@ -38,17 +38,19 @@ const actionsMap = {
       loading: true,
     }));
   },
-  [GET_NOTES_SUCCESS]: (state, action) => {
+  [GET_NOTES_SUCCESS]: (state, action) => {  
+    // const pageNum =  state.get('notes').length ? state.get('notes').length / 3 + 2 : 3
     return state.merge(Map({
       loading: false,
       notes: [...state.get('notes'), ...action.data],
-      pageNum: state.get('pageNum') + 1
+      pageNum: state.get('pageNum') + 1 ,
     }));
   },
   [GET_NOTES_ERROR]: (state, action) => {
     return state.merge(Map({
       loading: false,
       notes: [],
+      pageNum: null,
       error: action.error,
     }));
   },
