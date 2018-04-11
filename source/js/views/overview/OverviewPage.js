@@ -33,8 +33,7 @@ class OverviewPage extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.notes);
-    if (!this.props.notes.length) {
+    if (!this.state.notes.length) {
       this.props.getAllNotes(1, 6);
     }
     window.addEventListener('scroll', this.handleScroll);
@@ -65,7 +64,7 @@ class OverviewPage extends Component {
         loader: nextProps.loader
       });
     }
-    if(nextProps.notes !== this.props.notes){
+    if (nextProps.notes !== this.props.notes) {
       this.setState({
         notes: nextProps.notes,
         filterNotes: nextProps.notes
@@ -80,20 +79,18 @@ class OverviewPage extends Component {
 
   findNote = (searchString) => {
     let allNotes = this.state.notes;
-    console.log('ALL NOTES',allNotes);
-    console.log(searchString);
 
     let filterNotes = allNotes.filter(note => {
       let noteTags = note.tags.some(tag => {
         return tag.toLowerCase().includes(searchString.toLowerCase());
       });
-      console.log('FIND',noteTags);
       if (noteTags) {
         return note;
       }
     });
-    console.log('FILter',filterNotes);
-
+    if (searchString === '') {
+      filterNotes = this.state.notes;
+    }
     this.setState({
       filterNotes
     });
@@ -139,29 +136,29 @@ class OverviewPage extends Component {
     return (
       <div className='main'>
         <div>
-          <CalendarButton 
-            toggleClass={this.toggleClass} 
+          <CalendarButton
+            toggleClass={this.toggleClass}
             showCalendar={showCalendar} />
           <div className='searchContainer'>
-            <Search 
+            <Search
               searchTerm={this.findNote} />
             <QucikNote />
           </div>
-          <MobileMenu 
-            filterByMonth={this.filterByMonth} 
+          <MobileMenu
+            filterByMonth={this.filterByMonth}
             showAllNotes={this.showAllNotes} />
         </div>
         <div className='mainDataContainer'>
-          <Calendar 
-            showCalendar={showCalendar} 
+          <Calendar
+            showCalendar={showCalendar}
             filterByMonth={this.filterByMonth} />
           <section className='allNotes'>
             <button
               className='noteGrid'
               onClick={this.toggleView}>
-              <img 
-                src={`../../../assets/img/${gridView ? 'listIco' : 'gridIco'}.png`} 
-                width='30px' 
+              <img
+                src={`../../../assets/img/${gridView ? 'listIco' : 'gridIco'}.png`}
+                width='30px'
                 height='30px' />
             </button>
             <OneDay
