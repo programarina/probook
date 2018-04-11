@@ -1,5 +1,4 @@
 // Simple API wrapper
-// const API_URL = 'https://private-19561-probook.apiary-mock.com';
 const API_URL = 'http://localhost:3333/api';
 
 // Custom API error to throw
@@ -78,7 +77,7 @@ const fetchResource = (path, userOptions = {}) => {
         // Get response as text
         return response.text();
       }
-
+  
       // Get response as json
       return response.json();
     })
@@ -90,8 +89,8 @@ const fetchResource = (path, userOptions = {}) => {
         // Throw error
         throw parsedResponse;
       }
-
       // Request succeeded
+      // return {response:parsedResponse, totalCount: response.headers.get('X-Total-Count')};
       return parsedResponse;
     })
     .catch(error => {

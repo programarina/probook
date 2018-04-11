@@ -19,7 +19,6 @@ class OverviewPage extends Component {
       showCalendar: false,
       serverError: '',
       gridView: true,
-      lastArray: false,
     }
   };
 
@@ -47,14 +46,12 @@ class OverviewPage extends Component {
     let windowHeight = window.innerHeight;
 
     if (yOffset === documentHeight - windowHeight) {
-      console.log('PAGE NUM -----', this.props.pageNum);
-      // ???? 
       this.props.getAllNotes(this.props.pageNum, 3);
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { lastArray } = this.state;
+    const { lastArray } = this.props;
     if (lastArray) {
       return window.removeEventListener('scroll', this.handleScroll);
     }
@@ -66,13 +63,6 @@ class OverviewPage extends Component {
         loader: nextProps.loader
       });
     }
-    if (nextProps.notes !== this.props.notes) {
-      if (nextProps.notes.length === this.props.notes.length) {
-        this.setState({
-          lastArray: true,
-        });
-      }
-    }
     if (nextProps.error !== this.props.error) {
       this.setState({
         serverError: nextProps.error.message
@@ -82,7 +72,7 @@ class OverviewPage extends Component {
 
 
   findNote = (searchString) => {
-    let allNotes = this.state.notes;
+    let allNotes = this.props.notes;
 
     let filterNotes = allNotes.filter(note => {
       let noteTags = note.tags.some(tag => {
@@ -103,7 +93,7 @@ class OverviewPage extends Component {
   }
 
   filterByMonth = (selectedMonth) => {
-    let allNotes = this.state.notes;
+    let allNotes = this.props.notes;
     let filterNotes = allNotes.filter(note => {
       let month = new Date(note.dateCreated);
       if (selectedMonth === month.getMonth()) {
@@ -123,22 +113,20 @@ class OverviewPage extends Component {
   }
 
   showAllNotes = () => {
-    const { notes } = this.state;
+    const { notes } = this.props;
     this.setState({
       filterNotes: notes
     });
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
   }
+
   render() {
-    const { filterNotes, showCalendar, serverError, loader, gridView, lastArray } = this.state;
-    const showNotes = filterNotes || this.props.notes;
-    console.log('LAST ARR=====', lastArray);
-    console.log('RENDER PAGE NUM ----', this.props.pageNum);
-
-
+    const { filterNotes, showCalendar, serverError, loader, gridView } = this.state;
+    const { lastArray, notes } = this.props;
+    const showNotes = filterNotes || notes;
     if (serverError) {
       return <p className='serverErrorMainPage'>{serverError}</p>;
     }
@@ -186,6 +174,7 @@ function mapStateToProps(state) {
     notes: state.notes.get('notes'),
     error: state.notes.get('error'),
     pageNum: state.notes.get('pageNum'),
+    lastArray: state.notes.get('lastArray'),
   };
 }
 

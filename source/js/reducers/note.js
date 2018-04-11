@@ -30,6 +30,7 @@ const initialState = Map({
   notes: [],
   error: null,
   pageNum: 2,
+  lastArray: false
 });
 
 const actionsMap = {
@@ -38,38 +39,42 @@ const actionsMap = {
       loading: true,
     }));
   },
-  [GET_NOTES_SUCCESS]: (state, action) => {  
-    // const pageNum =  state.get('notes').length ? state.get('notes').length / 3 + 2 : 3
+  [GET_NOTES_SUCCESS]: (state, action) => {
+    let lastArray = false;
+    // if (action.data.totalCount - state.get('notes').length <= 3) {
+    //   lastArray = true;
+    // }
+    if(action.data.length < 3){
+      lastArray = true;
+    }
     return state.merge(Map({
       loading: false,
       notes: [...state.get('notes'), ...action.data],
-      pageNum: state.get('pageNum') + 1 ,
+      lastArray,
+      pageNum: state.get('pageNum') + 1,
     }));
   },
   [GET_NOTES_ERROR]: (state, action) => {
     return state.merge(Map({
       loading: false,
       notes: [],
-      pageNum: null,
       error: action.error,
     }));
   },
   [CREATE_NOTE_START]: (state) => {
     return state.merge(Map({
       loading: true,
-      notes: state.get('notes'),
     }));
   },
   [CREATE_NOTE_SUCCESS]: (state, action) => {
     return state.merge(Map({
       loading: false,
-      notes: [...state.get('notes'), action.data],
+      notes: [...state.get('notes'), action.data]
     }));
   },
   [CREATE_NOTE_ERROR]: (state, action) => {
     return state.merge(Map({
       loading: false,
-      notes: [],
       error: action.error
     }));
   },
@@ -95,14 +100,24 @@ const actionsMap = {
   [UPDATE_NOTE_START]: (state) => {
     return state.merge(Map({
       loading: true,
-      notes: state.get('notes'),
     }));
   },
   [UPDATE_NOTE_SUCCESS]: (state, action) => {
+    let notes = state.get('notes').map(note => {
+      if (note.id !== action.data.id) {
+        return note;
+      }
+      return {
+        ...note,
+        ...action.data
+      }
+    });
+
     return state.merge(Map({
       loading: false,
-      notes: state.get('notes'),
+      notes,
     }));
+
   },
   [UPDATE_NOTE_ERROR]: (state, action) => {
     return state.merge(Map({

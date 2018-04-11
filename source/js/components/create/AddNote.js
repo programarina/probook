@@ -40,10 +40,10 @@ class AddNote extends Component {
       dateCreated: date.toDateString(),
     }
     if (note.title && note.body && note.tags) {
-      if (note.body.substring(0, 3) === '```' || note.body.substring(0, 4) === '```\n') {
+      if (note.body.substring(0, 3) === '```') {
         try {
           eval(note.body.substring(3, code.length - 3));
-          if (this.props.notes.id) {
+          if (this.props.note.id) {
             this.props.updateNote(note, this.props.note.id);
           } else {
             this.props.createNote(note);
@@ -54,7 +54,7 @@ class AddNote extends Component {
           alert('Bad code.');
         }
       } else {
-        if (this.props.notes.id) {
+        if (this.props.note.id) {
           this.props.updateNote(note, this.props.note.id);
         } else {
           this.props.createNote(note);
