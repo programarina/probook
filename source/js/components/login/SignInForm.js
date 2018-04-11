@@ -33,11 +33,10 @@ class SignInForm extends Component {
 
   submitForm(values) {
     this.props.signIn(values);
-
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.user !== nextProps.user) {
+    if (this.props.user !== nextProps.user && !nextProps.loader) {
       if (nextProps.user.length) {
         this.props.history.push(routeCodes.HOME, null);
         localStorage.setItem('sessionId', nextProps.user[0].id);

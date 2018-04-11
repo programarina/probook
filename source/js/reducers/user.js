@@ -28,15 +28,12 @@ const actionsMap = {
   [GET_USER_START]: (state) => {
     return state.merge(Map({
       loading: true,
-      user: null,
-      error: null,
     }));
   },
   [GET_USER_SUCCESS]: (state, action) => {
     return state.merge(Map({
       loading: false,
       user: action.data,
-      error: null,
     }));
   },
   [GET_USER_ERROR]: (state, action) => {
@@ -49,15 +46,12 @@ const actionsMap = {
   [SIGN_UP_START]: (state) => {
     return state.merge(Map({
       loading: true,
-      user: null,
-      error: null,
     }));
   },
   [SIGN_UP_SUCCESS]: (state, action) => {
     return state.merge(Map({
       loading: false,
       user: action.data,
-      error: null,
     }));
   },
   [SIGN_UP_ERROR]: (state, action) => {
@@ -70,8 +64,6 @@ const actionsMap = {
   [SIGN_IN_START]: (state) => {
     return state.merge(Map({
       loading: true,
-      user: null,
-      error: null,
     }));
   },
 
@@ -79,7 +71,6 @@ const actionsMap = {
     return state.merge(Map({
       loading: false,
       user: action.data,
-      error: null,
     }));
   },
   [SIGN_IN_ERROR]: (state, action) => {

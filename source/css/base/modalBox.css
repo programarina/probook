@@ -2,7 +2,6 @@
   display: none;
   position: fixed;
   z-index: 100; 
-  padding-top: 100px; 
   left: 0;
   top: 0;
   width: 100%; 
@@ -18,9 +17,12 @@
 .modal-content {
   background-color: color(var(--light-color));
   margin: auto;
-  padding: 20px;
   border: 1px solid color(var(--light-grey-color));
   width: 40%;
+}
+
+.modal.showModal {
+  padding-top: 100px; 
 }
 
 .modal-content p{

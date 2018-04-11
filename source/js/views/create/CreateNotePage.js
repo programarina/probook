@@ -6,7 +6,7 @@ import AddNote from '../../components/create/AddNote';
 import PreviewNote from '../../components/create/PreviewNote';
 import HelpButton from '../../components/create/HelpButton';
 import { publicPath } from '../../constants/routes';
-import { getAllNotes } from '../../actions/getNotes';
+import { getSingleNote } from '../../actions/getSingleNote';
 
 class CreateNotePage extends Component {
   constructor() {
@@ -20,6 +20,13 @@ class CreateNotePage extends Component {
     };
   }
 
+  componentWillMount() {
+    const noteId = this.props.match.params.id;
+    if (noteId) {
+      this.props.getSingleNote(noteId);
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (this.props.loader !== nextProps.loader) {
       this.setState({
@@ -27,35 +34,15 @@ class CreateNotePage extends Component {
       });
     }
     const noteId = this.props.match.params.id;
-    if (this.props.notes !== nextProps.notes && noteId) {
-      let filterNote = nextProps.notes.filter(note => note.id === parseInt(noteId));
-      let singleNote = filterNote[0];
+
+    if (this.props.singleNote !== nextProps.singleNote && noteId && !nextProps.loader) {
       this.setState({
-        title: singleNote.title,
-        body: singleNote.body,
-        tags: singleNote.tags,
-        id: singleNote.id
+        title: nextProps.singleNote.title,
+        body: nextProps.singleNote.body,
+        tags: nextProps.singleNote.tags,
+        id: nextProps.singleNote.id
       });
     }
-  }
-
-  componentDidMount() {
-
-    if (!this.props.notes.length) {
-      this.props.getAllNotes();
-    }
-    const noteId = this.props.match.params.id;
-    if (noteId && this.props.notes.length) {
-      let filterNote = this.props.notes.filter(note => note.id === parseInt(noteId));
-      let singleNote = filterNote[0];
-      this.setState({
-        title: singleNote.title,
-        body: singleNote.body,
-        tags: singleNote.tags,
-        id: singleNote.id
-      });
-    }
-
   }
 
   showNoteData = ({ target }) => {
@@ -112,13 +99,13 @@ class CreateNotePage extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getAllNotes: () => dispatch(getAllNotes())
+    getSingleNote: id => dispatch(getSingleNote(id))
   }
 }
 
 function mapStateToProps(state) {
   return {
-    notes: state.notes.get('notes'),
+    singleNote: state.notes.get('currentNote'),
     loader: state.notes.get('loading'),
   };
 }

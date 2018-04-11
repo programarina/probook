@@ -39,7 +39,7 @@ class SignUpForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.user !== this.props.user) {
+    if (nextProps.user !== this.props.user && !nextProps.loader) {
       localStorage.setItem('sessionId', nextProps.user.id);
       this.props.history.push(routeCodes.HOME, null);
     }

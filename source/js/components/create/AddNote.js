@@ -42,7 +42,7 @@ class AddNote extends Component {
     if (note.title && note.body && note.tags) {
       if (note.body.substring(0, 3) === '```') {
         try {
-          eval(note.body.substring(3, code.length - 3));
+          eval(note.body.substring(4, code.length - 3));
           if (this.props.note.id) {
             this.props.updateNote(note, this.props.note.id);
           } else {

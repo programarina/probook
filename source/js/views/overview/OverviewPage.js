@@ -15,7 +15,8 @@ class OverviewPage extends Component {
     super(props);
     this.state = {
       loader: false,
-      filterNotes: null,
+      notes: this.props.notes,
+      filterNotes: this.props.notes,
       showCalendar: false,
       serverError: '',
       gridView: true,
@@ -32,6 +33,7 @@ class OverviewPage extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.notes);
     if (!this.props.notes.length) {
       this.props.getAllNotes(1, 6);
     }
@@ -63,6 +65,12 @@ class OverviewPage extends Component {
         loader: nextProps.loader
       });
     }
+    if(nextProps.notes !== this.props.notes){
+      this.setState({
+        notes: nextProps.notes,
+        filterNotes: nextProps.notes
+      });
+    }
     if (nextProps.error !== this.props.error) {
       this.setState({
         serverError: nextProps.error.message
@@ -70,22 +78,21 @@ class OverviewPage extends Component {
     }
   }
 
-
   findNote = (searchString) => {
-    let allNotes = this.props.notes;
+    let allNotes = this.state.notes;
+    console.log('ALL NOTES',allNotes);
+    console.log(searchString);
 
     let filterNotes = allNotes.filter(note => {
       let noteTags = note.tags.some(tag => {
         return tag.toLowerCase().includes(searchString.toLowerCase());
       });
-
+      console.log('FIND',noteTags);
       if (noteTags) {
         return note;
       }
-      if (note.title.toLowerCase().includes(searchString.toLowerCase())) {
-        return note;
-      }
     });
+    console.log('FILter',filterNotes);
 
     this.setState({
       filterNotes
@@ -93,7 +100,7 @@ class OverviewPage extends Component {
   }
 
   filterByMonth = (selectedMonth) => {
-    let allNotes = this.props.notes;
+    let allNotes = this.state.notes;
     let filterNotes = allNotes.filter(note => {
       let month = new Date(note.dateCreated);
       if (selectedMonth === month.getMonth()) {
@@ -113,7 +120,7 @@ class OverviewPage extends Component {
   }
 
   showAllNotes = () => {
-    const { notes } = this.props;
+    const { notes } = this.state;
     this.setState({
       filterNotes: notes
     });
@@ -124,32 +131,41 @@ class OverviewPage extends Component {
   }
 
   render() {
-    const { filterNotes, showCalendar, serverError, loader, gridView } = this.state;
-    const { lastArray, notes } = this.props;
-    const showNotes = filterNotes || notes;
+    const { filterNotes, notes, showCalendar, serverError, loader, gridView } = this.state;
+    const { lastArray } = this.props;
     if (serverError) {
       return <p className='serverErrorMainPage'>{serverError}</p>;
     }
     return (
       <div className='main'>
         <div>
-          <CalendarButton toggleClass={this.toggleClass} showCalendar={showCalendar} />
+          <CalendarButton 
+            toggleClass={this.toggleClass} 
+            showCalendar={showCalendar} />
           <div className='searchContainer'>
-            <Search searchTerm={this.findNote} />
+            <Search 
+              searchTerm={this.findNote} />
             <QucikNote />
           </div>
-          <MobileMenu filterByMonth={this.filterByMonth} showAllNotes={this.showAllNotes} />
+          <MobileMenu 
+            filterByMonth={this.filterByMonth} 
+            showAllNotes={this.showAllNotes} />
         </div>
         <div className='mainDataContainer'>
-          <Calendar showCalendar={showCalendar} filterByMonth={this.filterByMonth} />
+          <Calendar 
+            showCalendar={showCalendar} 
+            filterByMonth={this.filterByMonth} />
           <section className='allNotes'>
             <button
               className='noteGrid'
               onClick={this.toggleView}>
-              <img src={`../../../assets/img/${gridView ? 'listIco' : 'gridIco'}.png`} width='30px' height='30px' />
+              <img 
+                src={`../../../assets/img/${gridView ? 'listIco' : 'gridIco'}.png`} 
+                width='30px' 
+                height='30px' />
             </button>
             <OneDay
-              notes={loader ? showNotes : (lastArray ? showNotes : showNotes.slice(0, showNotes.length - 3))}
+              notes={loader ? filterNotes : ((lastArray || filterNotes.length === 3) ? filterNotes : filterNotes.slice(0, filterNotes.length - 3))}
               gridView={gridView} />
             {loader ? <img
               src='../../../../assets/img/loader.gif'

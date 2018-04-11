@@ -24,13 +24,19 @@ import {
   UPDATE_NOTE_SUCCESS,
   UPDATE_NOTE_ERROR,
 } from 'actions/updateNote';
+import {
+  GET_SINGLE_NOTE_START,
+  GET_SINGLE_NOTE_SUCCESS,
+  GET_SINGLE_NOTE_ERROR,
+} from 'actions/getSingleNote';
 
 const initialState = Map({
   loading: false,
   notes: [],
   error: null,
   pageNum: 2,
-  lastArray: false
+  lastArray: false,
+  currentNote: null,
 });
 
 const actionsMap = {
@@ -44,7 +50,8 @@ const actionsMap = {
     // if (action.data.totalCount - state.get('notes').length <= 3) {
     //   lastArray = true;
     // }
-    if(action.data.length < 3){
+
+    if (action.data.length < 3) {
       lastArray = true;
     }
     return state.merge(Map({
@@ -67,14 +74,24 @@ const actionsMap = {
     }));
   },
   [CREATE_NOTE_SUCCESS]: (state, action) => {
+    let notes = [];
+    let noteNotExist = state.get('notes').every(note => {
+      return note.id !== action.data.id;
+    });
+    if (noteNotExist) {
+      notes = [...state.get('notes'), action.data];
+    } else {
+      notes = state.get('notes');
+    }
     return state.merge(Map({
       loading: false,
-      notes: [...state.get('notes'), action.data]
+      notes,
     }));
   },
   [CREATE_NOTE_ERROR]: (state, action) => {
     return state.merge(Map({
       loading: false,
+      notes: [],
       error: action.error
     }));
   },
@@ -123,6 +140,24 @@ const actionsMap = {
     return state.merge(Map({
       loading: false,
       notes: [],
+      error: action.error
+    }));
+  },
+  [GET_SINGLE_NOTE_START]: (state, action) => {
+    return state.merge(Map({
+      loading: true,
+    }));
+  },
+  [GET_SINGLE_NOTE_SUCCESS]: (state, action) => {
+    return state.merge(Map({
+      loading: false,
+      currentNote: action.data,
+      }));
+  },
+  [GET_SINGLE_NOTE_ERROR]: (state, action) => {
+    return state.merge(Map({
+      loading: false,
+      currentNote: null,
       error: action.error
     }));
   },

@@ -16,9 +16,14 @@ function deleteNote(noteId) {
   return fetchResource(`notes/${noteId}`, { method: 'DELETE' });
 }
 
+function getSingleNote(noteId) {
+  return fetchResource(`notes/${noteId}`, { method: 'GET' });
+}
+
 export default {
   getAllNotes,
   createNote,
   updateNote,
   deleteNote,
+  getSingleNote,
 }
