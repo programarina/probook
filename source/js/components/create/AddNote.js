@@ -1,15 +1,36 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createNote } from '../../actions/createNote';
 import { routeCodes } from '../../constants/routes';
 import { updateNote } from '../../actions/updateNote';
+import { getAllNotes } from '../../actions/getNotes';
 
 class AddNote extends Component {
+  static propTypes = {
+    dispatch: PropTypes.func,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
       tags: '',
+      loader: false
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.loader !== this.props.loader) {
+      this.setState({
+        loader: nextProps.loader
+      });
+    }
+    if (nextProps.newNote !== this.props.newNote && !nextProps.loader) {
+      this.props.history.push(routeCodes.HOME, null);
+    }
+    if (nextProps.notes !== this.props.notes && !nextProps.loader) {
+      this.props.history.push(routeCodes.HOME, null);
+    }
   }
 
   handleChange = event => {
@@ -28,9 +49,18 @@ class AddNote extends Component {
   }
 
   handleClick = () => {
+    const {
+      note: {
+        body,
+        title,
+        tags
+      },
+      user: {
+        id
+      },
+      dispatch
+    } = this.props;
 
-    const { body, title, tags } = this.props.note;
-    const { id } = this.props.user;
     const date = new Date();
     const note = {
       title,
@@ -42,30 +72,31 @@ class AddNote extends Component {
     if (note.title && note.body && note.tags) {
       if (note.body.substring(0, 3) === '```') {
         try {
-          eval(note.body.substring(4, code.length - 3));
+          eval(note.body.substring(3, note.body.length - 3));
           if (this.props.note.id) {
             this.props.updateNote(note, this.props.note.id);
           } else {
             this.props.createNote(note);
+            // this.props.getAllNotes(1, 6);
           }
-          this.props.history.push(routeCodes.HOME, null);
         }
         catch (error) {
-          alert('Bad code.');
+          // alert('Bad code.');
         }
       } else {
         if (this.props.note.id) {
           this.props.updateNote(note, this.props.note.id);
         } else {
           this.props.createNote(note);
+          // this.props.getAllNotes(1, 6);
         }
-        this.props.history.push(routeCodes.HOME, null);
       }
     }
   }
 
   render() {
     const { body, title, tags } = this.props.note;
+    const { loader } = this.state;
     return (
       <div className='addNoteContainer'>
         <div className='addNote'>
@@ -92,7 +123,13 @@ class AddNote extends Component {
             />
           </div>
         </div>
-        <button onClick={this.handleClick}>Save</button>
+        {loader
+          ? <img
+            src='../../../../assets/img/loader.gif'
+            alt='loader'
+            className='loader'
+          />
+          : <button onClick={this.handleClick}>Save</button>}
       </div>
     );
   }
@@ -101,14 +138,17 @@ class AddNote extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     createNote: note => { dispatch(createNote(note)) },
-    updateNote: (note, noteId) => { dispatch(updateNote(note, noteId)) }
+    getAllNotes: (pageNum, numOfNotes) => { dispatch(getAllNotes(pageNum, numOfNotes)) },
+    updateNote: (note, noteId) => { dispatch(updateNote(note, noteId)) },
   }
 };
 
 function mapStateToProps(state) {
   return {
+    newNote: state.notes.get('newNote'),
+    user: state.user.get('user'),
+    loader: state.notes.get('loading'),
     notes: state.notes.get('notes'),
-    user: state.user.get('user')
   }
 
 }

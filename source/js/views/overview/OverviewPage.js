@@ -40,13 +40,15 @@ class OverviewPage extends Component {
   }
 
   handleScroll = e => {
+    const { loader } = this.state;
     let documentHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight,
       document.documentElement.clientHeight, document.documentElement.scrollHeight,
       document.documentElement.offsetHeight);
     let yOffset = window.pageYOffset;
     let windowHeight = window.innerHeight;
 
-    if (yOffset === documentHeight - windowHeight) {
+    if (yOffset === documentHeight - windowHeight && !loader) {
+      console.log('PAGE NUM===', this.props.pageNum);
       this.props.getAllNotes(this.props.pageNum, 3);
     }
   }
@@ -64,7 +66,7 @@ class OverviewPage extends Component {
         loader: nextProps.loader
       });
     }
-    if (nextProps.notes !== this.props.notes) {
+    if (nextProps.notes !== this.props.notes && !nextProps.loader) {
       this.setState({
         notes: nextProps.notes,
         filterNotes: nextProps.notes

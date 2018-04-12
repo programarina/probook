@@ -28,12 +28,13 @@ class CreateNotePage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    const noteId = this.props.match.params.id;
+
     if (this.props.loader !== nextProps.loader) {
       this.setState({
         loader: nextProps.loader
       });
     }
-    const noteId = this.props.match.params.id;
 
     if (this.props.singleNote !== nextProps.singleNote && noteId && !nextProps.loader) {
       this.setState({

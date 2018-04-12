@@ -37,6 +37,7 @@ const initialState = Map({
   pageNum: 2,
   lastArray: false,
   currentNote: null,
+  newNote:false,
 });
 
 const actionsMap = {
@@ -74,24 +75,18 @@ const actionsMap = {
     }));
   },
   [CREATE_NOTE_SUCCESS]: (state, action) => {
-    let notes = [];
-    let noteNotExist = state.get('notes').every(note => {
-      return note.id !== action.data.id;
-    });
-    if (noteNotExist) {
-      notes = [...state.get('notes'), action.data];
-    } else {
-      notes = state.get('notes');
-    }
     return state.merge(Map({
       loading: false,
-      notes,
+      newNote: true,
+      notes:[],
+      pageNum: 2,
+      lastArray:false
     }));
   },
   [CREATE_NOTE_ERROR]: (state, action) => {
     return state.merge(Map({
       loading: false,
-      notes: [],
+      newNote: false,
       error: action.error
     }));
   },
