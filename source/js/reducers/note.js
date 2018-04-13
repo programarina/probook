@@ -60,6 +60,7 @@ const actionsMap = {
       notes: [...state.get('notes'), ...action.data],
       lastArray,
       pageNum: state.get('pageNum') + 1,
+      newNote: false,
     }));
   },
   [GET_NOTES_ERROR]: (state, action) => {

@@ -48,7 +48,6 @@ class OverviewPage extends Component {
     let windowHeight = window.innerHeight;
 
     if (yOffset === documentHeight - windowHeight && !loader) {
-      console.log('PAGE NUM===', this.props.pageNum);
       this.props.getAllNotes(this.props.pageNum, 3);
     }
   }
@@ -77,6 +76,13 @@ class OverviewPage extends Component {
         serverError: nextProps.error.message
       });
     }
+    if (this.props.newNote !== nextProps.newNote) {
+      if (nextProps.newNote) {
+        this.props.getAllNotes(1, 6);
+      }
+      window.addEventListener('scroll', this.handleScroll);
+    }
+
   }
 
   findNote = (searchString) => {
@@ -190,6 +196,7 @@ function mapStateToProps(state) {
     error: state.notes.get('error'),
     pageNum: state.notes.get('pageNum'),
     lastArray: state.notes.get('lastArray'),
+    newNote: state.notes.get('newNote'),
   };
 }
 
