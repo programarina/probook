@@ -139,7 +139,11 @@ class OverviewPage extends Component {
     const { filterNotes, notes, showCalendar, serverError, loader, gridView } = this.state;
     const { lastArray } = this.props;
     if (serverError) {
-      return <p className='serverErrorMainPage'>{serverError}</p>;
+      return (
+        <div>
+          <p className='serverErrorMainPage'>{serverError}</p>
+          <button className='reloadPage' onClick={()=>{location.reload()}} >Try again</button>
+        </div>);
     }
     return (
       <div className='main'>
