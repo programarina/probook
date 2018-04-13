@@ -25,6 +25,9 @@ class QuickNote extends Component {
       return;
     }
     this.props.createNote(note);
+    this.setState({
+      quickNote: ''
+    });
   }
 
   render() {
