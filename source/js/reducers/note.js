@@ -48,10 +48,6 @@ const actionsMap = {
   },
   [GET_NOTES_SUCCESS]: (state, action) => {
     let lastArray = false;
-    // if (action.data.totalCount - state.get('notes').length <= 3) {
-    //   lastArray = true;
-    // }
-
     if (action.data.length < 3) {
       lastArray = true;
     }

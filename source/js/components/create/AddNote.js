@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { createNote } from '../../actions/createNote';
 import { routeCodes } from '../../constants/routes';
 import { updateNote } from '../../actions/updateNote';
-import { getAllNotes } from '../../actions/getNotes';
 
 class AddNote extends Component {
   static propTypes = {
@@ -53,7 +52,8 @@ class AddNote extends Component {
       note: {
         body,
         title,
-        tags
+        tags,
+        dateCreated,
       },
       user: {
         id
@@ -67,8 +67,9 @@ class AddNote extends Component {
       body,
       tags,
       userId: id,
-      dateCreated: date.toDateString(),
-    }
+      dateCreated: dateCreated || date.getTime(),
+      dateModified: date.getTime() || dateCreated
+    };
     if (note.title && note.body && note.tags) {
       if (note.body.substring(0, 3) === '```') {
         try {
@@ -77,18 +78,16 @@ class AddNote extends Component {
             this.props.updateNote(note, this.props.note.id);
           } else {
             this.props.createNote(note);
-            // this.props.getAllNotes(1, 6);
           }
         }
         catch (error) {
-          // alert('Bad code.');
+          alert('Bad code.');
         }
       } else {
         if (this.props.note.id) {
           this.props.updateNote(note, this.props.note.id);
         } else {
           this.props.createNote(note);
-          // this.props.getAllNotes(1, 6);
         }
       }
     }
@@ -138,7 +137,6 @@ class AddNote extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     createNote: note => { dispatch(createNote(note)) },
-    getAllNotes: (pageNum, numOfNotes) => { dispatch(getAllNotes(pageNum, numOfNotes)) },
     updateNote: (note, noteId) => { dispatch(updateNote(note, noteId)) },
   }
 };

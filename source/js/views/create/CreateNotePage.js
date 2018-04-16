@@ -17,6 +17,8 @@ class CreateNotePage extends Component {
       tags: [],
       id: '',
       loader: false,
+      dateCreated: '',
+      dateModified:'',
     };
   }
 
@@ -41,7 +43,9 @@ class CreateNotePage extends Component {
         title: nextProps.singleNote.title,
         body: nextProps.singleNote.body,
         tags: nextProps.singleNote.tags,
-        id: nextProps.singleNote.id
+        id: nextProps.singleNote.id,
+        dateModified: nextProps.singleNote.dateModified,
+        dateCreated: nextProps.singleNote.dateCreated
       });
     }
   }

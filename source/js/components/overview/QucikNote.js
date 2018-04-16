@@ -18,12 +18,11 @@ class QuickNote extends Component {
       body: this.state.quickNote,
       tags: [],
       userId: this.props.user.id,
-      dateCreated: date.toDateString(),
+      dateCreated: date.getTime(),
+      dateModified: date.getTime(),
     };
-    
-    if(!note.body){
-      return;
-    }
+
+    if (!note.body) return;
     this.props.createNote(note);
     this.setState({
       quickNote: ''
@@ -35,8 +34,8 @@ class QuickNote extends Component {
       <section className='quickNote'>
         <textarea
           placeholder={this.state.placeholder}
-          onFocus={()=>this.setState({placeholder:''})}
-          onBlur={()=>this.setState({placeholder:'Quick note...'})}
+          onFocus={() => this.setState({ placeholder: '' })}
+          onBlur={() => this.setState({ placeholder: 'Quick note...' })}
           value={this.state.quickNote}
           onChange={({ target }) => this.setState({ quickNote: target.value })} />
         <button onClick={this.handleClick}>Add</button>
@@ -45,14 +44,14 @@ class QuickNote extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch){
-  return{
+function mapDispatchToProps(dispatch) {
+  return {
     createNote: note => dispatch(createNote(note))
   };
 }
 
-function mapStateToProps(state){
-  return{
+function mapStateToProps(state) {
+  return {
     user: state.user.get('user')
   };
 }

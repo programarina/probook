@@ -9,6 +9,7 @@ import AddButton from '../../components/overview/AddButton';
 import CalendarButton from '../../components/overview/CalendarButton';
 import MobileMenu from '../../components/overview/MobileMenu';
 import { getAllNotes } from '../../actions/getNotes';
+import { SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } from 'constants';
 
 class OverviewPage extends Component {
   constructor(props) {
@@ -138,11 +139,20 @@ class OverviewPage extends Component {
   render() {
     const { filterNotes, notes, showCalendar, serverError, loader, gridView } = this.state;
     const { lastArray } = this.props;
+    const showNotes = filterNotes.map(note => {
+      let dateCreated = new Date(parseInt(note.dateCreated));
+      let dateModified = new Date(parseInt(note.dateModified));
+      return {
+        ...note,
+        dateCreated: dateCreated.toDateString(),
+        dateModified: dateModified.toDateString(),
+      };
+    });
     if (serverError) {
       return (
         <div>
           <p className='serverErrorMainPage'>{serverError}</p>
-          <button className='reloadPage' onClick={()=>{location.reload()}} >Try again</button>
+          <button className='reloadPage' onClick={() => { location.reload() }} >Try again</button>
         </div>);
     }
     return (
@@ -174,7 +184,7 @@ class OverviewPage extends Component {
                 height='30px' />
             </button>
             <OneDay
-              notes={loader ? filterNotes : ((lastArray || filterNotes.length === 3) ? filterNotes : filterNotes.slice(0, filterNotes.length - 3))}
+              notes={loader ? showNotes : ((lastArray || showNotes.length === 3) ? showNotes : showNotes.slice(0, showNotes.length - 3))}
               gridView={gridView} />
             {loader ? <img
               src='../../../../assets/img/loader.gif'
