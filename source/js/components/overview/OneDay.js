@@ -10,14 +10,16 @@ class OneDay extends Component {
   }
   componentDidMount() {
     this.transformToObject(this.props);
+    console.log(this.props.sortBy);
   }
 
   transformToObject = (props) => {
     let allNotes = props.notes.reduce((accumulator, currentValue) => {
-      if (!accumulator[currentValue.dateCreated]) {
-        accumulator[currentValue.dateCreated] = [];
+      const dateOfCurrentValue = props.sortBy ? currentValue.dateModified : currentValue.dateCreated;
+      if (!accumulator[dateOfCurrentValue]) {
+        accumulator[dateOfCurrentValue] = [];
       }
-      accumulator[currentValue.dateCreated].push(currentValue);
+      accumulator[dateOfCurrentValue].push(currentValue);
       return accumulator;
     }, {});
     this.setState({

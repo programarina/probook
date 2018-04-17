@@ -24,11 +24,17 @@ import {
   UPDATE_NOTE_SUCCESS,
   UPDATE_NOTE_ERROR,
 } from 'actions/updateNote';
+
 import {
   GET_SINGLE_NOTE_START,
   GET_SINGLE_NOTE_SUCCESS,
   GET_SINGLE_NOTE_ERROR,
 } from 'actions/getSingleNote';
+
+import {
+  RESET_NOTES
+} from 'actions/resetAllNotes';
+
 
 const initialState = Map({
   loading: false,
@@ -153,6 +159,13 @@ const actionsMap = {
       error: action.error
     }));
   },
+  [RESET_NOTES]: (state,action) => {
+    return state.merge(Map({
+      notes:[],
+      pageNum: 2,
+      lastArray:false
+    }));
+  }
 };
 
 export default function reducer(state = initialState, action = {}) {

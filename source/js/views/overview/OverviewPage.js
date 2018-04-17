@@ -9,7 +9,7 @@ import AddButton from '../../components/overview/AddButton';
 import CalendarButton from '../../components/overview/CalendarButton';
 import MobileMenu from '../../components/overview/MobileMenu';
 import { getAllNotes } from '../../actions/getNotes';
-import { SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } from 'constants';
+import { resetAllNotes } from '../../actions/resetAllNotes';
 
 class OverviewPage extends Component {
   constructor(props) {
@@ -21,6 +21,7 @@ class OverviewPage extends Component {
       showCalendar: false,
       serverError: '',
       gridView: true,
+      sortByDateModified: false
     }
   };
 
@@ -33,15 +34,24 @@ class OverviewPage extends Component {
     }
   }
 
+  toggleNotesSorting = () => {
+    const currentState = this.state.sortByDateModified;
+    this.setState({
+      sortByDateModified: !currentState,
+    });
+    this.props.resetAllNotes();
+  }
+
   componentDidMount() {
+    const { sortByDateModified } = this.state;
     if (!this.state.notes.length) {
-      this.props.getAllNotes(1, 6);
+      this.props.getAllNotes(1, 6, sortByDateModified ? 'dateModified' : 'dateCreated');
     }
     window.addEventListener('scroll', this.handleScroll);
   }
 
   handleScroll = e => {
-    const { loader } = this.state;
+    const { loader, sortByDateModified } = this.state;
     let documentHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight,
       document.documentElement.clientHeight, document.documentElement.scrollHeight,
       document.documentElement.offsetHeight);
@@ -49,18 +59,19 @@ class OverviewPage extends Component {
     let windowHeight = window.innerHeight;
 
     if (yOffset === documentHeight - windowHeight && !loader) {
-      this.props.getAllNotes(this.props.pageNum, 3);
+      this.props.getAllNotes(this.props.pageNum, 3, sortByDateModified ? 'dateModified' : 'dateCreated');
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { lastArray } = this.props;
-    if (lastArray) {
-      return window.removeEventListener('scroll', this.handleScroll);
+  componentWillUpdate(nextProps, nextState) {
+    if (this.state.sortByDateModified !== nextState.sortByDateModified) {
+      this.props.getAllNotes(1, 6, nextState.sortByDateModified ? 'dateModified' : 'dateCreated');
     }
   }
 
   componentWillReceiveProps(nextProps) {
+    const { sortByDateModified } = this.state;
+
     if (nextProps.loader !== this.props.loader) {
       this.setState({
         loader: nextProps.loader
@@ -79,23 +90,27 @@ class OverviewPage extends Component {
     }
     if (this.props.newNote !== nextProps.newNote) {
       if (nextProps.newNote) {
-        this.props.getAllNotes(1, 6);
+        this.props.getAllNotes(1, 6, sortByDateModified ? 'dateModified' : 'dateCreated');
       }
-      window.addEventListener('scroll', this.handleScroll);
     }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { lastArray } = this.props;
+    if (lastArray) {
+      return window.removeEventListener('scroll', this.handleScroll);
+    }
+    window.addEventListener('scroll', this.handleScroll);
 
   }
 
   findNote = (searchString) => {
     let allNotes = this.state.notes;
-
     let filterNotes = allNotes.filter(note => {
       let noteTags = note.tags.some(tag => {
         return tag.toLowerCase().includes(searchString.toLowerCase());
       });
-      if (noteTags) {
-        return note;
-      }
+      if (noteTags) return note;
     });
     if (searchString === '') {
       filterNotes = this.state.notes;
@@ -109,9 +124,7 @@ class OverviewPage extends Component {
     let allNotes = this.state.notes;
     let filterNotes = allNotes.filter(note => {
       let month = new Date(note.dateCreated);
-      if (selectedMonth === month.getMonth()) {
-        return note;
-      }
+      if (selectedMonth === month.getMonth()) return note;
     });
     this.setState({
       filterNotes
@@ -137,7 +150,7 @@ class OverviewPage extends Component {
   }
 
   render() {
-    const { filterNotes, notes, showCalendar, serverError, loader, gridView } = this.state;
+    const { filterNotes, notes, showCalendar, serverError, loader, gridView, sortByDateModified } = this.state;
     const { lastArray } = this.props;
     const showNotes = filterNotes.map(note => {
       let dateCreated = new Date(parseInt(note.dateCreated));
@@ -183,9 +196,17 @@ class OverviewPage extends Component {
                 width='30px'
                 height='30px' />
             </button>
+            <button
+              onClick={this.toggleNotesSorting}
+              className='sortNotes'>
+              {sortByDateModified
+                ? 'Sort by date created'
+                : 'Sort by last modified'}
+            </button>
             <OneDay
               notes={loader ? showNotes : ((lastArray || showNotes.length === 3) ? showNotes : showNotes.slice(0, showNotes.length - 3))}
-              gridView={gridView} />
+              gridView={gridView}
+              sortBy={sortByDateModified} />
             {loader ? <img
               src='../../../../assets/img/loader.gif'
               alt='loader'
@@ -200,7 +221,10 @@ class OverviewPage extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return { getAllNotes: (pageNum, notesPerPage) => dispatch(getAllNotes(pageNum, notesPerPage)) };
+  return {
+    getAllNotes: (pageNum, notesPerPage, sortBy) => dispatch(getAllNotes(pageNum, notesPerPage, sortBy)),
+    resetAllNotes: _ => dispatch(resetAllNotes()),
+  };
 };
 
 function mapStateToProps(state) {
