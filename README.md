@@ -59,6 +59,20 @@ Webpack is the technology I use to transform and build my code into optimized co
 
 This project follows [ECMAScript 2015](https://github.com/lukehoban/es6features) syntax using the [Babel](https://babeljs.io/) transpiler.
 
+##### Pre-commit Git Hooks
+
+Upon attempting to commit,  the linter will execute. If it fails, fix all errors before you commit. Read the linter-specific documentation for instructions or rule clarification.
+v## Git Workflow ##
+
+##### Branches
+
+`master` - The branch holding the latest working copy of the project, the “head” of the trunk
+
+`feature branches` - The branches containing granular work.
+
+##### Commit Messages
+
+Commit messages should be formatted like so: One sentence description of the work starting with a verb.
 
 
 
