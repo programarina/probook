@@ -11,6 +11,7 @@ class Header extends Component {
       loader: false
     };
   }
+
   componentWillMount() {
     const id = localStorage.getItem('sessionId');
     this.props.getUser(id);
@@ -27,7 +28,7 @@ class Header extends Component {
         loader: nextProps.loader
       });
     }
-    if (nextProps.user !== this.props.user) {
+    if (nextProps.user !== this.props.user && !nextProps.loader) {
       this.setState({
         user: nextProps.user,
       });
@@ -37,13 +38,16 @@ class Header extends Component {
   render() {
     const { user, loader } = this.state;
     if (loader) {
-      return <p></p>;
+      return <p> </p>;
     }
     return (
       <div className='headerContainer'>
         <div className='header'>
           <h3>Hi, {user.username}</h3>
-          <button onClick={this.logOutAction}>Log out</button>
+          <button
+            onClick={this.logOutAction}>
+            Log out
+          </button>
         </div>
       </div>
     );

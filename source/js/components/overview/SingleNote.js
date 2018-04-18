@@ -14,8 +14,10 @@ class SingleNote extends Component {
       codeResult: ''
     }
   }
+
   componentDidMount() {
-    if (this.props.note.body.substring(0, 3) === '```') {
+    const { note: { body } } = this.props;
+    if (body.substring(0, 3) === '```') {
       this.setState({
         executableCode: true
       });
@@ -31,7 +33,7 @@ class SingleNote extends Component {
   }
 
   deleteNote = () => {
-    const { id } = this.props.note;
+    const { note: { id } } = this.props;
     this.props.deleteNote(id);
     this.closeModal();
   }
@@ -42,19 +44,29 @@ class SingleNote extends Component {
       this.setState({
         codeResult
       });
-    } catch(e){
+    } catch (e) {
       alert('Only JS code.');
     }
 
   }
 
   render() {
-    const { title, body, id, tags } = this.props.note;
+    const { note: { title, body, id, tags } } = this.props;
     const { executableCode, codeResult } = this.state;
     return (
       <div className={this.props.gridView ? 'singleNote gridView' : 'singleNote'}>
-        <h4>{title ? title.length < 20 ? title : `${title.substring(0, 20)}...` : 'Note title'}</h4>
-        <div><ReactMarkdown source={body.length < 50 ? body : `${body.substring(0, 150)}...`} /></div>
+        <h4>
+          {title
+            ? title.length < 20
+              ? title : `${title.substring(0, 20)}...`
+            : 'Note title'}
+        </h4>
+        <div>
+          <ReactMarkdown
+            source={body.length < 50
+              ? body
+              : `${body.substring(0, 150)}...`} />
+        </div>
         <Link
           to={`${routeCodes.CREATE_PAGE}/${id}`}
           className='editBtn'>

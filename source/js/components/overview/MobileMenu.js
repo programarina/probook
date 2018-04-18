@@ -21,7 +21,7 @@ export default class MobileMenu extends Component {
     });
   }
 
-  showAllNotes = ()=>{
+  showAllNotes = () => {
     this.props.showAllNotes();
     this.closeModal();
   }
@@ -30,7 +30,11 @@ export default class MobileMenu extends Component {
     const months = LIST_OF_MONTHS;
     return (
       <div className='mobileMenuContainer'>
-        <div className='mobileCalendarView' onClick={this.openModal}>calendar</div>
+        <div
+          className='mobileCalendarView'
+          onClick={this.openModal}>
+          calendar
+        </div>
         <div
           className={this.state.showModal ? 'modal showModal' : 'modal'}>
           <div className="months-list">
@@ -39,15 +43,19 @@ export default class MobileMenu extends Component {
               className="close">&times;
             </span>
             <ul>
-              {months.map((month, indexOfMonth) => <li key={month}>
-                <button
-                  onClick={() => {
-                    this.closeModal()
-                    this.props.filterByMonth(indexOfMonth)
-                  }}>
-                  {month}
-                </button></li>)}
-              <li><button onClick={this.showAllNotes} >All notes</button></li>
+              {months.map((month, indexOfMonth) =>
+                <li key={month}>
+                  <button
+                    onClick={() => {
+                      this.closeModal()
+                      this.props.filterByMonth(indexOfMonth)
+                    }}>
+                    {month}
+                  </button>
+                </li>)}
+              <li>
+                <button onClick={this.showAllNotes}>All notes</button>
+              </li>
             </ul>
           </div>
         </div>

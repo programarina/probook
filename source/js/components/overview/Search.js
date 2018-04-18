@@ -5,7 +5,7 @@ class Search extends Component {
     super();
     this.state = {
       searchString: '',
-      placeholder:'Search'
+      placeholder: 'Search'
     };
     this.bounceTimeout;
   };
@@ -15,13 +15,14 @@ class Search extends Component {
   }
 
   debounce = () => {
+    const { searchString } = this.state;
     clearTimeout(this.bounceTimeout);
     this.bounceTimeout = setTimeout(() => {
-      this.props.searchTerm(this.state.searchString);
+      this.props.searchTerm(searchString);
     }, 500);
   }
-  
-  clearTimer = () =>{
+
+  clearTimer = () => {
     clearTimeout(this.bounceTimeout);
   }
 
@@ -31,8 +32,8 @@ class Search extends Component {
         <input
           type='text'
           placeholder={this.state.placeholder}
-          onFocus={()=>this.setState({placeholder:''})}
-          onBlur={()=>this.setState({placeholder:'Search'})}
+          onFocus={() => this.setState({ placeholder: '' })}
+          onBlur={() => this.setState({ placeholder: 'Search' })}
           value={this.state.searchString}
           onChange={this.handleSearch}
           onKeyUp={this.debounce}

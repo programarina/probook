@@ -1,22 +1,25 @@
 import React, { Component } from 'react';
 
 class HelpButton extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       showModal: false
     };
   }
-  openModal = ()=>{
+
+  openModal = () => {
     this.setState({
-      showModal:true
+      showModal: true
     });
   }
-  closeModal = ()=>{
+
+  closeModal = () => {
     this.setState({
-      showModal:false
+      showModal: false
     });
   }
+
   render() {
     return (
       <div className='tooltipContainer'>
@@ -27,20 +30,19 @@ class HelpButton extends Component {
             <span
               onClick={this.closeModal}
               className="close">&times;</span>
-            <div>
+            <div className='manualBox'>
               <h3>Usage:</h3>
-                <h4>You can use GitHub Flavoured Markdown language:</h4>
-                <p>For more info go to: <a href='https://github.github.com/gfm/' target='_blank'>GITHUB</a></p> 
-                <h4>Write some of your own code:</h4>
-                <code>```js <br/>
-                    var React = require('react'); <br/>
-                    var Markdown = require('react-markdown'); <br/>
+              <h4>You can use GitHub Flavoured Markdown language:</h4>
+              <p>For more info go to: <a href='https://github.github.com/gfm/' target='_blank'>GITHUB</a></p>
+              <h4>Write some of your own code:</h4>
+              <code>```js <br />
+                var React = require('react'); <br />
+                var Markdown = require('react-markdown'); <br />
 
-                    React.render( <br/>
-                      document.getElementById('content') <br/>
-                    ); <br/>
-                    ```</code>
-                    <h4></h4>
+                React.render( <br />
+                document.getElementById('content') <br />
+                ); <br />
+                ```</code>
             </div>
           </div>
         </div>

@@ -10,7 +10,6 @@ class OneDay extends Component {
   }
   componentDidMount() {
     this.transformToObject(this.props);
-    console.log(this.props.sortBy);
   }
 
   transformToObject = (props) => {
@@ -38,7 +37,11 @@ class OneDay extends Component {
       return (
         <div className='oneDay' key={noteDate}>
           <h3 key={noteDate}>{noteDate}</h3>
-          {allNotes[noteDate].map(note => <SingleNote note={note} key={note.id} gridView={this.props.gridView} />)}
+          {allNotes[noteDate].map(note => 
+            <SingleNote 
+              note={note} 
+              key={note.id} 
+              gridView={this.props.gridView} />)}
         </div>
       )
     }));

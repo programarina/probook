@@ -62,7 +62,9 @@ class SignInForm extends Component {
     const { loader, serverError, noUser } = this.state;
     const { handleSubmit } = this.props;
     return (
-      <form className='signInForm' onSubmit={handleSubmit(this.submitForm.bind(this))}>
+      <form
+        className='signInForm'
+        onSubmit={handleSubmit(this.submitForm.bind(this))}>
         <Field
           label='Email*'
           name='email'
@@ -82,8 +84,11 @@ class SignInForm extends Component {
         <button
           className={loader ? 'loaderHiden' : 'signInForm-button'}
           type='submit'>
-          Sign in</button>
-        <p className='serverError'>{serverError ? serverError : ''}</p>
+          Sign in
+        </button>
+        <p className='serverError'>
+          {serverError ? serverError : ''}
+        </p>
       </form>
     );
   }
@@ -115,4 +120,4 @@ export default reduxForm({
   form: 'SignInForm'
 })(
   connect(mapStateToProps, { signIn })(SignInForm)
-  );
+);

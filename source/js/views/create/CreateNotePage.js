@@ -87,14 +87,23 @@ class CreateNotePage extends Component {
         <div className='backBtnContainer'>
           <Link to={publicPath}>
             <svg height="40" width="40">
-              <polyline points="20,0 4,20 20,40"
-                fill='transparent' stroke='white' strokeWidth='4' />
+              <polyline 
+                points="20,0 4,20 20,40"
+                fill='transparent' 
+                stroke='white' 
+                strokeWidth='4' />
             </svg>
           </Link>
         </div>
         <div className='createNote'>
-          <AddNote history={this.props.history} showNoteData={this.showNoteData} showTags={this.showTags} note={note} />
-          <PreviewNote note={note} deleteTag={this.deleteTag} />
+          <AddNote 
+            history={this.props.history} 
+            showNoteData={this.showNoteData} 
+            showTags={this.showTags} 
+            note={note} />
+          <PreviewNote 
+            note={note} 
+            deleteTag={this.deleteTag} />
           <HelpButton />
         </div>
       </div>

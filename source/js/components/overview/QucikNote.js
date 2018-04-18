@@ -38,7 +38,10 @@ class QuickNote extends Component {
           onBlur={() => this.setState({ placeholder: 'Quick note...' })}
           value={this.state.quickNote}
           onChange={({ target }) => this.setState({ quickNote: target.value })} />
-        <button onClick={this.handleClick}>Add</button>
+        <button
+          onClick={this.handleClick}>
+          Add
+        </button>
       </section>
     );
   }

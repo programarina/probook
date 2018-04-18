@@ -17,7 +17,6 @@ const CalendarButton = (props) => {
         </svg>
       </div>
     </div>
-
   );
 }
 

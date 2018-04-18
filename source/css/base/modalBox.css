@@ -61,6 +61,10 @@
   cursor: pointer;
 }
 
+.manualBox{
+  padding: 20px;
+}
+
 @media screen and (max-width: 680px){
   .modal-content {
     width: 80%;

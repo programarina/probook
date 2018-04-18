@@ -12,7 +12,14 @@ class PreviewNote extends Component {
         <div className='previewCode'>
           <ReactMarkdown className='javaScript' source={body} />
         </div>
-        <ul className='previewTags'>{tags.map(tag => <li key={tag} onClick={() => { this.props.deleteTag(tag) }}>{tag}</li>)}</ul>
+        <ul className='previewTags'>
+          {tags.map(tag =>
+            <li
+              key={tag}
+              onClick={() => { this.props.deleteTag(tag) }}>
+              {tag}
+            </li>)}
+        </ul>
       </div>
     );
   }

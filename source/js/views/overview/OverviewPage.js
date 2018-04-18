@@ -28,7 +28,7 @@ class OverviewPage extends Component {
   toggleClass = () => {
     const currentState = this.state.showCalendar;
     this.setState({ showCalendar: !currentState });
-    // when closing calendar
+    // when closing calendar show all notes
     if (currentState) {
       this.showAllNotes();
     }
@@ -52,6 +52,7 @@ class OverviewPage extends Component {
 
   handleScroll = e => {
     const { loader, sortByDateModified } = this.state;
+    
     let documentHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight,
       document.documentElement.clientHeight, document.documentElement.scrollHeight,
       document.documentElement.offsetHeight);
@@ -101,7 +102,6 @@ class OverviewPage extends Component {
       return window.removeEventListener('scroll', this.handleScroll);
     }
     window.addEventListener('scroll', this.handleScroll);
-
   }
 
   findNote = (searchString) => {
@@ -112,6 +112,7 @@ class OverviewPage extends Component {
       });
       if (noteTags) return note;
     });
+    // show all notes when search string is empty
     if (searchString === '') {
       filterNotes = this.state.notes;
     }
@@ -152,6 +153,7 @@ class OverviewPage extends Component {
   render() {
     const { filterNotes, notes, showCalendar, serverError, loader, gridView, sortByDateModified } = this.state;
     const { lastArray } = this.props;
+    // transform from time stamp to human readable date
     const showNotes = filterNotes.map(note => {
       let dateCreated = new Date(parseInt(note.dateCreated));
       let dateModified = new Date(parseInt(note.dateModified));
@@ -204,7 +206,9 @@ class OverviewPage extends Component {
                 : 'Sort by last modified'}
             </button>
             <OneDay
-              notes={loader ? showNotes : ((lastArray || showNotes.length === 3) ? showNotes : showNotes.slice(0, showNotes.length - 3))}
+              notes={loader 
+                ? showNotes 
+                : ((lastArray || showNotes.length === 3) ? showNotes : showNotes.slice(0, showNotes.length - 3))}
               gridView={gridView}
               sortBy={sortByDateModified} />
             {loader ? <img
