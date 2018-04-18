@@ -4,7 +4,7 @@
 * [Setup](#setup-the-development-environment)
 * [Workflow](#workflow)
 
-### Setup the development environment
+### Setup the development environment 
 
 #### Running Locally
 
@@ -38,7 +38,7 @@ Provided endpoints are:
 * PUT http://localhost:3333/api/notes/id
 * DELETE http://localhost:3333/api/notes/id
 
-### Workflow
+### Workflow ###
 #### NPM Scripts
 ##### lint - Test scripts for code consistency. Run by default on a git commit hook.
 
@@ -62,7 +62,7 @@ This project follows [ECMAScript 2015](https://github.com/lukehoban/es6features)
 ##### Pre-commit Git Hooks
 
 Upon attempting to commit,  the linter will execute. If it fails, fix all errors before you commit. Read the linter-specific documentation for instructions or rule clarification.
-v## Git Workflow ##
+### Git Workflow 
 
 ##### Branches
 
